@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="Blog"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+</head>
+<body>
+<header th:insert="blocks/header :: header"/><header/>
+<div class="basicText" th:text="'There are notes on various topics here'"/>
+<nav class="mainBlogNav">
+    <a class="blogNav" href="/blog/history">History</a>
+    <a class="blogNav" href="/blog/lifehacks">Lifehacks</a>
+    <a class="blogNav" href="/blog/myprogress">My progress</a>
+</nav>
+
+<div th:each="el : ${notes}" class="fullNote">
+    <a th:text="${el.heading}" class="heading" href="/blog/${el.id}"></a>
+    <p th:text="${el.fullText}" class="fullText"></p>
+    <p>
+        <div class="tags">tags:</div>
+        <div class="tags" th:text=" ${el.tags}"></div>
+    </p>
+</div>
+
+</body>
+<footer th:insert="blocks/footer :: footer"></footer>
+</html>

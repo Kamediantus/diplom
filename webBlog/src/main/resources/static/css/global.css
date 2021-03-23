@@ -35,3 +35,28 @@ footer{
     font: 14pt/14pt Arial, sans-serif;
     margin-top: 10pt;
 }
+.blogNav{
+    font: 13pt/13pt DejaVu Sans Mono, monospace;
+    margin-left: 45pt;
+}
+.mainBlogNav{
+    margin-top: 10pt;
+}
+
+.fullNote{
+    margin-top: 15pt;
+    margin-left: 45pt;
+}
+.heading{
+    font: 14pt/14pt Arial, sans-serif;
+    color: azure;
+}
+
+.fullText{
+    font: 12pt/12pt FreeMono, monospace;
+}
+.tags{
+    font: 11pt/11pt FreeMono, monospace;
+    float: left;
+    margin-right: 3pt;
+}
