@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="Contacts"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+</head>
+<header th:include="blocks/header :: header"></header>
+<body>
+<div class="basicText">
+    <p>email: liprikent@yandex.ru </p>
+    <p>Twitter: <a href="https://twitter.com/jasno_lipa">@jasno_lipa</a></p>
+</div>
+</body>
+<footer th:include="blocks/footer :: footer"></footer>
+</html>

@@ -1,0 +1,37 @@
+body{
+    background-color: gray;
+    color: azure;
+    margin-left: 5%;
+}
+
+a{
+    color: lavender;
+    text-decoration: overline;
+}
+header{
+    margin: auto;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+    height: 5rem;
+    left: 20pt;
+    font: 12pt/12pt Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font: 12pt/12pt DejaVu Sans Mono, monospace;
+}
+.mainNav{
+    font: 15pt/15pt DejaVu Sans Mono, monospace;
+    margin-left: 45pt;
+}
+
+.nameOfSite{
+    font: 25pt/25pt DejaVu Sans Mono, monospace;
+    text-decoration: none;
+    margin-left: 45pt;
+}
+.basicText{
+    font: 14pt/14pt Arial, sans-serif;
+    margin-top: 10pt;
+}
