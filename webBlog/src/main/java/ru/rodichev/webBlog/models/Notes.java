@@ -55,4 +55,13 @@ public class Notes {
     public void setViews(int views) {
         this.views = views;
     }
+
+    public Notes(String heading, String fullText, String tags) {
+        this.heading = heading;
+        this.fullText = fullText;
+        this.tags = tags;
+    }
+
+    public Notes() {
+    }
 }
