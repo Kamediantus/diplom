@@ -3,6 +3,7 @@ package ru.rodichev.webBlog.models;
 
 import org.hibernate.annotations.Type;
 import org.springframework.context.annotation.Primary;
+import ru.rodichev.webBlog.logic.CurrDate;
 
 import javax.persistence.*;
 
@@ -16,8 +17,8 @@ public class Notes {
 
     @Type(type = "text")
     private String fullText;
+    private String date;
     private String tags;
-    private int views;
 
     public Long getId() {
         return id;
@@ -51,19 +52,23 @@ public class Notes {
         this.tags = tags;
     }
 
-    public int getViews() {
-        return views;
-    }
+    public String getDate() { return date; }
 
-    public void setViews(int views) {
-        this.views = views;
-    }
+    public void setDate(String date) { this.date = date; }
 
     public Notes(String heading, String fullText, String tags) {
         this.heading = heading;
-        this.fullText = fullText;
+        this.fullText = toHtmlBreakLines(fullText);
         this.tags = tags;
+        this.date = CurrDate.getCurrDate();
     }
+    public String toHtmlBreakLines(String text){
+        return text.replaceAll("\n","<br />");
+    }
+    public String toSqlBreakLines(){
+        return this.fullText.replaceAll("<br />","\n");
+    }
+
 
     public Notes() {
     }

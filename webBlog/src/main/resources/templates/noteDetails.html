@@ -12,7 +12,7 @@
 
 <div th:each="el : ${note}" class="fullNote">
         <p th:text="${el.heading}" class="heading"></p>
-        <p th:text="${el.fullText}" class="fullText"></p>
+        <p th:utext="${el.fullText}" class="fullText"></p>
         <p>
             <div class="tags">tags:</div>
             <div class="tags" th:text=" ${el.tags}"></div>
