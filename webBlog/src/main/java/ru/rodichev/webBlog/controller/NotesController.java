@@ -55,17 +55,17 @@ public class NotesController {
         else return "redirect:/notes";
     }
 
-//    @GetMapping("/notes/edit/{id}")
-//    public String editNote(@PathVariable(value = "id") long id, Model model){
-//        if(notesRepository.existsById(id)) {
-//            Optional<Notes> notes = notesRepository.findById(id);
-//            ArrayList<Notes> res = new ArrayList<>();
-//            notes.ifPresent(res::add);
-//            model.addAttribute("note", res);
-//            return "editNote";
-//        }
-//        else return "redirect:/notes";
-//    }
+    @GetMapping("/notes/edit/{id}")
+    public String editNote(@PathVariable(value = "id") long id, Model model){
+        if(notesRepository.existsById(id)) {
+            Optional<Notes> notes = notesRepository.findById(id);
+            ArrayList<Notes> res = new ArrayList<>();
+            notes.ifPresent(res::add);
+            model.addAttribute("note", res);
+            return "editNote";
+        }
+        else return "redirect:/notes";
+    }
 
     @PostMapping("/notes/edit/{id}")
     public String updateNote(@PathVariable(value = "id") long id, @RequestParam String heading, @RequestParam String fullText, @RequestParam String tags,  Model model) {
