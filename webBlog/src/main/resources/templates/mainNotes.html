@@ -13,7 +13,7 @@
 <div th:each="el : ${notes}" class="fullNote">
     <p th:text="${el.heading}" class="heading"></p>
     <div th:text="'tags: ' + ${el.tags}" class="tags"></div>
-    <p th:utext="${el.fullText}" class="fullText"></p>
+    <p th:utext="${el.getShortText()}" class="fullText"></p>
     <br>
     <p th:text="'Created: ' + ${el.date}" class="basicTextSmall"></p>
     <a class="button4 bottomright" th:href="'/notes/' + ${el.id}">Details</a>

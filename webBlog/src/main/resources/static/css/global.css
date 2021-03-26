@@ -72,6 +72,9 @@ footer{
 
 .fullText{
     font: 12pt/12pt FreeMono, monospace;
+    padding: 10pt;
+    border-radius: 10px;
+    background-color: #808082;
 }
 .tags{
     font: 11pt/11pt FreeMono, monospace;
@@ -116,7 +119,7 @@ input[type=submit]:hover {
 
 textarea {
     width: 100%;
-    height: 500pt;
+    height: 400pt;
     padding: 12px 20px;
     box-sizing: border-box;
     border: 2px solid #ccc;

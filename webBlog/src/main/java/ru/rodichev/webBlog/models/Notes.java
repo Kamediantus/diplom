@@ -68,6 +68,11 @@ public class Notes {
     public String toSqlBreakLines(){
         return this.fullText.replaceAll("<br />","\n");
     }
+    public String getShortText() {
+        if (this.fullText.length() > 1001) {
+            return this.fullText.substring(0, 1000) + "...";
+        } else return this.fullText;
+    }
 
 
     public Notes() {
