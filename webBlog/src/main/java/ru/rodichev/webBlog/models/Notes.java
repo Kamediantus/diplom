@@ -1,6 +1,7 @@
 package ru.rodichev.webBlog.models;
 
 
+import org.hibernate.annotations.Type;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
@@ -12,6 +13,8 @@ public class Notes {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String heading;
+
+    @Type(type = "text")
     private String fullText;
     private String tags;
     private int views;
