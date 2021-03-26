@@ -10,16 +10,19 @@
 <div class="basicText" th:text="'There are notes on various topics here'"/>
 <div th:insert="blocks/noteNav :: noteNav"></div>
 
-<div th:each="el : ${notes}" class="fullNote">
-    <p th:text="${el.heading}" class="heading"></p>
-    <p th:text="${el.fullText}" class="fullText"></p>
-    <p>
-        <div class="tags">tags:</div>
-        <div class="tags" th:text=" ${el.tags}"></div>
-    </p>
-    <a class="button4 bottomright" th:href="'/notes/' + ${el.id}">Details</a>
-</div>
+<div th:each="el : ${note}" class="fullNote">
+        <p th:text="${el.heading}" class="heading"></p>
+        <p th:text="${el.fullText}" class="fullText"></p>
+        <p>
+            <div class="tags">tags:</div>
+            <div class="tags" th:text=" ${el.tags}"></div>
+        </p><br>
+        <p>
+            <a th:href="'/notes/edit/' + ${el.id}" class="small-button">Edit</a>
+            <a th:href="'/notes/delete/' + ${el.id}" class="small-button">Delete</a>
+        </p>
 
+</div>
 </body>
 <footer th:insert="blocks/footer :: footer"></footer>
 </html>

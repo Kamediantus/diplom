@@ -8,11 +8,11 @@
 <body>
 <header th:insert="blocks/header :: header"/><header/>
 <div class="basicText" th:text="'There are notes on various topics here'"/>
-<div th:insert="blocks/blogNav :: blogNav"></div>
+<div th:insert="blocks/noteNav :: noteNav"></div>
 
 <div class="basicText">
     <h3>Adding a new note:</h3>
-    <form action="/blog/add" method="post">
+    <form action="/notes/add" method="post">
         <input type="text" name="heading" placeholder="heading...">
         <textarea name="fullText" placeholder="full text..."></textarea>
         <input type="text" name="tags" placeholder="tags...">

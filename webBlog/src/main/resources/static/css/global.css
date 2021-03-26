@@ -39,21 +39,28 @@ footer{
     font: 14pt/14pt Arial, sans-serif;
     margin-top: 10pt;
 }
-.blogNav{
+.noteNav{
     font: 13pt/13pt DejaVu Sans Mono, monospace;
     margin-left: 45pt;
 }
-.mainBlogNav{
+.mainNoteNav{
     margin-top: 10pt;
 }
 
 .fullNote{
     margin-top: 15pt;
-    /*margin-left: 45pt;*/
-    /*margin-bottom: 40pt;*/
     border-radius: 10px;
     background-color: dimgray;
     padding: 20pt;
+    padding-top: 1pt;
+}
+.fullNoteDetails{
+    margin-top: 15pt;
+    border-radius: 10px;
+    background-color: dimgray;
+    padding: 20pt;
+    padding-top: 1pt;
+    padding-bottom: 1pt;
 }
 .heading{
     font: 14pt/14pt Arial, sans-serif;
@@ -114,4 +121,42 @@ textarea {
     border-radius: 4px;
     background-color: #f8f8f8;
     resize: none;
+}
+
+.button4 {
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 10px 200px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /*margin: 4px 2px;*/
+    margin-left: 120pt;
+    cursor: pointer;
+    font: 14pt/14pt Arial, sans-serif;
+    background-color: #e7e7e7; color: black;
+}
+.bottomright {
+    position: absolute;
+    right: 16px;
+    font-size: 18px;
+}
+
+.small-button{
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: auto;
+    /*margin-left: 120pt;*/
+    cursor: pointer;
+    font: 14pt/14pt Arial, sans-serif;
+    background-color: #e7e7e7; color: black;
+    /*margin-bottom: 10pt;*/
 }
