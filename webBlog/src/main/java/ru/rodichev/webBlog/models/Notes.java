@@ -65,12 +65,20 @@ public class Notes {
     public String toHtmlBreakLines(String text){
         return text.replaceAll("\n","<br />");
     }
+
     public String toSqlBreakLines(){
         return this.fullText.replaceAll("<br />","\n");
     }
+
+//    public String getShortText() {
+//        if (this.fullText.length() > 1001) {
+//            return this.fullText.substring(0, 1000) + "...";
+//        } else return this.fullText;
+//    }
+
     public String getShortText() {
         if (this.fullText.length() > 1001) {
-            return this.fullText.substring(0, 1000) + "...";
+            return this.fullText.substring(0, this.fullText.substring(0, 1000).lastIndexOf(" ")) + "...";
         } else return this.fullText;
     }
 
