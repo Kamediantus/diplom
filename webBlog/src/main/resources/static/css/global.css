@@ -75,6 +75,7 @@ footer{
     padding: 10pt;
     border-radius: 10px;
     background-color: #808082;
+    word-wrap: break-word;
 }
 .tags{
     font: 11pt/11pt FreeMono, monospace;

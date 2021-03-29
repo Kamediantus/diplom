@@ -78,11 +78,13 @@ public class Notes {
 
     public String getShortText() {
         if (this.fullText.length() > 1001) {
-            return this.fullText.substring(0, this.fullText.substring(0, 1000).lastIndexOf(" ")) + "...";
+            if (this.fullText.substring(0,1000).contains(" ")) {
+                return this.fullText.substring(0, this.fullText.substring(0, 1000).lastIndexOf(" ")) + "...";
+            } else return this.fullText.substring(0, 1000) + "...";
         } else return this.fullText;
     }
 
-
     public Notes() {
+        }
     }
-}
+
