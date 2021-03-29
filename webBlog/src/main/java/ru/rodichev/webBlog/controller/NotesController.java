@@ -12,9 +12,7 @@ import ru.rodichev.webBlog.logic.CurrDate;
 import ru.rodichev.webBlog.models.Notes;
 import ru.rodichev.webBlog.repo.NotesRepository;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class NotesController {
@@ -25,7 +23,7 @@ public class NotesController {
 
     @GetMapping("/notes")
     public String blog(Model model){
-        Iterable<Notes> notes = notesRepository.findAll();
+        Iterable<Notes> notes = notesRepository.reverseFindAll();
         model.addAttribute("notes", notes);
         return "mainNotes";
     }

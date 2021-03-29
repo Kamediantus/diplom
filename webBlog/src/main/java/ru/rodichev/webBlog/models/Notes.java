@@ -2,9 +2,7 @@ package ru.rodichev.webBlog.models;
 
 
 import org.hibernate.annotations.Type;
-import org.springframework.context.annotation.Primary;
 import ru.rodichev.webBlog.logic.CurrDate;
-
 import javax.persistence.*;
 
 @Entity
@@ -69,12 +67,6 @@ public class Notes {
     public String toSqlBreakLines(){
         return this.fullText.replaceAll("<br />","\n");
     }
-
-//    public String getShortText() {
-//        if (this.fullText.length() > 1001) {
-//            return this.fullText.substring(0, 1000) + "...";
-//        } else return this.fullText;
-//    }
 
     public String getShortText() {
         if (this.fullText.length() > 1001) {
