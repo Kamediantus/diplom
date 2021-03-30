@@ -1,15 +1,16 @@
-package ru.rodichev.webBlog.models;
+package ru.rodichev.webBlog.entity;
 
 
 import org.hibernate.annotations.Type;
 import ru.rodichev.webBlog.logic.CurrDate;
 import javax.persistence.*;
 
+@Table(name = "t_notes")
 @Entity
 public class Notes {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String heading;
 

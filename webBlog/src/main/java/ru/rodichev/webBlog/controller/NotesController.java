@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.rodichev.webBlog.logic.CurrDate;
-import ru.rodichev.webBlog.models.Notes;
+import ru.rodichev.webBlog.entity.Notes;
 import ru.rodichev.webBlog.repo.NotesRepository;
 
 import java.util.*;

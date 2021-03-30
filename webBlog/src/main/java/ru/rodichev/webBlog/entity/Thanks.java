@@ -1,14 +1,15 @@
-package ru.rodichev.webBlog.models;
+package ru.rodichev.webBlog.entity;
 
 
 import org.hibernate.annotations.Type;
 import javax.persistence.*;
 
+@Table(name = "t_thanks")
 @Entity
 public class Thanks {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String person;
     private String links;

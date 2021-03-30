@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="Notes"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+</head>
+<body>
+<header th:insert="blocks/header :: header"/><header/>
+<div>
+    <form action="/action_page.php">
+        <input type="text" id="username" name="firstname" placeholder="Username..">
+        <input type="password" id="password" name="lastname" placeholder="Password..">
+        <input type="password" id="passwordConfirm" name="lastname" placeholder="Confirm password..">
+        <input type="submit" value="Sing up">
+    </form>
+
+
+</div>
+</body>
+<footer th:insert="blocks/footer :: footer"></footer>
+</html>

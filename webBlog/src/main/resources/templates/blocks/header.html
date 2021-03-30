@@ -1,19 +1,19 @@
 <div th:fragment="header">
-    <div>
+    <sec>
         <nav class="mainNav">
             <a class="nameOfSite" href="/">The notes of Alexander Supertramp</a>
             <a class="mainNav" href="/contacts">Contacts</a>
             <a class="mainNav" href="/aboutMe">About me</a>
             <a class="mainNav" href="/notes">Notes</a>
-            <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <sec authorize="hasRole('ROLE_ADMIN')">
                 <a class="mainNav" href="/admin">Admin</a>
-            </div>
-            <div sec:authorize access="!isAuthenticated()">
+            </sec>
+            <sec authorize access="!isAuthenticated()">
                 <a class="mainNav" href="/login">Sing in</a>
-            </div>
-            <div sec:authorize access="!isAuthenticated()">
+            </sec>
+            <sec authorize access="!isAuthenticated()">
                 <a class="mainNav" href="/registration">Sing up</a>
-            </div>
+            </sec>
         </nav>
     </div>
 </div>
