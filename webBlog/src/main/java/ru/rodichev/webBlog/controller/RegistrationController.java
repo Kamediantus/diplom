@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.rodichev.webBlog.entity.User;
 import ru.rodichev.webBlog.service.UserService;
 
@@ -20,22 +21,19 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration(Model model) {
-        model.addAttribute("userForm", new User());
-
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
-
-        if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-        if (!userForm.getPassword().equals(userForm.getPasswordConfirm())){
+    public String addUser(@RequestParam String username, @RequestParam String password, @RequestParam String passwordConfirm, Model model) {
+        if (!password.equals(passwordConfirm)){
             model.addAttribute("passwordError", "Password mismatch.");
             return "registration";
         }
-        if (!userService.saveUser(userForm)){
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        if (!userService.saveUser(user)){
             model.addAttribute("usernameError", "A user with the same name already exists.");
             return "registration";
         }

@@ -1,17 +1,19 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="Notes"/>
+    <title th:text="Registrarion"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{/css/global.css}" rel="stylesheet" />
 </head>
 <body>
 <header th:insert="blocks/header :: header"/><header/>
 <div>
-    <form action="/action_page.php">
-        <input type="text" id="username" name="firstname" placeholder="Username..">
-        <input type="password" id="password" name="lastname" placeholder="Password..">
-        <input type="password" id="passwordConfirm" name="lastname" placeholder="Confirm password..">
+    <form action="/registration" method="post">
+        <input type="text" name="username" placeholder="Username.." autofocus="true" th:error="*{usernameError}">
+        <p th:text="${usernameError}"></p>
+        <input type="password" name="password" placeholder="Password.." th:error="*{passwordError}">
+        <p th:text="${passwordError}" ></p>
+        <input type="password" name="passwordConfirm" placeholder="Confirm password..">
         <input type="submit" value="Sing up">
     </form>
 

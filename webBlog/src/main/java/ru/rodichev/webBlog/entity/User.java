@@ -1,5 +1,6 @@
 package ru.rodichev.webBlog.entity;
 
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -10,88 +11,88 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
-@Entity
-@Table(name = "t_user")
-public class User implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Size(min=2, message = "Cannot be less than 2 characters")
-    private String username;
-    @Size(min=2, message = "Cannot be less than 2 characters")
-    private String password;
-    @Transient
-    private String passwordConfirm;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    @Entity
+    @Table(name = "t_user")
+    public class User implements UserDetails {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+        @Size(min=2, message = "Cannot be less than 2 characters")
+        private String username;
+        @Size(min=2, message = "Cannot be less than 2 characters")
+        private String password;
+        @Transient
+        private String passwordConfirm;
+        private Long roleId;
 
-    public User() {
-    }
+        public User() {
+        }
 
-    public Long getId() {
-        return id;
-    }
+        public Long getId() {
+            return id;
+        }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+        public void setId(Long id) {
+            this.id = id;
+        }
 
-    @Override
-    public String getUsername() {
-        return username;
-    }
+        @Override
+        public String getUsername() {
+            return username;
+        }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+        @Override
+        public boolean isAccountNonExpired() {
+            return true;
+        }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+        @Override
+        public boolean isAccountNonLocked() {
+            return true;
+        }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+        @Override
+        public boolean isCredentialsNonExpired() {
+            return true;
+        }
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+        @Override
+        public boolean isEnabled() {
+            return true;
+        }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+        public void setUsername(String username) {
+            this.username = username;
+        }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
-    }
+        @Override
+        public Collection<? extends GrantedAuthority> getAuthorities() {
+            return null;
+        }
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
+        @Override
+        public String getPassword() {
+            return password;
+        }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+        public void setPassword(String password) {
+            this.password = password;
+        }
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
+        public String getPasswordConfirm() {
+            return passwordConfirm;
+        }
 
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
+        public void setPasswordConfirm(String passwordConfirm) {
+            this.passwordConfirm = passwordConfirm;
+        }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
+        public Long getRoles() {
+            return roleId;
+        }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+        public void setRoles(Long roleId) {
+            this.roleId = roleId;
+        }
+
     }
-}
