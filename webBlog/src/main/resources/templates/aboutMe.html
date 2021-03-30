@@ -7,7 +7,7 @@
 </head>
 <header th:include="blocks/header :: header"></header>
 <body>
-<div class="basicText">
+<div th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}" class="basicText">
     <p class="basicText">I'm 22 years old. And Russia will be free.</p>
 </div>
 </body>

@@ -5,9 +5,9 @@
             <a class="mainNav" href="/contacts">Contacts</a>
             <a class="mainNav" href="/aboutMe">About me</a>
             <a class="mainNav" href="/notes">Notes</a>
-            <sec authorize="hasRole('ROLE_ADMIN')">
+            <div >
                 <a class="mainNav" href="/admin">Admin</a>
-            </sec>
+            </div>
             <sec authorize access="!isAuthenticated()">
                 <a class="mainNav" href="/login">Sing in</a>
             </sec>

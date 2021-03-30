@@ -10,12 +10,10 @@
 <div>
     <form action="/login" method="post">
         <input type="text" name="username" placeholder="Username.." autofocus="true" th:error="*{loginError}">
-        <p th:text="${loginError}"></p>
+        <p class="basicText" th:text="${loginError}"></p>
         <input type="password" name="password" placeholder="Password..">
         <input type="submit" value="Log in">
     </form>
-
-
 </div>
 </body>
 <footer th:insert="blocks/footer :: footer"></footer>

@@ -23,6 +23,8 @@ import java.util.Set;
         private String password;
         @Transient
         private String passwordConfirm;
+        @Role
+        private Role role;
         private Long roleId;
 
         public User() {

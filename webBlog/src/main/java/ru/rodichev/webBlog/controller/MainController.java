@@ -32,11 +32,14 @@ public class MainController {
 
     @PostMapping("/login")
     public String postLogin(@RequestParam String username, @RequestParam String password, Model model){
+        model.addAttribute("loginError", "Incorrect username or password.");
         if(userRepository.findByUsername(username)!=null){
             UserService userService = new UserService();
             userService.loadUserByUsername(username);
             return "redirect: /";
-        } else model.addAttribute("loginError", "Incorrect username or password.");
-        return "/login";
+        } else {
+            model.addAttribute("loginError", "Incorrect username or password.");
+            return "login";
+        }
     }
 }
