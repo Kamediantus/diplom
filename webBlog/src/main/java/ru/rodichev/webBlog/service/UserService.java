@@ -6,12 +6,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.rodichev.webBlog.entity.Role;
 import ru.rodichev.webBlog.entity.User;
-import ru.rodichev.webBlog.repo.RoleRepository;
 import ru.rodichev.webBlog.repo.UserRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +23,6 @@ public class UserService implements UserDetailsService {
     private EntityManager em;
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    RoleRepository roleRepository;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -52,8 +52,8 @@ public class UserService implements UserDetailsService {
         if (userFromDB != null) {
             return false;
         }
+        user.setRoles(new HashSet<>(Arrays.asList(Role.ROLE_USER)));
 
-        user.setRoles(1l);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;

@@ -1,13 +1,24 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title th:text="${title}"/>
+    <title th:text="Sweet_home"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{/css/global.css}" rel="stylesheet" />
 </head>
 <body>
 <header th:insert="blocks/header :: header"/><header/>
 <div class="basicText" th:text="'this is the beginning of something small but important.....'"/>
+<!--<div sec:authorize="hasRole('ROLE_USER')" class="basicText" th:text="'for any authorized user'"/>-->
+<!--<div sec:authorize="hasRole('ROLE_ADMIN')" class="basicText" th:text="'only for admin'"/>-->
+<!--<div sec:authorize="hasRole('USER')" class="basicText" th:text="'for any authorized user without ROLE'"/>-->
+<!--<div sec:authorize="hasRole('ADMIN')" class="basicText" th:text="'only for admin without ROLE'"/>-->
+<div sec:authorize="hasRole('ROLE_USER')" class="basicText">User ROLE_</div>
+<div sec:authorize="hasRole('ROLE_ADMIN')" class="basicText">Admin ROLE_</div>
+<div sec:authorize="hasRole('USER')" class="basicText">User</div>
+<div sec:authorize="hasRole('ADMIN')" class="basicText">Admin</div>
+<div th:class="basicText" th:text="${user}"></div>
+<div th:class="basicText" th:text="${roles}"></div>
 
 </body>
 <footer th:insert="blocks/footer :: footer"></footer>

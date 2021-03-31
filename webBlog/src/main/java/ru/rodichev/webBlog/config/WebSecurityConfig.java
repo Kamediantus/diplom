@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration").not().fullyAuthenticated()
                 //Доступ только для пользователей с ролью Администратор
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/aboutMe").hasRole("ADMIN")
                 .antMatchers("/news").hasRole("USER")
                 //Доступ разрешен всем пользователей
                 .antMatchers("/**").permitAll()
@@ -54,7 +55,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth)
+            throws Exception {
+        auth
+
+                .inMemoryAuthentication()
+                .withUser("user").password(bCryptPasswordEncoder().encode("password")).roles("USER")
+                .and()
+                .withUser("admin").password(bCryptPasswordEncoder().encode("admin")).roles("ADMIN");
+
+    }
+
+    @Autowired
+    protected void configureGlobalTwo(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
     }
 }

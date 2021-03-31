@@ -1,7 +1,5 @@
 package ru.rodichev.webBlog.entity;
 
-import org.springframework.data.repository.cdi.Eager;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +9,7 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
-    @Entity
+@Entity
     @Table(name = "t_user")
     public class User implements UserDetails {
         @Id
@@ -23,9 +21,11 @@ import java.util.Set;
         private String password;
         @Transient
         private String passwordConfirm;
-        @Role
-        private Role role;
-        private Long roleId;
+
+        @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+        @CollectionTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"))
+        @Enumerated(EnumType.STRING)
+        private Set<Role> roles;
 
         public User() {
         }
@@ -89,12 +89,11 @@ import java.util.Set;
             this.passwordConfirm = passwordConfirm;
         }
 
-        public Long getRoles() {
-            return roleId;
-        }
-
-        public void setRoles(Long roleId) {
-            this.roleId = roleId;
-        }
-
+    public Set<Role> getRoles() {
+        return roles;
     }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+}
