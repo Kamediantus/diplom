@@ -22,10 +22,9 @@ import java.util.Set;
         @Transient
         private String passwordConfirm;
 
-        @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-        @CollectionTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"))
+        @Column(name = "role", nullable = false)
         @Enumerated(EnumType.STRING)
-        private Set<Role> roles;
+        private Role role;
 
         public User() {
         }
@@ -89,11 +88,11 @@ import java.util.Set;
             this.passwordConfirm = passwordConfirm;
         }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
