@@ -1,7 +1,8 @@
 body{
-    background-color: gray;
+    background-color: dimgrey;
     color: azure;
-    margin-left: 5%;
+    /*margin-left: 4%;*/
+    /*margin-right: 3%;*/
 }
 
 h3{
@@ -17,8 +18,7 @@ header{
 }
 
 footer{
-    position: page;
-    bottom: 0;
+    position: absolute;
     width: 95%;
     height: 5rem;
     left: 20pt;
@@ -27,13 +27,13 @@ footer{
 }
 .mainNav{
     font: 15pt/15pt DejaVu Sans Mono, monospace;
-    margin-left: 45pt;
+    margin-left: 30pt;
 }
 
 .nameOfSite{
     font: 25pt/25pt DejaVu Sans Mono, monospace;
     text-decoration: none;
-    margin-left: 45pt;
+    /*margin-left: 10pt;*/
 }
 .basicText{
     font: 14pt/14pt Arial, sans-serif;
@@ -53,14 +53,14 @@ footer{
 .fullNote{
     margin-top: 15pt;
     border-radius: 10px;
-    background-color: dimgray;
+    background-color: #303030;
     padding: 20pt;
     padding-top: 1pt;
 }
 .fullNoteDetails{
     margin-top: 15pt;
     border-radius: 10px;
-    background-color: dimgray;
+    background-color: #303030;
     padding: 20pt;
     padding-top: 1pt;
     padding-bottom: 1pt;
@@ -74,7 +74,7 @@ footer{
     font: 12pt/12pt FreeMono, monospace;
     padding: 10pt;
     border-radius: 10px;
-    background-color: #808082;
+    background-color: #555555;
     word-wrap: break-word;
 }
 .tags{
@@ -174,4 +174,57 @@ input[type=password]{
     font: 14pt/14pt Arial, sans-serif;
     background-color: #e7e7e7; color: black;
     /*margin-bottom: 10pt;*/
+}
+
+.singInButton {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 15pt;
+    /*transition-duration: 1s;*/
+    cursor: pointer;
+}
+
+.editButton {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    padding: 16px 32px;;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    margin-left: 15pt;
+    /*transition-duration: 1s;*/
+    cursor: pointer;
+}
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/*#customers tr:nth-child(even){background-color: #f2f2f2;}*/
+
+/*#customers tr:hover {background-color: #ddd;}*/
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #303030;
+    color: white;
 }

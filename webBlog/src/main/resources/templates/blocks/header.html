@@ -5,18 +5,11 @@
             <a class="mainNav" href="/contacts">Contacts</a>
             <a class="mainNav" href="/aboutMe">About me</a>
             <a class="mainNav" href="/notes">Notes</a>
-            <div >
-                <a class="mainNav" href="/admin">Admin</a>
-            </div>
-            <sec authorize access="!isAuthenticated()">
-                <a class="mainNav" href="/login">Sing in</a>
-            </sec>
-            <sec authorize access="!isAuthenticated()">
-                <a class="mainNav" href="/registration">Sing up</a>
-            </sec>
-            <sec authorize access="!isAuthenticated()">
-                <a class="mainNav" href="/logout">Sing Out</a>
-            </sec>
+            <a sec:authorize="!isAuthenticated()" class="singInButton" href="/login">Sing in</a>
+            <a sec:authorize="!isAuthenticated()" class="singInButton" href="/registration">Sing up</a>
+            <a sec:authorize="isAuthenticated()" class="singInButton" href="/logout">Sing Out</a>
+            <a sec:authorize="hasRole('ROLE_USER')" class="singInButton" href="/user/info" th:text="${user}"></a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="singInButton" href="/admin">Admin</a>
         </nav>
     </div>
 </div>

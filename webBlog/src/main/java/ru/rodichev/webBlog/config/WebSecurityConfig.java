@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //Доступ только для пользователей с ролью Администратор
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/aboutMe").hasRole("ADMIN")
-                .antMatchers("/contacts").hasRole("USER")
+                .antMatchers("/contacts").hasRole("MODERATOR")
                 //Доступ разрешен всем пользователей
                 .antMatchers("/**").permitAll()
                 //Все остальные страницы требуют аутентификации
@@ -69,45 +69,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth)
-//            throws Exception {
-//        auth.jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .withDefaultSchema()
-//                .withUser(User.withUsername("user")
-//                        .password(bCryptPasswordEncoder().encode("pass"))
-//                        .roles("USER"));
-//    }
-
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .usersByUsernameQuery(
-//                        "select login, password, 'true' from my_user " +
-//                                "where login=?")
-//                .authoritiesByUsernameQuery(
-//                        "select login, authority from my_user " +
-//                                "where login=?");
-//    }
-
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth)
-//            throws Exception {
-//        auth
-//
-//                .inMemoryAuthentication()
-//                .withUser("user").password(bCryptPasswordEncoder().encode("password")).roles("USER")
-//                .and()
-//                .withUser("admin").password(bCryptPasswordEncoder().encode("admin")).roles("ADMIN");
-//
-//    }
 
     @Autowired
     protected void configureGlobalTwo(AuthenticationManagerBuilder auth) throws Exception {

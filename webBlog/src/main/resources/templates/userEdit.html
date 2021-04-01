@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title th:text="Sweet_home"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+</head>
+<body>
+<header th:insert="blocks/header :: header"/><header/>
+
+<table id="customers">
+    <thead>
+    <th>ID</th>
+    <th>UserName</th>
+    <th>Password</th>
+    <th>Roles</th>
+    </thead>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.role}"></td>
+    </tr>
+</table>
+<div th:text="'Change role:'" class="basicText"></div>
+        <form class="basicText" method="post">
+            <div>
+                <select name="role">
+                    <option value="ROLE_USER">ROLE_USER</option>
+                    <option value="ROLE_MODERATOR">ROLE_MODERATOR</option>
+                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                </select>
+            </div>
+            <div>
+                <input type="submit" value="Save changes">
+            </div>
+        </form>
+<form class="basicText" method="post" th:action="'/admin/edit/delete/' + ${id}">
+    <input type="submit" value="Delete user">
+</form>
+
+<p th:text="${message}"></p>
+
+
+
+</body>
+<footer th:insert="blocks/footer :: footer"></footer>
+</html>

@@ -70,7 +70,7 @@ public class NotesController {
         if (notesRepository.existsById(id)) {
             Notes notes = notesRepository.findById(id).orElseThrow();
             notes.setHeading(heading);
-            notes.setFullText(fullText);
+            notes.setFullText(notes.toHtmlBreakLines(fullText));
             notes.setTags(tags);
             notes.setDate(CurrDate.getCurrDate());
             notesRepository.save(notes);

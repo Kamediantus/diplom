@@ -1,6 +1,8 @@
 package ru.rodichev.webBlog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,12 +10,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.rodichev.webBlog.entity.Role;
 import ru.rodichev.webBlog.entity.User;
 import ru.rodichev.webBlog.repo.UserRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
+import javax.persistence.Query;
 import java.util.*;
 
 @Service
@@ -56,9 +61,11 @@ public class UserService implements UserDetailsService {
         return userFromDb.orElse(new User());
     }
 
+
     public List<User> allUsers() {
         return userRepository.findAll();
     }
+
 
     public boolean saveUser(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());

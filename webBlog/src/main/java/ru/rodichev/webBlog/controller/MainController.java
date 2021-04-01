@@ -35,33 +35,10 @@ public class MainController {
     public String contacts(Model model){
         return "contacts";
     }
+
     @GetMapping("/aboutMe")
     public String aboutMe(Model model){
         return "aboutMe";
     }
 
-    @GetMapping("/login")
-    public String login(Model model){return "login";}
-
-    @PostMapping("/login")
-    public String postLogin(@RequestParam String username, @RequestParam String password, Model model){
-        model.addAttribute("loginError", "Incorrect username or password.");
-        if(userRepository.findByUsername(username)!=null){
-            UserService userService = new UserService();
-            userService.loadUserByUsername(username);
-            return "redirect: /";
-        } else {
-            model.addAttribute("loginError", "Incorrect username or password.");
-            return "login";
-        }
-    }
-
-    @GetMapping("/logout")
-    public String logout(Model model, HttpServletRequest request, HttpServletResponse response){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect: /";
-    }
 }
