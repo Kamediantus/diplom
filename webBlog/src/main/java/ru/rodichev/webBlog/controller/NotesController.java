@@ -25,12 +25,12 @@ public class NotesController {
     public String blog(Model model){
         Iterable<Notes> notes = notesRepository.reverseFindAll();
         model.addAttribute("notes", notes);
-        return "mainNotes";
+        return "note/mainNotes";
     }
 
     @GetMapping("/notes/add")
     public String addNote(Model model){
-        return "newNote";
+        return "note/newNote";
     }
 
     @PostMapping("/notes/add")
@@ -48,7 +48,7 @@ public class NotesController {
             ArrayList<Notes> res = new ArrayList<>();
             notes.ifPresent(res::add);
             model.addAttribute("note", res);
-            return "noteDetails";
+            return "note/noteDetails";
         }
         else return "redirect:/notes";
     }
@@ -60,7 +60,7 @@ public class NotesController {
             ArrayList<Notes> res = new ArrayList<>();
             notes.ifPresent(res::add);
             model.addAttribute("note", res);
-            return "editNote";
+            return "note/editNote";
         }
         else return "redirect:/notes";
     }

@@ -51,23 +51,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/aboutMe").hasRole("ADMIN")
                 .antMatchers("/contacts").hasRole("MODERATOR")
+                .antMatchers("/notes/edit/**").hasRole("SUPERTRAMP")
+                .antMatchers("/notes/add").hasRole("SUPERTRAMP")
+                .antMatchers("/notes/delete/**").hasRole("SUPERTRAMP")
                 //Доступ разрешен всем пользователей
                 .antMatchers("/**").permitAll()
                 //Все остальные страницы требуют аутентификации
                 .anyRequest().authenticated()
                 .and()
-                //Настройка для входа в систему
+                // Redirect to login page if don't have permissions add user wasn't authenticated
                 .formLogin()
                 .loginPage("/login")
-                //Перенарпавление на главную страницу после успешного входа
+                // Redirect to main page after login
                 .defaultSuccessUrl("/")
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll()
                 .logoutSuccessUrl("/");
-//                .and()
-//                .exceptionHandling().accessDeniedPage("/accessDenied");
+
     }
 
 

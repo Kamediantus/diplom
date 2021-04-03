@@ -17,7 +17,7 @@
             <div class="tags">tags:</div>
             <div class="tags" th:text=" ${el.tags}"></div>
         </p><br>
-        <p>
+        <p sec:authorize="hasRole('ROLE_SUPERTRAMP')">
             <a th:href="'/notes/edit/' + ${el.id}" class="small-button">Edit</a>
             <a th:href="'/notes/delete/' + ${el.id}" class="small-button">Delete</a>
         </p>

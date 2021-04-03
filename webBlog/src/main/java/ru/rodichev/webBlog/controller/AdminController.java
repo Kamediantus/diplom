@@ -23,7 +23,7 @@ public class AdminController {
     @GetMapping("/admin")
     public String userList(Model model) {
         model.addAttribute("user", userService.allUsers());
-        return "admin";
+        return "admin/admin";
     }
 
     @PostMapping("/admin")
@@ -42,13 +42,13 @@ public class AdminController {
         } else if (!role.equals("empty")) {
             model.addAttribute("user", userService.findUserByRole(role));
         } else model.addAttribute("message", "Please choose at least one parameter for search");
-        return "admin";
+        return "admin/admin";
     }
 
     @GetMapping("/admin/edit/{id}")
     public String  gtUser(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", userService.findUserById(id));
-        return "userEdit";
+        return "admin/userEdit";
     }
 
     @PostMapping("/admin/edit/{id}")
@@ -57,7 +57,7 @@ public class AdminController {
         user.setRole(Role.valueOf(role));
         userRepository.save(user);
         model.addAttribute("user", userService.findUserById(id));
-        return "userEdit";
+        return "admin/userEdit";
     }
 
 
@@ -71,7 +71,7 @@ public class AdminController {
         } else{
             String msg = "User wasn't deleted successfully. id: " + id;
         }
-            return "userDelete";
+            return "admin/userDelete";
     }
 }
 
