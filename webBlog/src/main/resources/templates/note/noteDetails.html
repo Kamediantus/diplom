@@ -21,7 +21,23 @@
             <a th:href="'/notes/edit/' + ${el.id}" class="small-button">Edit</a>
             <a th:href="'/notes/delete/' + ${el.id}" class="small-button">Delete</a>
         </p>
+    <p sec:authorize="isAnonymous()" class="warning">Please sing in to comment</p>
+    <form sec:authorize="isAuthenticated()" method="post" class="basicText">
+        <textarea id="comment" name="fullComment" class="full-comment"></textarea>
+        <input type="submit" value="add comment">
+    </form>
+</div>
 
+<div th:each="com : ${comments}" class="fullNote">
+    <p th:text="${com.author}" class="heading"></p>
+    <p th:utext="${com.fullComment}" class="fullText"></p>
+    <div class="tags">tags:</div>
+    <div class="tags" th:text=" ${com.date}"></div>
+<!--    </p><br>-->
+<!--    <p sec:authorize="hasRole('ROLE_SUPERTRAMP')">-->
+<!--        <a th:href="'/notes/edit/' + ${el.id}" class="small-button">Edit</a>-->
+<!--        <a th:href="'/notes/delete/' + ${el.id}" class="small-button">Delete</a>-->
+<!--    </p>-->
 </div>
 </body>
 <footer th:insert="blocks/footer :: footer"></footer>

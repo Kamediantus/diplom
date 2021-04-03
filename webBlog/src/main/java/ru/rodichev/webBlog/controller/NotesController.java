@@ -2,14 +2,18 @@ package ru.rodichev.webBlog.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.rodichev.webBlog.entity.Comment;
 import ru.rodichev.webBlog.logic.CurrDate;
 import ru.rodichev.webBlog.entity.Notes;
+import ru.rodichev.webBlog.repo.CommentRepository;
 import ru.rodichev.webBlog.repo.NotesRepository;
 
 import java.util.*;
@@ -20,6 +24,9 @@ public class NotesController {
 
     @Autowired
     private NotesRepository notesRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     @GetMapping("/notes")
     public String blog(Model model){
@@ -48,9 +55,25 @@ public class NotesController {
             ArrayList<Notes> res = new ArrayList<>();
             notes.ifPresent(res::add);
             model.addAttribute("note", res);
+            Iterable<Comment> comments = commentRepository.reverseFindById(id);
+            model.addAttribute("comments", comments);
             return "note/noteDetails";
         }
         else return "redirect:/notes";
+    }
+
+    @PostMapping("/notes/{id}")
+    public String addComment(@PathVariable(value = "id") long id,@RequestParam String fullComment, Model model){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Comment comment = new Comment(id, auth.getName(), fullComment, CurrDate.getCurrDate());
+        commentRepository.save(comment);
+        Optional<Notes> notes = notesRepository.findById(id);
+        ArrayList<Notes> res = new ArrayList<>();
+        notes.ifPresent(res::add);
+        model.addAttribute("note", res);
+        Iterable<Comment> comments = commentRepository.reverseFindById(id);
+        model.addAttribute("comments", comments);
+        return "note/noteDetails";
     }
 
     @GetMapping("/notes/edit/{id}")
