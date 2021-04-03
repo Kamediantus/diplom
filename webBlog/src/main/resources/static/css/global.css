@@ -42,6 +42,12 @@ footer{
 .basicTextSmall{
     font: 11pt/11pt FreeMono, monospace;
 }
+.error{
+    font: 14pt/14pt Arial, sans-serif;
+    margin-top: 10pt;
+    background-color: tomato;
+    padding: 10px;
+}
 .noteNav{
     font: 13pt/13pt DejaVu Sans Mono, monospace;
     margin-left: 45pt;

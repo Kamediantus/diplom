@@ -29,11 +29,19 @@ public class AdminController {
     @PostMapping("/admin")
     public String searchUsers(@RequestParam(required = false) Long id, @RequestParam(required = false) String username, @RequestParam(required = false) String role,  Model model){
         if (id != null){
+            if(userService.findUserById(id).getUsername() == null){
+                model.addAttribute("message", "User with id: " + id + " wasn't found");
+
+            } else
             model.addAttribute("user", userService.findUserById(id));
         } else if (username != ""){
+            if(userService.findUserByUsernameLike(username).size() == 0){
+                model.addAttribute("message", "User with username mask: '" + username + "%' wasn't found");
+            }
             model.addAttribute("user", userService.findUserByUsernameLike(username));
-        } else  model.addAttribute("user", userService.findUserByRole(role));
-
+        } else if (!role.equals("empty")) {
+            model.addAttribute("user", userService.findUserByRole(role));
+        } else model.addAttribute("message", "Please choose at least one parameter for search");
         return "admin";
     }
 
