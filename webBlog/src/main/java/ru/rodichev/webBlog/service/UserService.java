@@ -61,6 +61,20 @@ public class UserService implements UserDetailsService {
         return userFromDb.orElse(new User());
     }
 
+    public User findUserByUsername(String username){
+        User userFromDb = userRepository.findByUsername(username);
+        return  userFromDb;
+    }
+
+    public List<User>findUserByUsernameLike(String username){
+        List<User> usersFromDbLike = userRepository.findUserByUsername(username + "%");
+        return usersFromDbLike;
+    }
+
+    public List<User> findUserByRole(String role){
+        return userRepository.findUserByRole(role);
+    }
+
 
     public List<User> allUsers() {
         return userRepository.findAll();

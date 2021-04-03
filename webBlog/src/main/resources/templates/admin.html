@@ -8,6 +8,18 @@
 <body>
 <header th:insert="blocks/header :: header"/><header/>
 
+<form action="" method="post">
+    <input name="id" placeholder="id..">
+    <input name="username" placeholder="username..">
+    <select name="role">
+        <option value="ROLE_USER">ROLE_USER</option>
+        <option value="ROLE_MODERATOR">ROLE_MODERATOR</option>
+        <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+    </select>
+    <input type="submit" value="Search">
+</form>
+
+
 <table id="customers">
     <thead>
     <th>ID</th>
@@ -16,7 +28,7 @@
     <th>Roles</th>
     </thead>
 
-    <tr th:each="el : ${allUsers}" >
+    <tr th:each="el : ${user}" >
         <td th:text="${el.id}"></td>
         <td th:text="${el.username}"></td>
         <td th:text="${el.password}"></td>

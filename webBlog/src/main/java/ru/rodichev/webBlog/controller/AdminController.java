@@ -22,7 +22,18 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String userList(Model model) {
-        model.addAttribute("allUsers", userService.allUsers());
+        model.addAttribute("user", userService.allUsers());
+        return "admin";
+    }
+
+    @PostMapping("/admin")
+    public String searchUsers(@RequestParam(required = false) Long id, @RequestParam(required = false) String username, @RequestParam(required = false) String role,  Model model){
+        if (id != null){
+            model.addAttribute("user", userService.findUserById(id));
+        } else if (username != ""){
+            model.addAttribute("user", userService.findUserByUsernameLike(username));
+        } else  model.addAttribute("user", userService.findUserByRole(role));
+
         return "admin";
     }
 
