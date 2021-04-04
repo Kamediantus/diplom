@@ -8,7 +8,7 @@
 <header th:include="blocks/header :: header"></header>
 <body>
 <div th:if="${#authorization.expression('hasAuthority(''ROLE_ADMIN'')')}" class="basicText">
-    <p class="basicText">I'm 22 years old. And Russia will be free.</p>
+    <p class="basicText" th:text="${text}"></p>
 </div>
 </body>
 <footer th:include="blocks/footer :: footer"></footer>

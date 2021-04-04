@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="Admin_panel"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+</head>
+<body>
+<header th:insert="blocks/header :: header"/><header/>
+
+<table id="customers">
+    <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Full text</th>
+    <th>Previous full text</th>
+    <th>Edit</th>
+    </thead>
+
+    <tr th:each="el : ${blocks}" >
+        <td th:text="${el.id}"></td>
+        <td th:text="${el.name}"></td>
+        <td th:text="${el.fullText}"></td>
+        <td th:text="${el.previousFullText}"></td>
+        <td>
+            <form action="">
+                <a th:href="'/admin/edit_site/' + ${el.id}" class="editButton">Edit</a>
+            </form>
+        </td>
+
+    </tr>
+</table>
+</body>
+<footer th:insert="blocks/footer :: footer"></footer>
+</html>

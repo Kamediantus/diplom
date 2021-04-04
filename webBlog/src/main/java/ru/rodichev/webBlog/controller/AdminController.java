@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.rodichev.webBlog.entity.BlockOfSite;
 import ru.rodichev.webBlog.entity.Role;
 import ru.rodichev.webBlog.entity.User;
+import ru.rodichev.webBlog.repo.BlockRepository;
 import ru.rodichev.webBlog.repo.UserRepository;
 import ru.rodichev.webBlog.service.UserService;
 
@@ -19,6 +21,9 @@ public class AdminController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BlockRepository blockRepository;
 
     @GetMapping("/admin")
     public String userList(Model model) {
@@ -60,8 +65,6 @@ public class AdminController {
         return "admin/userEdit";
     }
 
-
-
     @PostMapping("/admin/edit/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id, Model model){
         if (userService.deleteUser(id)) {
@@ -72,6 +75,30 @@ public class AdminController {
             String msg = "User wasn't deleted successfully. id: " + id;
         }
             return "admin/userDelete";
+    }
+
+    @GetMapping("/admin/edit_site")
+    public String editWebsitePage(Model model){
+        Iterable<BlockOfSite> mainInfos = blockRepository.findAll();
+        model.addAttribute("blocks", mainInfos);
+        return "admin/editSite";
+    }
+
+    @GetMapping("/admin/edit_site/{id}")
+    public String editWebsitePage(@PathVariable("id") Long id, Model model){
+        BlockOfSite blockOfSite = blockRepository.getBlockById(id);
+        model.addAttribute("block", blockOfSite);
+        return "admin/editBlock";
+    }
+
+    @PostMapping("/admin/edit_site/{id}")
+    public String saveChanges(@PathVariable("id") Long id, String newText, Model model){
+        BlockOfSite block = blockRepository.getBlockById(id);
+        block.setPreviousFullText(block.getFullText());
+        block.setFullText(newText);
+        blockRepository.save(block);
+        model.addAttribute("block", block);
+        return "admin/editBlock";
     }
 }
 

@@ -8,8 +8,9 @@
             <a sec:authorize="!isAuthenticated()" class="singInButton" href="/login">Sing in</a>
             <a sec:authorize="!isAuthenticated()" class="singInButton" href="/registration">Sing up</a>
             <a sec:authorize="isAuthenticated()" class="singInButton" href="/logout">Sing Out</a>
-            <a sec:authorize="hasRole('ROLE_USER')" class="singInButton" href="/user/info" th:text="${user}"></a>
+            <a sec:authorize="isAuthenticated()" class="singInButton" href="/user/info" th:text="${user}"></a>
             <a sec:authorize="hasRole('ROLE_ADMIN')" class="singInButton" href="/admin">Admin</a>
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="singInButton" href="/admin/edit_site">Edit site</a>
         </nav>
     </div>
 </div>

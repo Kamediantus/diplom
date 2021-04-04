@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.rodichev.webBlog.entity.Notes;
+import ru.rodichev.webBlog.repo.BlockRepository;
 import ru.rodichev.webBlog.repo.NotesRepository;
 import ru.rodichev.webBlog.repo.UserRepository;
 
@@ -18,6 +19,9 @@ public class MainController {
 
     @Autowired
     private NotesRepository notesRepository;
+
+    @Autowired
+    private BlockRepository blockRepository;
 
     @GetMapping("/")
     public String homepage(Model model){
@@ -37,6 +41,8 @@ public class MainController {
 
     @GetMapping("/aboutMe")
     public String aboutMe(Model model){
+        String aboutMeInfo = blockRepository.getTextById(1L);
+        model.addAttribute("text", aboutMeInfo);
         return "aboutMe";
     }
 

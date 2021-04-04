@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title th:text="Sweet_home"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+</head>
+<body>
+<header th:insert="blocks/header :: header"/><header/>
+
+<table id="customers">
+    <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Full text</th>
+    <th>Previous full text</th>
+    </thead>
+    <td th:text="${block.id}"></td>
+    <td th:text="${block.name}"></td>
+    <td th:text="${block.fullText}"></td>
+    <td th:text="${block.previousFullText}"></td>
+    </tr>
+</table>
+<div th:text="'Change text:'" class="basicText"></div>
+<form class="basicText" method="post">
+    <div>
+        <textarea class="editText" name="newText" ></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Save changes">
+    </div>
+</form>
+<!--<form class="basicText" method="post" th:action="'/admin/edit/delete/' + ${id}">-->
+<!--    <input type="submit" value="Delete user">-->
+<!--</form>-->
+
+<p th:text="${message}"></p>
+
+
+
+</body>
+<footer th:insert="blocks/footer :: footer"></footer>
+</html>
