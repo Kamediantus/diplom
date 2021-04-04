@@ -25,8 +25,10 @@
 <div th:text="'Change text:'" class="basicText"></div>
 <form class="basicText" method="post">
     <div>
-        <textarea class="editText" name="newText" ></textarea>
+        <textarea class="editBlock" name="newText" ></textarea>
     </div>
+    <input type="checkbox" id="rollback" name="rollback" value="true">
+    <label for="rollback"> Rollback</label>
     <div>
         <input type="submit" value="Save changes">
     </div>
@@ -35,7 +37,7 @@
 <!--    <input type="submit" value="Delete user">-->
 <!--</form>-->
 
-<p th:text="${message}"></p>
+<p th:text="${msg}"></p>
 
 
 

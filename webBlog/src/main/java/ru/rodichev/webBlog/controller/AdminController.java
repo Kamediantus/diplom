@@ -92,11 +92,18 @@ public class AdminController {
     }
 
     @PostMapping("/admin/edit_site/{id}")
-    public String saveChanges(@PathVariable("id") Long id, String newText, Model model){
+    public String saveChanges(@PathVariable("id") Long id, @RequestParam(required = false) String rollback, String newText, Model model){
         BlockOfSite block = blockRepository.getBlockById(id);
-        block.setPreviousFullText(block.getFullText());
-        block.setFullText(newText);
-        blockRepository.save(block);
+        String massage;
+        if (rollback != null){
+            if( block.rollback()){
+                blockRepository.save(block);
+            } else model.addAttribute("msg", "rollback Error");
+        } else if(newText !=""){
+            if (block.setNewText(newText)) {
+                blockRepository.save(block);
+            } else model.addAttribute("msg", "new text Error. Please check that new text is different from the previous version");
+        } else  model.addAttribute("msg", "there are no changes");
         model.addAttribute("block", block);
         return "admin/editBlock";
     }

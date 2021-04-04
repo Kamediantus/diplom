@@ -4,7 +4,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
-@Table(name = "t_main_info")
+@Table(name = "t_block")
 @Entity
 public class BlockOfSite {
 
@@ -17,6 +17,38 @@ public class BlockOfSite {
     private String fullText;
     @Type(type = "text")
     private String previousFullText;
+    @Type(type = "text")
+    private String bufferText;
+
+
+    public boolean setNewText(String newText){
+        if (newText.equals(fullText)){
+            return false;
+        } else {
+            this.setBufferText(previousFullText);
+            this.setPreviousFullText(fullText);
+            this.setFullText(newText);
+            return true;
+        }
+    }
+
+    public boolean rollback(){
+        if (previousFullText == "" || previousFullText == null){
+            return false;
+        } else {
+            this.setFullText(previousFullText);
+            this.setPreviousFullText(bufferText);
+            return true;
+        }
+    }
+
+    public String getBufferText() {
+        return bufferText;
+    }
+
+    public void setBufferText(String bufferText) {
+        this.bufferText = bufferText;
+    }
 
     public BlockOfSite() {
     }
