@@ -10,6 +10,9 @@ public interface NotesRepository extends CrudRepository<Notes, Long> {
     @Query(value = "SELECT * FROM `t_notes` ORDER by id DESC", nativeQuery = true)
     Iterable<Notes> reverseFindAll();
 
+    @Query(value = "SELECT tags FROM `t_notes` WHERE id = :id", nativeQuery = true)
+    String getTagsById(@Param("id") Long id);
+
     @Query(value = "SELECT * FROM `t_notes` WHERE full_text like :text ORDER by id DESC", nativeQuery = true)
     Iterable<Notes> reverseFindByText(@Param("text") String text);
 

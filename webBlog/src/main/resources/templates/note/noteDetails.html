@@ -13,10 +13,16 @@
 <div th:each="el : ${note}" class="fullNote">
         <p th:text="${el.heading}" class="heading"></p>
         <p th:utext="${el.fullText}" class="fullText"></p>
-        <p>
-            <div class="tags">tags:</div>
-            <div class="tags" th:text=" ${el.tags}"></div>
-        </p><br>
+
+        <h5 class="tags">tags:
+            <span th:each="tag: ${tags}">
+                <span>
+                    <a th:href="'/notes/search/' + ${tag}" th:text="${tag}" ></a>
+
+                </span>
+            </span>
+        </h5>
+
         <p sec:authorize="hasRole('ROLE_SUPERTRAMP')">
             <a th:href="'/notes/edit/' + ${el.id}" class="small-button">Edit</a>
             <a th:href="'/notes/delete/' + ${el.id}" class="small-button">Delete</a>
@@ -28,16 +34,11 @@
     </form>
 </div>
 
+
 <div th:each="com : ${comments}" class="fullNote">
     <p th:text="${com.author}" class="heading"></p>
     <p th:utext="${com.fullComment}" class="fullText"></p>
-    <div class="tags">tags:</div>
     <div class="tags" th:text=" ${com.date}"></div>
-<!--    </p><br>-->
-<!--    <p sec:authorize="hasRole('ROLE_SUPERTRAMP')">-->
-<!--        <a th:href="'/notes/edit/' + ${el.id}" class="small-button">Edit</a>-->
-<!--        <a th:href="'/notes/delete/' + ${el.id}" class="small-button">Delete</a>-->
-<!--    </p>-->
 </div>
 </body>
 <footer th:insert="blocks/footer :: footer"></footer>

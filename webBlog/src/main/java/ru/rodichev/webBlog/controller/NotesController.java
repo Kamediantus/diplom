@@ -47,7 +47,6 @@ public class NotesController {
         } else if (text == "" && tag == ""){
             model.addAttribute("msg", "Please choose at least one parameter for search");
         } return "note/mainNotes";
-
     }
 
     @GetMapping("/notes/add")
@@ -70,11 +69,22 @@ public class NotesController {
             ArrayList<Notes> res = new ArrayList<>();
             notes.ifPresent(res::add);
             model.addAttribute("note", res);
+            List<String> listOfTags = SearchFromRepo.parseTagsAsList(notesRepository.getTagsById(id));
+            listOfTags.replaceAll(s -> s.trim());
+            model.addAttribute("tags", listOfTags);
             Iterable<Comment> comments = commentRepository.reverseFindById(id);
             model.addAttribute("comments", comments);
             return "note/noteDetails";
         }
         else return "redirect:/notes";
+    }
+
+    @GetMapping("/notes/search/{tag}")
+    public String searchTag(@PathVariable(value = "tag") String tag, Model model){
+        Iterable<Notes> notes = notesRepository.reverseFindByTag(SearchFromRepo.toLike(tag));
+        model.addAttribute("notes", notes);
+        return "note/mainNotes";
+
     }
 
     @PostMapping("/notes/{id}")
