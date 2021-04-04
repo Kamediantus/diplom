@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.rodichev.webBlog.entity.Comment;
 import ru.rodichev.webBlog.logic.CurrDate;
 import ru.rodichev.webBlog.entity.Notes;
+import ru.rodichev.webBlog.logic.SearchFromRepo;
 import ru.rodichev.webBlog.repo.CommentRepository;
 import ru.rodichev.webBlog.repo.NotesRepository;
 
@@ -33,6 +34,20 @@ public class NotesController {
         Iterable<Notes> notes = notesRepository.reverseFindAll();
         model.addAttribute("notes", notes);
         return "note/mainNotes";
+    }
+
+    @PostMapping("/notes")
+    public String searchNotes(@RequestParam String text, @RequestParam String tag, Model model){
+        if(text != ""){
+            Iterable<Notes> notes = notesRepository.reverseFindByText(SearchFromRepo.toLike(text));
+            model.addAttribute("notes", notes);
+        } else if(tag != ""){
+            Iterable<Notes> notes = notesRepository.reverseFindByTag(SearchFromRepo.toLike(tag));
+            model.addAttribute("notes", notes);
+        } else if (text == "" && tag == ""){
+            model.addAttribute("msg", "Please choose at least one parameter for search");
+        } return "note/mainNotes";
+
     }
 
     @GetMapping("/notes/add")

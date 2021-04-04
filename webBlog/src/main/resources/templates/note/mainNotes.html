@@ -10,11 +10,18 @@
 <div class="basicText" th:text="'There are notes on various topics here'"/>
 <div th:insert="blocks/noteNav :: noteNav"></div>
 
+<p th:text="${msg}" class="error"></p>
+<form action="/notes" method="post">
+    <input name="text" placeholder="search by text..">
+    <input name="tag" placeholder="search by tag..">
+
+    <input type="submit" value="Search">
+</form>
+
 <div th:each="el : ${notes}" class="fullNote">
     <p th:text="${el.heading}" class="heading"></p>
     <div th:text="'tags: ' + ${el.tags}" class="tags"></div>
     <p th:utext="${el.getShortText()}" class="fullText"></p>
-    <br>
     <p th:text="'Created: ' + ${el.date}" class="basicTextSmall"></p>
     <a class="button4 bottomright" th:href="'/notes/' + ${el.id}">Details</a>
 </div>
