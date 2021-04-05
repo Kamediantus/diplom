@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="Admin_panel"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+</head>
+<body>
+<header th:insert="blocks/header :: header"/><header/>
+
+<a th:href="'/admin/new_contact'" class="basicText" > New contact</a>
+
+<table id="customers">
+    <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Visible text of link</th>
+    <th>Link</th>
+    <th>is Visible</th>
+    <th>Description</th>
+    <th>View</th>
+    <th>Edit</th>
+    </thead>
+
+    <tr th:each="el : ${contacts}" >
+        <td th:text="${el.id}"></td>
+        <td th:text="${el.name}"></td>
+        <td th:text="${el.visibleTextOfLink}"></td>
+        <td th:text="${el.link}"></td>
+        <td th:text="${el.isVisible}"></td>
+        <td th:text="${el.description}"></td>
+        <td>
+            <span th:text="${el.name} + ': ' "></span>
+            <span>
+            <a th:href="${el.link}" th:text="${el.visibleTextOfLink}"></a>
+        </span>
+        </td>
+        <td>
+            <form action="">
+                <a th:href="'/admin/edit_contact/' + ${el.id}" class="editButton">Edit</a>
+            </form>
+        </td>
+
+    </tr>
+</table>
+</body>
+<footer th:insert="blocks/footer :: footer"></footer>
+</html>

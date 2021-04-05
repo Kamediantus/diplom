@@ -41,7 +41,7 @@ public class MainController {
     }
     @GetMapping("/contacts")
     public String contacts(Model model){
-        Iterable<Contact> contacts = contactRepository.findAll();
+        Iterable<Contact> contacts = contactRepository.getVisibleContacts();
         model.addAttribute("contacts", contacts);
         return "contacts";
     }

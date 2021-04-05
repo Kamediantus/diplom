@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="Admin_panel"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+</head>
+<body>
+<header th:insert="blocks/header :: header"/><header/>
+<div th:text="'Id: ' + ${contact.id}" class="basicText"></div>
+<form method="post">
+    <table id="customers">
+        <thead>
+        <th>Name</th>
+        <th>Visible text of link</th>
+        <th>Link</th>
+        <th>is Visible</th>
+        <th>Description</th>
+        </thead>
+        <tr>
+            <td th:text="${contact.name}"></td>
+            <td th:text="${contact.visibleTextOfLink}"></td>
+            <td th:text="${contact.link}"></td>
+            <td th:text="${contact.isVisible}"></td>
+            <td th:text="${contact.description}"></td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name="name" placeholder="new name.." th:value="${contact.name}">
+            </td>
+            <td>
+                <input type="text" name="visibleText" placeholder="new visible text of link.." th:value="${contact.visibleTextOfLink}">
+            </td>
+            <td>
+                <input type="text" name="link" placeholder="new link.." th:value="${contact.link}">
+            </td>
+            <td>
+                <select name="isVisible">
+                    <option value="true">true</option>
+                    <option value="false">false</option>
+                </select>
+            </td>
+            <td>
+                <input type="text" name="description" placeholder="new description.." th:value="${contact.description}">
+            </td>
+        </tr>
+    </table>
+    <div>
+        <input type="submit" value="Save changes">
+    </div>
+</form>
+<form class="basicText" method="post" th:action="'/admin/delete_contact/' + ${contact.id}">
+    <input type="submit" value="Delete contact row">
+</form>
+</body>
+<footer th:insert="blocks/footer :: footer"></footer>
+</html>

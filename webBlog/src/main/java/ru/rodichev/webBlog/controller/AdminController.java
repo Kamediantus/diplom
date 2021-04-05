@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.rodichev.webBlog.entity.BlockOfSite;
+import ru.rodichev.webBlog.entity.Contact;
 import ru.rodichev.webBlog.entity.Role;
 import ru.rodichev.webBlog.entity.User;
 import ru.rodichev.webBlog.repo.BlockRepository;
+import ru.rodichev.webBlog.repo.ContactRepository;
 import ru.rodichev.webBlog.repo.UserRepository;
 import ru.rodichev.webBlog.service.UserService;
 
@@ -18,12 +20,12 @@ import ru.rodichev.webBlog.service.UserService;
 public class AdminController {
     @Autowired
     private UserService userService;
-
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private BlockRepository blockRepository;
+    @Autowired
+    private ContactRepository contactRepository;
 
     @GetMapping("/admin")
     public String userList(Model model) {
@@ -107,6 +109,47 @@ public class AdminController {
         model.addAttribute("block", block);
         return "admin/editBlock";
     }
+
+    @GetMapping("/admin/edit_contacts")
+    public String editContactsPage(Model model){
+        Iterable<Contact> contacts = contactRepository.findAll();
+        model.addAttribute("contacts", contacts);
+        return "admin/listOfContacts";
+    }
+
+    @GetMapping("/admin/edit_contact/{id}")
+    public String editContact(@PathVariable("id") Long id, Model model){
+        Contact contact = contactRepository.getContactById(id);
+        model.addAttribute("contact", contact);
+        return "admin/editContact";
+    }
+    @PostMapping("/admin/edit_contact/{id}")
+    public String saveChanges(@PathVariable("id") Long id, String name, String visibleText, String link, String isVisible, String description, Model model){
+        Contact contact = contactRepository.getContactById(id);
+        contact.update(name,link,visibleText,description,isVisible);
+        contactRepository.save(contact);
+        model.addAttribute("contact", contact);
+        return "admin/editContact";
+    }
+
+    @GetMapping("/admin/new_contact")
+    public String toNewContactPage(Model model){
+        return "admin/newContact";
+    }
+
+    @PostMapping("admin/new_contact")
+    public String createNewContact(String name, String visibleText, String link, String isVisible,@RequestParam(required = false) String description, Model model){
+        Contact contact = new Contact(name, link,visibleText,description,isVisible);
+        contactRepository.save(contact);
+        model.addAttribute("contact", contact);
+        return "redirect:/admin/edit_contact/" + contact.getId();
+    }
+    @PostMapping("/admin/delete_contact/{id}")
+    public String deleteContact(@PathVariable("id") Long id, Model model){
+        contactRepository.delete(contactRepository.findById(id).orElseThrow());
+        return "redirect:/admin/edit_contacts";
+    }
+
 }
 
 
