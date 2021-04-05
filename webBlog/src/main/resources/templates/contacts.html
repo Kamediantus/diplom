@@ -7,9 +7,12 @@
 </head>
 <header th:include="blocks/header :: header"></header>
 <body>
-<div class="basicText">
-    <p>email: liprikent@yandex.ru </p>
-    <p>Twitter: <a href="https://twitter.com/jasno_lipa">@jasno_lipa</a></p>
+<div th:each="el : ${contacts}" class="basicText">
+    <span th:text="${el.name} + ': ' "></span>
+        <span>
+            <a th:href="${el.link}" th:text="${el.visibleTextOfLink}"></a>
+        </span>
+
 </div>
 </body>
 <footer th:include="blocks/footer :: footer"></footer>

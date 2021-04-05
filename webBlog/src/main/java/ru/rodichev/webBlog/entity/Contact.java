@@ -15,10 +15,19 @@ public class Contact {
     private String name;
 
     private String link;
+    private String visibleTextOfLink;
     private String description;
     private String isVisible;
 
     public Contact(){}
+
+    public String getVisibleTextOfLink() {
+        return visibleTextOfLink;
+    }
+
+    public void setVisibleTextOfLink(String visibleTextOfLink) {
+        this.visibleTextOfLink = visibleTextOfLink;
+    }
 
     public Long getId() {
         return id;

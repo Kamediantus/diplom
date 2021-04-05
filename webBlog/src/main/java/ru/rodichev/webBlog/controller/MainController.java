@@ -8,8 +8,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import ru.rodichev.webBlog.entity.Contact;
 import ru.rodichev.webBlog.entity.Notes;
 import ru.rodichev.webBlog.repo.BlockRepository;
+import ru.rodichev.webBlog.repo.ContactRepository;
 import ru.rodichev.webBlog.repo.NotesRepository;
 import ru.rodichev.webBlog.repo.UserRepository;
 
@@ -22,6 +24,9 @@ public class MainController {
 
     @Autowired
     private BlockRepository blockRepository;
+
+    @Autowired
+    private ContactRepository contactRepository;
 
     @GetMapping("/")
     public String homepage(Model model){
@@ -36,6 +41,8 @@ public class MainController {
     }
     @GetMapping("/contacts")
     public String contacts(Model model){
+        Iterable<Contact> contacts = contactRepository.findAll();
+        model.addAttribute("contacts", contacts);
         return "contacts";
     }
 
