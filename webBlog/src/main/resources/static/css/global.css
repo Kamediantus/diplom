@@ -18,10 +18,15 @@ header{
 }
 
 footer{
-    position: absolute;
-    width: 95%;
-    height: 5rem;
+    /*position: absolute;*/
+    /*width: 95%;*/
+    /*height: 5rem;*/
     left: 20pt;
+    position: absolute;
+    /*left: 0;*/
+    bottom: 0;
+    width: 80%;
+    height: 80px;
     font: 12pt/12pt Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
     font: 12pt/12pt DejaVu Sans Mono, monospace;
 }
@@ -94,6 +99,31 @@ footer{
     background-color: #555555;
     word-wrap: break-word;
 }
+
+.fullModerateText{
+    width: 70%;
+    height: 320pt;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid gray;
+    border-radius: 4px;
+    background-color: #e6e6e6;
+    resize: none;
+    float: left; /* Обтекание справа */
+    /*width: 200px; !* Ширина колонки *!*/
+}
+.mistakeList{
+    font: 12pt/12pt FreeMono, monospace;
+    position: fixed;
+    background-color: #cccccc;
+    color: black;
+    padding: 5pt;
+    width: 400px;
+    height: 500px;
+    /*right: 10pt;*/
+    margin-left: 10pt; /* Отступ слева */
+}
+
 .tags{
     font: 11pt/11pt FreeMono, monospace;
     padding-top: 10pt;
@@ -247,13 +277,14 @@ input[type=password]{
     cursor: pointer;
 }
 
-#customers {
+
+.basicTable {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-#customers td, #customers th {
+.basicTable td, #customers th {
     border: 1px solid #ddd;
     padding: 8px;
 }
@@ -262,7 +293,7 @@ input[type=password]{
 
 /*#customers tr:hover {background-color: #ddd;}*/
 
-#customers th {
+.basicTable th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.rodichev.webBlog.entity.Comment;
 import ru.rodichev.webBlog.logic.CurrDate;
-import ru.rodichev.webBlog.entity.Notes;
+import ru.rodichev.webBlog.entity.Note;
 import ru.rodichev.webBlog.logic.SearchFromRepo;
 import ru.rodichev.webBlog.repo.CommentRepository;
 import ru.rodichev.webBlog.repo.NotesRepository;
@@ -20,7 +20,7 @@ import ru.rodichev.webBlog.repo.NotesRepository;
 import java.util.*;
 
 @Controller
-public class NotesController {
+public class NoteController {
 
 
     @Autowired
@@ -31,7 +31,7 @@ public class NotesController {
 
     @GetMapping("/notes")
     public String blog(Model model){
-        Iterable<Notes> notes = notesRepository.reverseFindAll();
+        Iterable<Note> notes = notesRepository.getOnlyChecked();
         model.addAttribute("notes", notes);
         return "note/mainNotes";
     }
@@ -39,10 +39,10 @@ public class NotesController {
     @PostMapping("/notes")
     public String searchNotes(@RequestParam String text, @RequestParam String tag, Model model){
         if(text != ""){
-            Iterable<Notes> notes = notesRepository.reverseFindByText(SearchFromRepo.toLike(text));
+            Iterable<Note> notes = notesRepository.reverseFindByText(SearchFromRepo.toLike(text));
             model.addAttribute("notes", notes);
         } else if(tag != ""){
-            Iterable<Notes> notes = notesRepository.reverseFindByTag(SearchFromRepo.toLike(tag));
+            Iterable<Note> notes = notesRepository.reverseFindByTag(SearchFromRepo.toLike(tag));
             model.addAttribute("notes", notes);
         } else if (text == "" && tag == ""){
             model.addAttribute("msg", "Please choose at least one parameter for search");
@@ -56,7 +56,7 @@ public class NotesController {
 
     @PostMapping("/notes/add")
     public String submitNote(@RequestParam String heading, @RequestParam String fullText, @RequestParam String tags,  Model model){
-        Notes notes = new Notes(heading, fullText, tags);
+        Note notes = new Note(heading, fullText, tags);
         notesRepository.save(notes);
         return "redirect:/notes";
     }
@@ -65,8 +65,8 @@ public class NotesController {
     @GetMapping("/notes/{id}")
     public String fullNote(@PathVariable(value = "id") long id, Model model){
         if(notesRepository.existsById(id)) {
-            Optional<Notes> notes = notesRepository.findById(id);
-            ArrayList<Notes> res = new ArrayList<>();
+            Optional<Note> notes = notesRepository.findById(id);
+            ArrayList<Note> res = new ArrayList<>();
             notes.ifPresent(res::add);
             model.addAttribute("note", res);
             List<String> listOfTags = SearchFromRepo.parseTagsAsList(notesRepository.getTagsById(id));
@@ -81,7 +81,7 @@ public class NotesController {
 
     @GetMapping("/notes/search/{tag}")
     public String searchTag(@PathVariable(value = "tag") String tag, Model model){
-        Iterable<Notes> notes = notesRepository.reverseFindByTag(SearchFromRepo.toLike(tag));
+        Iterable<Note> notes = notesRepository.reverseFindByTag(SearchFromRepo.toLike(tag));
         model.addAttribute("notes", notes);
         return "note/mainNotes";
 
@@ -92,8 +92,8 @@ public class NotesController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Comment comment = new Comment(id, auth.getName(), fullComment, CurrDate.getCurrDate());
         commentRepository.save(comment);
-        Optional<Notes> notes = notesRepository.findById(id);
-        ArrayList<Notes> res = new ArrayList<>();
+        Optional<Note> notes = notesRepository.findById(id);
+        ArrayList<Note> res = new ArrayList<>();
         notes.ifPresent(res::add);
         model.addAttribute("note", res);
         Iterable<Comment> comments = commentRepository.reverseFindById(id);
@@ -104,8 +104,8 @@ public class NotesController {
     @GetMapping("/notes/edit/{id}")
     public String editNote(@PathVariable(value = "id") long id, Model model){
         if(notesRepository.existsById(id)) {
-            Optional<Notes> notes = notesRepository.findById(id);
-            ArrayList<Notes> res = new ArrayList<>();
+            Optional<Note> notes = notesRepository.findById(id);
+            ArrayList<Note> res = new ArrayList<>();
             notes.ifPresent(res::add);
             model.addAttribute("note", res);
             return "note/editNote";
@@ -116,9 +116,9 @@ public class NotesController {
     @PostMapping("/notes/edit/{id}")
     public String updateNote(@PathVariable(value = "id") long id, @RequestParam String heading, @RequestParam String fullText, @RequestParam String tags,  Model model) {
         if (notesRepository.existsById(id)) {
-            Notes notes = notesRepository.findById(id).orElseThrow();
+            Note notes = notesRepository.findById(id).orElseThrow();
             notes.setHeading(heading);
-            notes.setFullText(notes.toHtmlBreakLines(fullText));
+            notes.setFinalFullText(notes.toHtmlBreakLines(fullText));
             notes.setTags(tags);
             notes.setDate(CurrDate.getCurrDate());
             notesRepository.save(notes);

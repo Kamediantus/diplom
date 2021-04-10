@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.rodichev.webBlog.entity.Contact;
-import ru.rodichev.webBlog.entity.Notes;
+import ru.rodichev.webBlog.entity.Note;
 import ru.rodichev.webBlog.repo.BlockRepository;
 import ru.rodichev.webBlog.repo.ContactRepository;
 import ru.rodichev.webBlog.repo.NotesRepository;
@@ -35,7 +35,7 @@ public class MainController {
             String currentUsername = auth.getName();
             model.addAttribute("user", currentUsername);
         }
-        Iterable<Notes> notes = notesRepository.reverseFindAll();
+        Iterable<Note> notes = notesRepository.getOnlyChecked();
         model.addAttribute("notes", notes);
         return "note/mainNotes";
     }

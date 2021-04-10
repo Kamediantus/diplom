@@ -14,7 +14,7 @@
     <h3>Editing note:</h3>
     <form method="post">
         <input th:value="${el.heading}" th:type="text" name="heading">
-        <textarea th:utext="${el.toSqlBreakLines()}" name="fullText" class="editText" ></textarea>
+        <textarea th:utext="${el.toSqlBreakLines(el.finalFullText)}" name="fullText" class="editText" ></textarea>
         <input th:value="${el.tags}" type="text" name="tags">
         <input type="submit" value="Update">
     </form>
