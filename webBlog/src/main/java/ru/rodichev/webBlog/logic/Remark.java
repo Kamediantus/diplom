@@ -28,4 +28,11 @@ public class Remark {
         return mistakes;
     }
 
+    public static String createPopups(String fulltext, List<String> mistakes, List<String> remarks){
+        for (int i = 0; i < remarks.size(); i++){
+            fulltext = fulltext.replace(mistakes.get(i), "<span class=\"popup\" onclick=\"popupFunc(" + i + ")\" >" + mistakes.get(i) + "<span class=\"popuptext\" id=\"myPopup" + i + "\">" + remarks.get(i) + "</span></span>");
+        }
+        return fulltext;
+    }
+
 }

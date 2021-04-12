@@ -23,11 +23,11 @@ input.addEventListener('select', addRemark);
 
 
 function myCreateFunction(mistake, remark) {
-    var table = document.getElementById("myTable");
-    var row = table.insertRow(1);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
+    let table = document.getElementById("myTable");
+    let row = table.insertRow(1);
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
 
     cell1.innerHTML = mistake;
     cell2.innerHTML = remark;
@@ -35,6 +35,19 @@ function myCreateFunction(mistake, remark) {
 }
 
 function deleteRow(r) {
-    var i = r.parentNode.parentNode.rowIndex;
+    let i = r.parentNode.parentNode.rowIndex;
+    let table = document.getElementById("myTable");
+
+    let mistake = table.rows.item(1).cells.item(0).innerHTML;
+    let remark = table.rows.item(1).cells.item(1).innerHTML;
+    let mstkAndRmrk = mistake + '|' + remark + '||';
+    remAndMstk = remAndMstk.replace(mstkAndRmrk, "");
+    document.getElementById("allMistakes").setAttribute("value", remAndMstk) ;
+
     document.getElementById("myTable").deleteRow(i);
+}
+
+function popupFunc(id) {
+    let popup = document.getElementById("myPopup" + id);
+    popup.classList.toggle("show");
 }

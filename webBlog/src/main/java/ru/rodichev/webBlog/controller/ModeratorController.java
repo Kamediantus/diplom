@@ -15,6 +15,9 @@ import ru.rodichev.webBlog.entity.Note;
 import ru.rodichev.webBlog.logic.Remark;
 import ru.rodichev.webBlog.repo.NotesRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class ModeratorController {
 
@@ -42,9 +45,15 @@ public class ModeratorController {
         Note note = notesRepository.getById(id);
         note.setModerateFullText(allRemarks);
         notesRepository.save(note);
-        model.addAttribute("remarks", Remark.getRemarks(note.getModerateFullText()));
-        model.addAttribute("mistakes", Remark.getMistakes(note.getModerateFullText()));
-
+        List<String> remarks = Remark.getRemarks(note.getModerateFullText());
+        List<String> mistakes = Remark.getMistakes(note.getModerateFullText());
+        model.addAttribute("remarks", remarks);
+        model.addAttribute("mistakes", mistakes);
+        String rawFullText = note.getRawFullText();
+//        for (int i = 0; i < remarks.size(); i++){
+//            noteWithRemarks = noteWithRemarks.replace(mistakes.get(i), "<span class=\"popup\" onclick=\"popupFunc(" + i + ")\" >" + mistakes.get(i) + "<span class=\"popuptext\" id=\"myPopup" + i + "\">" + remarks.get(i) + "</span></span>");
+//        }
+        model.addAttribute("noteWithRemarks", Remark.createPopups(rawFullText, mistakes, remarks));
         return "moderator/test";
     }
 
