@@ -10,6 +10,7 @@
             <a sec:authorize="isAuthenticated()" class="singInButton" href="/logout">Sing Out</a>
             <a sec:authorize="isAuthenticated()" class="singInButton" href="/logout">Sing Out</a>
             <a sec:authorize="hasRole('ROLE_MODERATOR')" class="singInButton" href="/moderator">Moderate</a>
+            <a sec:authorize="hasRole('ROLE_SUPERTRAMP')" class="singInButton" href="/supertramp/fix">Fix notes</a>
             <a sec:authorize="hasRole('ROLE_ADMIN')" class="singInButton" href="/admin">Admin</a>
             <a sec:authorize="hasRole('ROLE_ADMIN')" class="singInButton" href="/admin/edit_site">Edit blocks</a>
             <a sec:authorize="hasRole('ROLE_ADMIN')" class="singInButton" href="/admin/edit_contacts">Edit contacts</a>

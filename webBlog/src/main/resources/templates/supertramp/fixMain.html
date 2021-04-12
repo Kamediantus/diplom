@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="Fix"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+</head>
+<body>
+<header th:insert="blocks/header :: header"/><header/>
+<div class="basicText" th:text="'There are notes on various topics here'"/>
+<div th:insert="blocks/noteNav :: noteNav"></div>
+
+
+<div th:each="el : ${fixList}" class="fullNote">
+    <p th:text="${el.heading}" class="heading"></p>
+    <div th:text="'tags: ' + ${el.tags}" class="tags"></div>
+    <p th:utext="${el.getShortText(el.rawFullText)}" class="fullText"></p>
+    <p th:text="'Created: ' + ${el.date}" class="basicTextSmall"></p>
+    <p th:text="'error count: ' + ${el.getCountOfMistakes}"></p>
+    <a class="button4 bottomright" th:href="'/supertramp/fix/' + ${el.id}">Fix</a>
+</div>
+
+</body>
+<footer th:insert="blocks/footer :: footer"></footer>
+</html>

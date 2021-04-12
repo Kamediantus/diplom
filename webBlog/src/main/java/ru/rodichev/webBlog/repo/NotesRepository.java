@@ -31,8 +31,12 @@ public interface NotesRepository extends CrudRepository<Note, Long> {
     @Query(value = "SELECT * FROM t_notes WHERE is_checked = false order by id desc", nativeQuery = true)
     Iterable<Note> getOnlyUnchecked();
 
+    // search only unchecked notes for Supertramp
+    @Query(value = "SELECT * FROM t_notes WHERE is_checked = true and is_fixed = false order by id desc", nativeQuery = true)
+    Iterable<Note> getOnlyUnfixed();
+
     // search only checked notes for visible list
-    @Query(value = "SELECT * FROM t_notes WHERE is_checked = true order by id desc", nativeQuery = true)
+    @Query(value = "SELECT * FROM t_notes WHERE is_checked = true and is_fixed = true order by id desc", nativeQuery = true)
     Iterable<Note> getOnlyChecked();
 
 }

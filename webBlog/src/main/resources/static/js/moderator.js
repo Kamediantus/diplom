@@ -8,12 +8,14 @@ let remAndMstk = "";
 
 function addRemark(event){
     let mistake = event.target.value.substring(event.target.selectionStart, event.target.selectionEnd);
+    console.log(event.target.selectionStart)
     let remark = prompt('remark to ' + mistake)
     const listOfMistake = document.getElementById('mistake');
     if (remark != null && remark != ""){
-        remAndMstk += mistake + '|' + remark + '||';
+        remAndMstk += mistake + '|' + remark + '|' + event.target.selectionStart + ',' + event.target.selectionEnd + '||';
         myCreateFunction(mistake, remark);
-        document.getElementById("allMistakes").setAttribute("value", remAndMstk) ;
+        document.getElementById("allMistakes").setAttribute("value", remAndMstk);
+        console.log(remAndMstk);
     }
 
 }
@@ -38,10 +40,12 @@ function deleteRow(r) {
     let i = r.parentNode.parentNode.rowIndex;
     let table = document.getElementById("myTable");
 
-    let mistake = table.rows.item(1).cells.item(0).innerHTML;
-    let remark = table.rows.item(1).cells.item(1).innerHTML;
-    let mstkAndRmrk = mistake + '|' + remark + '||';
-    remAndMstk = remAndMstk.replace(mstkAndRmrk, "");
+    let mistake = table.rows.item(i).cells.item(0).innerHTML;
+    let remark = table.rows.item(i).cells.item(1).innerHTML;
+    let mstkAndRmrk = mistake + '|' + remark + '|';
+    remAndMstk = remAndMstk.replace(mstkAndRmrk, "kuropatka");
+    remAndMstk = remAndMstk.replace(new RegExp("kuropatka\\d+,\\d+\\|\\|"), "");
+    console.log(remAndMstk);
     document.getElementById("allMistakes").setAttribute("value", remAndMstk) ;
 
     document.getElementById("myTable").deleteRow(i);

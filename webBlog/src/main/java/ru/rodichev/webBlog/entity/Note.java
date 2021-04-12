@@ -23,6 +23,15 @@ public class Note {
     private String date;
     private String tags;
     private boolean isChecked;
+    private boolean isFixed;
+
+    public boolean isFixed() {
+        return isFixed;
+    }
+
+    public void setFixed(boolean fixed) {
+        isFixed = fixed;
+    }
 
     public boolean isChecked() {
         return isChecked;
@@ -90,6 +99,7 @@ public class Note {
         this.tags = tags;
         this.date = CurrDate.getCurrDate();
         this.setChecked(false);
+        this.setFixed(false);
     }
     public String toHtmlBreakLines(String text){
         return text.replaceAll("\n","<br />");
@@ -105,6 +115,10 @@ public class Note {
                 return text.substring(0, text.substring(0, 1000).lastIndexOf(" ")) + "...";
             } else return text.substring(0, 1000) + "...";
         } else return text;
+    }
+
+    public int getCountOfMistakes(){
+        return this.moderateFullText.split("\\|\\|").length;
     }
 
     public Note() {
