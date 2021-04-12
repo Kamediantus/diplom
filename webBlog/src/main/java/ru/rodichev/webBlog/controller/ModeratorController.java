@@ -1,6 +1,7 @@
 package ru.rodichev.webBlog.controller;
 
 
+import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.AccessType;
 import org.springframework.stereotype.Component;
@@ -8,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.rodichev.webBlog.entity.Note;
+import ru.rodichev.webBlog.logic.Remark;
 import ru.rodichev.webBlog.repo.NotesRepository;
 
 @Controller
@@ -32,4 +36,16 @@ public class ModeratorController {
         } else model.addAttribute("msg", "this note already checked");
         return "moderator/details";
     }
+
+    @PostMapping("/moderate/{id}")
+    public String uploadRemarks(@PathVariable("id") Long id,@RequestParam String allRemarks, Model model){
+        Note note = notesRepository.getById(id);
+        note.setModerateFullText(allRemarks);
+        notesRepository.save(note);
+        model.addAttribute("remarks", Remark.getRemarks(note.getModerateFullText()));
+        model.addAttribute("mistakes", Remark.getMistakes(note.getModerateFullText()));
+
+        return "moderator/test";
+    }
+
 }

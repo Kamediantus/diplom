@@ -7,9 +7,6 @@
 </head>
 <body>
 <header th:insert="blocks/header :: header"/><header/>
-<div class="basicText" th:text="'There are notes on various topics here'"/>
-<div th:insert="blocks/noteNav :: noteNav"></div>
-<div>
 <span>
     <div class="fullNote">
         <span>
@@ -26,10 +23,13 @@
                 <th>remark</th>
                 <th>delete</th>
             </thead>
-
         </table>
     </span>
 </div>
+<form method="post">
+    <input type="text" name="allRemarks" id="allMistakes" class="invisible">
+    <input type="submit" value="Send remarks">
+</form>
 <script type="text/javascript" th:src="@{/js/moderator.js}"></script>
 
 </body>

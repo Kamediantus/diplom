@@ -1,23 +1,21 @@
 "use strict"
 
-var myImage = document.querySelector('img');
-var myButton = document.querySelector('button');
-var myHeading = document.querySelector('h1');
-var myHeading3 = document.querySelector('h3');
+// let allMistakes = document.getElementById('allMistakes');
+
 let remAndMstk = "";
 
 
 
 function addRemark(event){
     let mistake = event.target.value.substring(event.target.selectionStart, event.target.selectionEnd);
-    var remark = prompt('remark to ' + mistake)
+    let remark = prompt('remark to ' + mistake)
     const listOfMistake = document.getElementById('mistake');
     if (remark != null && remark != ""){
-        remAndMstk += remark + '  ||   ' + mistake + '<br>';
+        remAndMstk += mistake + '|' + remark + '||';
         myCreateFunction(mistake, remark);
-
+        document.getElementById("allMistakes").setAttribute("value", remAndMstk) ;
     }
-    // document.getElementById("newMistake").innerHTML = remAndMstk ;
+
 }
 
 const input = document.querySelector('textarea');

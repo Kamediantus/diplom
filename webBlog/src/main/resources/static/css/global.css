@@ -18,17 +18,16 @@ header{
 }
 
 footer{
+
+    position: sticky;
+
+    right: 20pt;
     /*position: absolute;*/
-    /*width: 95%;*/
-    /*height: 5rem;*/
-    left: 20pt;
-    position: absolute;
-    /*left: 0;*/
-    bottom: 0;
-    width: 80%;
-    height: 80px;
+    /*bottom: 0;*/
+    /*width: 80%;*/
+    /*height: 80px;*/
     font: 12pt/12pt Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-    font: 12pt/12pt DejaVu Sans Mono, monospace;
+    /*font: 12pt/12pt DejaVu Sans Mono, monospace;*/
 }
 .mainNav{
     font: 15pt/15pt DejaVu Sans Mono, monospace;
@@ -163,6 +162,10 @@ input[type=submit]:hover {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
+}
+.invisible{
+    display: none;
+    visibility: hidden;
 }
 
 
