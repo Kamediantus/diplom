@@ -1,5 +1,6 @@
 package ru.rodichev.webBlog.logic;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 
 public class Remark implements Comparable<Remark>{
@@ -17,6 +18,35 @@ public class Remark implements Comparable<Remark>{
         this.cords[1] = Integer.parseInt(elements[2].split(",")[1]);
     }
 
+
+    public static String getPopupText(String fullText, List<Remark> remarksList){
+        List<Integer> startCords = Remark.getStartCords(remarksList);
+        List<Integer> endCords = Remark.getEndCords(remarksList);
+        String popupText = fullText;
+        for (int i = remarksList.size() - 1; i >= 0 ; i--){
+            popupText = popupText.substring(0, startCords.get(i)) +
+                    "<span class=\"popup\" onclick=\"popupFunc(" + i + ")\">" +
+                    remarksList.get(i).getMistake() + "<span class=\"popuptext\" id=\"myPopup" + i +
+                    "\">" + remarksList.get(i).getRemark() + "</span></span>" + popupText.substring(endCords.get(i));
+        }
+        return popupText;
+    }
+
+    public static List<Integer> getStartCords(List<Remark> remarkList){
+        List<Integer> endCords = new ArrayList<>();
+        for (int i = 0; i < remarkList.size(); i++){
+            endCords.add(remarkList.get(i).getFirstCord());
+        }
+        return endCords;
+    }
+
+    public static List<Integer> getEndCords(List<Remark> remarkList){
+        List<Integer> endCords = new ArrayList<>();
+        for (int i = 0; i < remarkList.size(); i++){
+            endCords.add(remarkList.get(i).getLastCord());
+        }
+        return endCords;
+    }
 
     public static List<Remark> getSortRemarks(String moderatorsText){
         TreeSet<Remark> remarks = new TreeSet<>();
@@ -87,6 +117,10 @@ public class Remark implements Comparable<Remark>{
 
     public int getFirstCord(){
         return this.getCords()[0];
+    }
+
+    public int getLastCord(){
+        return this.getCords()[1];
     }
 
     public String getMistake() {
