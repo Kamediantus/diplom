@@ -21,7 +21,12 @@
     </textarea>
     <input type="submit" value="Fix">
 </form>
-
+<script>
+    function popupFunc(id) {
+        let popup = document.getElementById("myPopup" + id);
+        popup.classList.toggle("show");
+    }
+</script>
 </body>
 <footer th:insert="blocks/footer :: footer"></footer>
 </html>

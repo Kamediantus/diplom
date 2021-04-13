@@ -26,8 +26,8 @@ public class SupertrampController {
     @GetMapping("/supertramp/fix/{id}")
     public String goToFixNote(@PathVariable("id") Long id, Model model){
         Note note = notesRepository.getById(id);
-        //String noteWithRemarks = Remark.createPopups(note.getRawFullText(), Remark.getMistakes(note.getModerateFullText()) ,Remark.getRemarks(note.getModerateFullText()), Remark.getCords(note.getModerateFullText()));
-        //model.addAttribute("fullText", noteWithRemarks);
+        String noteWithRemarks = Remark.getPopupText(note.getRawFullText(), Remark.getSortRemarks(note.getModerateFullText()));
+        model.addAttribute("fullText", noteWithRemarks);
         model.addAttribute("note", note );
         return "supertramp/fixDetails";
     }

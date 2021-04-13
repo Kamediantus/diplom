@@ -11,7 +11,8 @@
     <div class="fullNote">
         <span>
             <p th:text="${note.heading}" class="heading"></p>
-            <textarea th:utext="${note.toSqlBreakLines(note.rawFullText)}" class="fullModerateText"></textarea>
+            <textarea th:utext="${note.breaklinesToWhitespace(note.rawFullText)}" class="fullModerateText"></textarea>
+<!--            <textarea th:utext="${note.rawFullText}" class="fullModerateText"></textarea>-->
         </span>
     </div>
 </span>

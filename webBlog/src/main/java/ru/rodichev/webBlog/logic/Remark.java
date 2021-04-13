@@ -1,7 +1,10 @@
 package ru.rodichev.webBlog.logic;
 
+import ru.rodichev.webBlog.entity.Note;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class Remark implements Comparable<Remark>{
 
@@ -22,15 +25,26 @@ public class Remark implements Comparable<Remark>{
     public static String getPopupText(String fullText, List<Remark> remarksList){
         List<Integer> startCords = Remark.getStartCords(remarksList);
         List<Integer> endCords = Remark.getEndCords(remarksList);
-        String popupText = fullText;
+        System.out.println(fullText.length());
+        System.out.println(Note.breaklinesToWhitespace(fullText).length());
+        String popupText = fullText.replaceAll("<br />", "      ");
+        System.out.println(popupText);
+        String mistake;
         for (int i = remarksList.size() - 1; i >= 0 ; i--){
+//            if (remarksList.get(i).getMistake().contains("<br />")){
+//                mistake = remarksList.get(i).getMistake().replace("<br />", "");
+//            } else mistake = remarksList.get(i).getMistake();
+            mistake = remarksList.get(i).getMistake();
             popupText = popupText.substring(0, startCords.get(i)) +
                     "<span class=\"popup\" onclick=\"popupFunc(" + i + ")\">" +
-                    remarksList.get(i).getMistake() + "<span class=\"popuptext\" id=\"myPopup" + i +
+                    mistake + "<span class=\"popuptext\" id=\"myPopup" + i +
                     "\">" + remarksList.get(i).getRemark() + "</span></span>" + popupText.substring(endCords.get(i));
         }
         return popupText;
     }
+
+
+
 
     public static List<Integer> getStartCords(List<Remark> remarkList){
         List<Integer> endCords = new ArrayList<>();

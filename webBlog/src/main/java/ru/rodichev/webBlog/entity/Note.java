@@ -104,8 +104,10 @@ public class Note {
     public String toHtmlBreakLines(String text){
         return text.replaceAll("\n","<br />");
     }
-
-    public String toSqlBreakLines(String text){
+    public static String breaklinesToWhitespace(String text){
+        return text.replaceAll("<br />","      ");
+    }
+    public static String toSqlBreakLines(String text){
         return text.replaceAll("<br />","\n");
     }
 
