@@ -49,13 +49,11 @@ public class ModeratorController {
         List<String> remarks = Remark.getRemarks(note.getModerateFullText());
         List<String> mistakes = Remark.getMistakes(note.getModerateFullText());
         List<String> cords = Remark.getCords(note.getModerateFullText());
-        model.addAttribute("remarks", remarks);
-        model.addAttribute("mistakes", mistakes);
         String rawFullText = note.getRawFullText();
 //        for (int i = 0; i < remarks.size(); i++){
 //            noteWithRemarks = noteWithRemarks.replace(mistakes.get(i), "<span class=\"popup\" onclick=\"popupFunc(" + i + ")\" >" + mistakes.get(i) + "<span class=\"popuptext\" id=\"myPopup" + i + "\">" + remarks.get(i) + "</span></span>");
 //        }
-        model.addAttribute("noteWithRemarks", Remark.createPopups(rawFullText, mistakes, remarks, cords));
+      //  model.addAttribute("noteWithRemarks", Remark.createPopups(rawFullText, mistakes, remarks, cords));
         return "moderator/test";
     }
 
