@@ -67,7 +67,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User>findUserByUsernameLike(String username){
-        List<User> usersFromDbLike = userRepository.findUserByUsername(username + "%");
+        List<User> usersFromDbLike = userRepository.findUsersByMask(username + "%");
         return usersFromDbLike;
     }
 

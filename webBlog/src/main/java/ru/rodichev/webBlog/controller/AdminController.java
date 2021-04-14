@@ -69,13 +69,20 @@ public class AdminController {
 
     @PostMapping("/admin/edit/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id, Model model){
-        if (userService.deleteUser(id)) {
-            String msg = "User was deleted successfully. id: " + id;
-            model.addAttribute("message",msg);
+        String msg;
+        // disable to delete user with ROLE_ADMIN
+        if(userRepository.findUserById(id).getRole() != Role.ROLE_ADMIN){
+            System.out.println(userRepository.findUserById(id).getRole());
+            if (userService.deleteUser(id)) {
+                msg = "User was deleted successfully. id: " + id;
+                model.addAttribute("message",msg);
 
-        } else{
-            String msg = "User wasn't deleted successfully. id: " + id;
-        }
+            } else{
+                msg = "User wasn't deleted successfully. id: " + id;
+            }
+        } else msg = "if you want to delete admin, please use DB";
+
+            model.addAttribute("message",msg);
             return "admin/userDelete";
     }
 

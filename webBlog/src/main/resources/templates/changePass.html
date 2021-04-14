@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="Contacts"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/global.css}" rel="stylesheet" />
+</head>
+<header th:include="blocks/header :: header"></header>
+<body>
+<div th:text="${msg}"></div>
+
+<div th:text="'Change pass for ' + ${username}" class="basicText">
+</div>
+<form method="post">
+    <input type="password" name="previousPass" placeholder="previous password..">
+    <input type="password" name="newPass" placeholder="new password..">
+    <input type="password" name="confirmNewPass" placeholder="confirm new password..">
+    <input type="submit" value="Update password">
+</form>
+</body>
+<footer th:include="blocks/footer :: footer"></footer>
+</html>
