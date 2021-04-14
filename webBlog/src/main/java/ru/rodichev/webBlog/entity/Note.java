@@ -101,7 +101,7 @@ public class Note {
         this.setChecked(false);
         this.setFixed(false);
     }
-    public String toHtmlBreakLines(String text){
+    public static String toHtmlBreakLines(String text){
         return text.replaceAll("\n","<br />");
     }
     public static String breaklinesToWhitespace(String text){

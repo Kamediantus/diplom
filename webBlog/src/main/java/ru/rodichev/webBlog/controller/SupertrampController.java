@@ -35,7 +35,7 @@ public class SupertrampController {
     @PostMapping("/supertramp/fix/{id}")
     public String UploadFixes(@PathVariable("id") Long id,@RequestParam String fullNewText, Model model){
         Note note = notesRepository.getById(id);
-        note.setFinalFullText(fullNewText);
+        note.setFinalFullText(Note.toHtmlBreakLines(fullNewText));
         note.setFixed(true);
         notesRepository.save(note);
         model.addAttribute("fixList", notesRepository.getOnlyUnfixed());
