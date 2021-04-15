@@ -18,14 +18,15 @@
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
 </div>
 
 
-<div class="about">
+<div class="about bigShadow">
     <p class="monospace fullText aboutText" th:text="${text}"></p>
 </div>
 
-<div class="contact bottomLittleLeft">
+<div class="contact bottomLittleLeft bigShadow">
     <div class="monospace">Contact:</div>
 <div th:each="el : ${contacts}">
     <div class="basicText  ">

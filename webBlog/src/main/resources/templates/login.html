@@ -20,21 +20,16 @@
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
 </div>
 
+<div class="login bigShadow">
+    <form action="/login" method="post" >
+            <input class="usernameInput" type="text" name="username" placeholder=" Username.." autofocus="true" th:error="*{loginError}">
+            <p class="basicText" th:text="${loginError}"></p>
+            <input class="usernameInput" type="password" name="password" placeholder=" Password..">
+            <input type="submit" class="loginButton" value="sing in">
+    </form>
 
-<div class="about">
-    <p class="monospace fullText aboutText" th:text="${text}"></p>
-</div>
 
-<div class="contact bottomLittleLeft">
-    <div class="monospace">Contact:</div>
-    <div th:each="el : ${contacts}">
-        <div class="basicText  ">
-            <span th:text="${el.name} + ': ' "></span>
-            <span>
-            <a th:href="${el.link}" th:text="${el.visibleTextOfLink}"></a>
-        </span>
-        </div>
-    </div>
+
 </div>
 </body>
 </html>
@@ -43,9 +38,3 @@
 
 
 
-<form action="/login" method="post">
-    <input type="text" name="username" placeholder="Username.." autofocus="true" th:error="*{loginError}">
-    <p class="basicText" th:text="${loginError}"></p>
-    <input type="password" name="password" placeholder="Password..">
-    <input type="submit" value="Log in">
-</form>

@@ -34,13 +34,13 @@
     </form>
 
 <div th:each="el : ${notes}" class="fullNote bigShadow">
-    <p th:text="${el.heading}" class="heading"></p>
-    <p th:utext="${el.getShortText(el.finalFullText)}" class="fullText"></p>
-    <div class="tags">
+    <p th:text="${el.heading}" class="heading shadow"></p>
+    <p th:utext="${el.getShortText(el.finalFullText)}" class="fullText shadow"></p>
+    <div class="tags shadow">
             <div th:text="'tags: ' + ${el.tags}" ></div>
             <p th:text="'Created: ' + ${el.date}" ></p>
     </div>
-    <a class="details bottomright" th:href="'/notes/' + ${el.id}">Details</a>
+    <a class="details bottomright shadow" th:href="'/notes/' + ${el.id}">Details</a>
 
 </div>
     <a href="#" class="botRight topButton shadow">Back to top</a>

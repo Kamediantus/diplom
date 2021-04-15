@@ -3,23 +3,33 @@
 <head>
     <title th:text="Add_note"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/global.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<header th:insert="blocks/header :: header"/><header/>
-<div class="basicText" th:text="'There are notes on various topics here'"/>
-<div th:insert="blocks/noteNav :: noteNav"></div>
+<div class="multi-button">
+    <button onclick="window.location='/notes'">notes</button>
+    <button onclick="window.location='/aboutUs'">about us</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/login'">sing in</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/registration'">registration</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/logout'">sing out</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/changePass'">change password</button>
+    <button sec:authorize="hasRole('ROLE_MODERATOR')" onclick="window.location='/moderator'">Moderate</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')" onclick="window.location='/supertramp/fix'">Fix notes</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
+</div>
 
-<div class="basicText">
-    <h3>Adding a new note:</h3>
+<div class="fullNote bigShadow">
+    <h3 class="monospace white">Adding a new note:</h3>
     <form action="/notes/add" method="post">
-        <input type="text" name="heading" placeholder="heading...">
-        <textarea name="fullText" placeholder="full text..." class="editText"></textarea>
-        <input type="text" name="tags" placeholder="tags...">
-        <input type="submit" value="Add">
+        <input class="editHeading shadow" type="text" name="heading" placeholder="heading...">
+        <textarea name="fullText" placeholder="full text..." class="editText shadow"></textarea>
+        <input type="text" class="editTag shadow" name="tags" placeholder="tags...">
+        <input type="submit" class="loginButton shadow" value="Add">
     </form>
 </div>
 
 </body>
-<footer th:insert="blocks/footer :: footer"></footer>
 </html>

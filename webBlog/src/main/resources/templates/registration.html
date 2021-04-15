@@ -3,20 +3,33 @@
 <head>
     <title th:text="Registrarion"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/global.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<header th:insert="blocks/header :: header"/><header/>
-<div>
-    <form action="/registration" method="post">
-        <input type="text" name="username" placeholder="Username.." autofocus="true" th:error="*{usernameError}">
-        <p th:text="${usernameError}"></p>
-        <input type="password" name="password" placeholder="Password.." th:error="*{passwordError}">
-        <p th:text="${passwordError}" ></p>
-        <input type="password" name="passwordConfirm" placeholder="Confirm password..">
-        <input type="submit" value="Sing up">
-    </form>
+<div class="multi-button">
+    <button onclick="window.location='/notes'">notes</button>
+    <button onclick="window.location='/aboutUs'">about us</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/login'">sing in</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/registration'">registration</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/logout'">sing out</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/changePass'">change password</button>
+    <button sec:authorize="hasRole('ROLE_MODERATOR')" onclick="window.location='/moderator'">Moderate</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')" onclick="window.location='/supertramp/fix'">Fix notes</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
 </div>
+
+    <div class="login bigShadow">
+        <form action="/registration" method="post">
+            <input class="usernameInput" type="text" name="username" placeholder="Username.." autofocus="true" th:error="*{usernameError}">
+            <p th:text="${usernameError}"></p>
+            <input class="usernameInput" type="password" name="password" placeholder="Password.." th:error="*{passwordError}">
+            <p th:text="${passwordError}" ></p>
+            <input class="usernameInput" type="password" name="passwordConfirm" placeholder="Confirm password..">
+            <input type="submit" value="Sing up" class="loginButton">
+        </form>
+    </div>
+
 </body>
-<footer th:insert="blocks/footer :: footer"></footer>
 </html>

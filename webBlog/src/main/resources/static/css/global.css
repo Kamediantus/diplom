@@ -131,6 +131,10 @@ footer{
     font: 11pt/11pt FreeMono, monospace;
     padding-top: 10pt;
 }
+.tagsDetails{
+    font: 11pt/11pt FreeMono, monospace;
+    padding: 20pt;
+}
 /*forms of input*/
 
 form{

@@ -3,21 +3,31 @@
 <head>
     <title th:text="Notes"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/global.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<header th:insert="blocks/header :: header"/><header/>
-<div class="basicText" th:text="'There are notes on various topics here'"/>
-<div th:insert="blocks/noteNav :: noteNav"></div>
+<div class="multi-button">
+    <button onclick="window.location='/notes'">notes</button>
+    <button onclick="window.location='/aboutUs'">about us</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/login'">sing in</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/registration'">registration</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/logout'">sing out</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/changePass'">change password</button>
+    <button sec:authorize="hasRole('ROLE_MODERATOR')" onclick="window.location='/moderator'">Moderate</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')" onclick="window.location='/supertramp/fix'">Fix notes</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
+</div>
 
-<div th:each="el : ${notes}" class="fullNote">
-    <p th:text="${el.heading}" class="heading"></p>
-    <div th:text="'tags: ' + ${el.tags}" class="tags"></div>
-    <p th:utext="${el.getShortText(el.rawFullText)}" class="fullText"></p>
-    <p th:text="'Created: ' + ${el.date}" class="basicTextSmall"></p>
-    <a class="button4 bottomright" th:href="'/moderate/' + ${el.id}">Moderate</a>
+<div th:each="el : ${notes}" class="fullNote shadow">
+    <p th:text="${el.heading}" class="heading shadow"></p>
+    <div th:text="'tags: ' + ${el.tags}" class="tags shadow"></div>
+    <p th:utext="${el.getShortText(el.rawFullText)}" class="fullText shadow"></p>
+    <p th:text="'Created: ' + ${el.date}" class="basicTextSmall shadow"></p>
+    <a class="singInButton shadow" th:href="'/moderate/' + ${el.id}">Moderate</a>
 </div>
 
 </body>
-<footer th:insert="blocks/footer :: footer"></footer>
 </html>

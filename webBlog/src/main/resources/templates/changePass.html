@@ -3,20 +3,35 @@
 <head>
     <title th:text="Contacts"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/global.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
-<header th:include="blocks/header :: header"></header>
 <body>
-<div th:text="${msg}"></div>
-
-<div th:text="'Change pass for ' + ${username}" class="basicText">
+<div class="multi-button">
+    <button onclick="window.location='/notes'">notes</button>
+    <button onclick="window.location='/aboutUs'">about us</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/login'">sing in</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/registration'">registration</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/logout'">sing out</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/changePass'">change password</button>
+    <button sec:authorize="hasRole('ROLE_MODERATOR')" onclick="window.location='/moderator'">Moderate</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')" onclick="window.location='/supertramp/fix'">Fix notes</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
 </div>
-<form method="post">
-    <input type="password" name="previousPass" placeholder="previous password..">
-    <input type="password" name="newPass" placeholder="new password..">
-    <input type="password" name="confirmNewPass" placeholder="confirm new password..">
-    <input type="submit" value="Update password">
-</form>
+
+
+<div class="login">
+    <div th:text="${msg}"></div>
+    <div th:text="'Change pass for ' + ${username}" class="basicText">
+    </div>
+    <form method="post">
+        <input type="password" class="usernameInput" name="previousPass" placeholder="previous password..">
+        <input type="password"  class="usernameInput" placeholder="new password..">
+        <input type="password" class="usernameInput" name="confirmNewPass" placeholder="confirm new password..">
+        <input type="submit" class="loginButton" value="Update password">
+    </form>
+</div>
 </body>
-<footer th:include="blocks/footer :: footer"></footer>
 </html>

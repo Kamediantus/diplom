@@ -51,7 +51,7 @@ public class ModeratorController {
         model.addAttribute("viewRemarks", Remark.getPopupText(note.getRawFullText(), Remark.getSortRemarks(allRemarks)));
 
 
-        return "moderator/test";
+        return "redirect:/moderator";
     }
 
 }

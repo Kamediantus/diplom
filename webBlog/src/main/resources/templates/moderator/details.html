@@ -3,14 +3,30 @@
 <head>
     <title th:text="Notes"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/global.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<header th:insert="blocks/header :: header"/><header/>
+
+<div class="multi-button">
+    <button onclick="window.location='/notes'">notes</button>
+    <button onclick="window.location='/aboutUs'">about us</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/login'">sing in</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/registration'">registration</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/logout'">sing out</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/changePass'">change password</button>
+    <button sec:authorize="hasRole('ROLE_MODERATOR')" onclick="window.location='/moderator'">Moderate</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')" onclick="window.location='/supertramp/fix'">Fix notes</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
+</div>
+
+<div>
 <span>
-    <div class="fullNote">
+    <div class="fullNote shadow">
         <span>
-            <p th:text="${note.heading}" class="heading"></p>
+            <p th:text="${note.heading}" class="heading shadow"></p>
             <textarea th:utext="${note.breaklinesToWhitespace(note.rawFullText)}" class="fullModerateText"></textarea>
 <!--            <textarea th:utext="${note.rawFullText}" class="fullModerateText"></textarea>-->
         </span>
@@ -29,10 +45,9 @@
 </div>
 <form method="post">
     <input type="text" name="allRemarks" id="allMistakes" class="invisible">
-    <input type="submit" value="Send remarks">
+    <input class="loginButton" type="submit" value="Send remarks">
 </form>
 <script type="text/javascript" th:src="@{/js/moderator.js}"></script>
 
 </body>
-<footer th:insert="blocks/footer :: footer"></footer>
 </html>

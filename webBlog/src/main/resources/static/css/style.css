@@ -27,6 +27,12 @@ a{
 .white{
     color: white;
 }
+.warning{
+    /*background: #ffb366;*/
+    background: linear-gradient(45deg, 	 #ffb366, #5ca389);
+    width: 40%;
+
+}
 .about{
     border: 1px solid black;
     border-right: none;
@@ -45,6 +51,41 @@ a{
 .aboutText{
     color: black;
     width: 70%;
+}
+.login{
+    border: 1px solid black;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 10pt;
+    margin-top: 15pt;
+    width: 50%;
+    height: 200pt;
+    position: sticky;
+    bottom: 20pt;
+    font: 15pt/15pt Verdana, sans-serif;
+    border-bottom-right-radius: 50pt;
+    padding: 25pt;
+    background: linear-gradient(45deg, 	 #e6e6e6, #5ca389);
+}
+.usernameInput{
+    width: 60%;
+    height: 30pt;
+    border: 1pt solid black ;
+    background: white;
+    padding-top: 10pt;
+    font: 14pt/14pt DejaVu Sans Mono, monospace;
+
+}
+.loginButton{
+    border: 2px solid black;
+
+    border-radius: 10px;
+    background: #99ffcc;
+    /*background: linear-gradient(45deg, 	 #e6e6e6, #5ca389);*/
+    width: 100px;
+    height: 33px;
+    position: sticky;
+    bottom: 10pt;
 }
 
 * {
@@ -166,6 +207,20 @@ form.example::after {
 .shadow{
     box-shadow: var(--shadow) 4px 4px;
 }
+.ltborder{
+    min-width: 50%;
+    min-height: 30%;
+    border: 2px solid black;
+    border-bottom: none;
+    border-right: none;
+    border-radius: 5px;
+    border-bottom-right-radius: 20px;
+    box-shadow: var(--shadow) 4px 4px;
+    background: linear-gradient(45deg, #ffffb3, #cce5ff);
+}
+.full-comment{
+    width: 80%;
+}
 
 .bigShadow{
     box-shadow: var(--shadow) 10px 10px;
@@ -235,22 +290,79 @@ form.example::after {
     top:40pt;
     font-size: 18px;
 }
+.basicTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.basicTable td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.basicTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #303030;
+    color: white;
+}
+.mistakeList{
+    font: 12pt/12pt FreeMono, monospace;
+    position: fixed;
+    right: 35px;
+    bottom: 20px;
+    border-radius: 10px;
+    background-color: #cccccc;
+    color: black;
+    padding: 5pt;
+    width: 400px;
+    height: 500px;
+    /*right: 10pt;*/
+    margin-left: 10pt; /* Отступ слева */
+}
+.invisible{
+    display: none;
+    visibility: hidden;
+}
 
 .fullNote{
     border: 1px solid black;
     border-bottom: none;
     border-right: none;
     border-radius: 1px;
+    min-width: 800px;
     width: 80%;
     font: 12pt/12pt DejaVu Sans Mono, monospace;
     margin-top: 15pt;
     border-radius: 10px;
     border-bottom-right-radius: 105px;
-    background: linear-gradient(45deg, 	#3b6958, #827a69);
+    /*background: linear-gradient(45deg, 	#3b6958, #827a69);*/
+    background-color: darkgrey;
+    padding: 20pt;
+    padding-top: 15pt;
+    padding-bottom: 1pt;
+}
+
+.allComments{
+    border: 1px solid black;
+    border-bottom: none;
+    border-right: none;
+    border-radius: 1px;
+    width: 90%;
+    font: 12pt/12pt DejaVu Sans Mono, monospace;
+    margin-top: 15pt;
+    border-radius: 10px;
+    border-bottom-right-radius: 105px;
+    background: linear-gradient(45deg, 	#3b6958, #bfb48b);
     /*background-color: #94b8b8;*/
     padding: 20pt;
-    padding-top: 1pt;
+    padding-top: 15pt;
     padding-bottom: 1pt;
+}
+
+.reverseColor{
+    background: linear-gradient(45deg, #b3f0ff,	#3b6958);
 }
 .heading{
     font: 15pt/15pt Verdana, sans-serif;
@@ -260,11 +372,62 @@ form.example::after {
     border-radius: 20px;
     border-bottom-right-radius: 105px;
 }
+
+.fullComment{
+    background: lightgrey;
+    border-radius: 10px;
+    border-bottom-right-radius: 35px;
+    padding: 10pt;
+    margin-top: 10pt;
+}
+
+.smallDate{
+    max-width: 25%;
+    border-bottom-style: groove;
+    border-color: black;
+    background-color: white;
+}
 .fullText{
     background-color: #e6e6e6;
     padding: 10pt;
     border-radius: 20px;
     border-bottom-right-radius: 105px;
+}
+
+.fullModerateText{
+    min-width: 400px;
+    width: 70%;
+    height: 320pt;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid gray;
+    border-radius: 4px;
+    background-color: #e6e6e6;
+    resize: none;
+    float: left; /* Обтекание справа */
+    /*width: 200px; !* Ширина колонки *!*/
+}
+.editHeading{
+    margin-top: 10pt;
+    font: 16pt/16pt DejaVu Sans Mono, monospace;
+    width: 70%;
+}
+.editTag{
+    margin-top: 10pt;
+    font: 13pt/13pt DejaVu Sans Mono, monospace;
+    width: 50%;
+}
+.editText{
+    margin-top: 10pt;
+    width: 90%;
+    height: 300pt;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    border-bottom-right-radius: 20px;
+    background-color: #f8f8f8;
+    resize: none;
 }
 .tags{
     font: 11pt/11pt DejaVu Sans Mono, monospace;
@@ -274,6 +437,29 @@ form.example::after {
     border-radius: 20px;
     border-bottom-right-radius: 200px;
 }
+.tagsDetails{
+    font: 11pt/11pt DejaVu Sans Mono, monospace;
+    background-color: #e6e6e6;
+    min-height: 35pt;
+    /*background: linear-gradient(70deg, #ffeeaa, #87cdde);*/
+    padding: 15pt;
+    width: 90%;
+    border-radius: 20px;
+    border-bottom-right-radius: 200px;
+}
+
+.full-comment{
+    width: 80%;
+    height: 50pt;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+}
+
+
 .date{
     font: 11pt/11pt DejaVu Sans Mono, monospace;
     background: linear-gradient(45deg, #ffffb3, #cce5ff);
@@ -298,3 +484,29 @@ form.example::after {
     border-radius: 5pt;
     border-bottom-right-radius: 35pt;
 }
+
+form.singIn input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form.singIn input[type=submit] {
+    width: 100%;
+    background-color: #339966;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form.singIn input[type=submit]:hover {
+    background-color: lightgreen;
+}
+
