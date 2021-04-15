@@ -37,7 +37,7 @@ public class MainController {
         }
         Iterable<Note> notes = notesRepository.getOnlyChecked();
         model.addAttribute("notes", notes);
-        return "note/mainNotes";
+        return "main";
     }
     @GetMapping("/contacts")
     public String contacts(Model model){
@@ -46,8 +46,11 @@ public class MainController {
         return "contacts";
     }
 
-    @GetMapping("/aboutMe")
+//    @GetMapping("/aboutMe")
+    @GetMapping("/aboutUs")
     public String aboutMe(Model model){
+        Iterable<Contact> contacts = contactRepository.getVisibleContacts();
+        model.addAttribute("contacts", contacts);
         String aboutMeInfo = blockRepository.getTextById(1L);
         model.addAttribute("text", aboutMeInfo);
         return "aboutMe";

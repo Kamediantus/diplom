@@ -20,7 +20,7 @@ public interface NotesRepository extends CrudRepository<Note, Long> {
     Note getById(@Param("id") Long id);
 
     // revers search by substring in text
-    @Query(value = "SELECT * FROM `t_notes` WHERE full_text like :text ORDER by id DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM `t_notes` WHERE final_full_text like :text ORDER by id DESC", nativeQuery = true)
     Iterable<Note> reverseFindByText(@Param("text") String text);
 
     // reverse search by tags

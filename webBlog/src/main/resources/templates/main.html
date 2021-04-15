@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="Notes"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/style.css}" rel="stylesheet" />
-</head>
+    <title>Add_note</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /></head>
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+
 <body>
     <div class="multi-button">
         <button onclick="window.location='/notes'">notes</button>
@@ -20,29 +20,12 @@
         <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
     </div>
 
-
-<p th:text="${msg}" class="error"></p>
-
-    <form class="example shadow topRight" aaction="/notes" method="post" style="margin:auto;max-width:300px">
-        <span>
-            <input type="text" name="text" placeholder="search by text..">
-            <input type="text" name="tag" placeholder="search by tag..">
-        </span>
-        <span>
-                <button type="submit"><i class="fa fa-search"></i>go</button>
-            </span>
-    </form>
-
-<div th:each="el : ${notes}" class="fullNote bigShadow">
-    <p th:text="${el.heading}" class="heading"></p>
-    <p th:utext="${el.getShortText(el.finalFullText)}" class="fullText"></p>
-    <div class="tags">
-            <div th:text="'tags: ' + ${el.tags}" ></div>
-            <p th:text="'Created: ' + ${el.date}" ></p>
-    </div>
-    <a class="details bottomright" th:href="'/notes/' + ${el.id}">Details</a>
-
+<!-- <img src="images/chil.svg" alt="1" id="pict"> -->
 </div>
-    <a href="#" class="botRight topButton shadow">Back to top</a>
+
+<script type="text/javascript" src="script.js"></script>
+</body>
+
 </body>
 </html>
+

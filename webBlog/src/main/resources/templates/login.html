@@ -1,20 +1,51 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="Login"/>
+    <title th:text="Contacts"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/global.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<header th:insert="blocks/header :: header"/><header/>
-<div>
-    <form action="/login" method="post">
-        <input type="text" name="username" placeholder="Username.." autofocus="true" th:error="*{loginError}">
-        <p class="basicText" th:text="${loginError}"></p>
-        <input type="password" name="password" placeholder="Password..">
-        <input type="submit" value="Log in">
-    </form>
+<div class="multi-button">
+    <button onclick="window.location='/notes'">notes</button>
+    <button onclick="window.location='/aboutUs'">about us</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/login'">sing in</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/registration'">registration</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/logout'">sing out</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/changePass'">change password</button>
+    <button sec:authorize="hasRole('ROLE_MODERATOR')" onclick="window.location='/moderator'">Moderate</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')" onclick="window.location='/supertramp/fix'">Fix notes</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+</div>
+
+
+<div class="about">
+    <p class="monospace fullText aboutText" th:text="${text}"></p>
+</div>
+
+<div class="contact bottomLittleLeft">
+    <div class="monospace">Contact:</div>
+    <div th:each="el : ${contacts}">
+        <div class="basicText  ">
+            <span th:text="${el.name} + ': ' "></span>
+            <span>
+            <a th:href="${el.link}" th:text="${el.visibleTextOfLink}"></a>
+        </span>
+        </div>
+    </div>
 </div>
 </body>
-<footer th:insert="blocks/footer :: footer"></footer>
 </html>
+
+
+
+
+
+<form action="/login" method="post">
+    <input type="text" name="username" placeholder="Username.." autofocus="true" th:error="*{loginError}">
+    <p class="basicText" th:text="${loginError}"></p>
+    <input type="password" name="password" placeholder="Password..">
+    <input type="submit" value="Log in">
+</form>
