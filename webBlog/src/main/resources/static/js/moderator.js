@@ -55,3 +55,11 @@ function popupFunc(id) {
     let popup = document.getElementById("myPopup" + id);
     popup.classList.toggle("show");
 }
+
+function success() {
+    if(document.getElementById("textsend").value==="") {
+        document.getElementById('button').disabled = true;
+    } else {
+        document.getElementById('button').disabled = false;
+    }
+}

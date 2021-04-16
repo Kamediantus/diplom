@@ -19,16 +19,20 @@
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
     <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
+
 </div>
 
 
 <div th:each="el : ${fixList}" class="fullNote bigShadow">
     <p th:text="${el.heading}" class="heading shadow"></p>
-    <div th:text="'tags: ' + ${el.tags}" class="tags shadow"></div>
     <p th:utext="${el.getShortText(el.rawFullText)}" class="fullText shadow"></p>
-    <p th:text="'Created: ' + ${el.date}" class="basicTextSmall shadow"></p>
-    <p th:text="'error count: ' + ${el.getCountOfMistakes}"></p>
-    <a class="loginButton" th:href="'/supertramp/fix/' + ${el.id}">Fix</a>
+    <div class="tags shadow">
+        <div th:text="'tags: ' + ${el.tags}"></div>
+        <p th:text="'Created: ' + ${el.date}"></p>
+    </div>
+    <p th:text="'error count: ' + ${el.getCountOfMistakes}" class="warning"></p>
+    <a class="details bottomright shadow" th:href="'/supertramp/fix/' + ${el.id}">fix it</a>
+<!--    <a class="loginButton" th:href="'/supertramp/fix/' + ${el.id}">Fix</a>-->
 </div>
 
 </body>

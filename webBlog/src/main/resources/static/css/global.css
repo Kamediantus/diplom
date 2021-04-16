@@ -63,7 +63,7 @@ footer{
     margin-top: 10pt;
     background-color: #ffbb33;
     color: #303030;
-    padding: 10px;
+    padding: 5px;
     border-radius: 10px ;
 
 }
@@ -291,12 +291,14 @@ input[type=password]{
 
 .basicTable {
     font-family: Arial, Helvetica, sans-serif;
+    background: lightgray;
     border-collapse: collapse;
     width: 100%;
 }
 
 .basicTable td, #customers th {
-    border: 1px solid #ddd;
+    border: 1px solid black;
+    background: lightgray;
     padding: 8px;
 }
 
@@ -310,6 +312,10 @@ input[type=password]{
     text-align: left;
     background-color: #303030;
     color: white;
+}
+
+.maxWidth{
+    width: 100%;
 }
 
 .popup {

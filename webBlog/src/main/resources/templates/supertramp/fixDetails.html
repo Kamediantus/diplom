@@ -20,17 +20,20 @@
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
     <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
 </div>
+
 <div class="fullNote">
+
     <p th:text="${note.heading}" class="heading shadow"></p>
     <p th:utext="${fullText}" class="fullText shadow"></p>
+    <form method="post">
+        <textarea class="editText" th:utext="${note.toSqlBreakLines(note.rawFullText)}" name="fullNewText">
+
+        </textarea>
+        <div class="submit-button margin">
+            <button type="submit" class="big-button littleSmall">fix it</button>
+        </div>
+    </form>
 </div>
-
-<form method="post">
-    <textarea class="editText" th:utext="${note.toSqlBreakLines(note.rawFullText)}" name="fullNewText">
-
-    </textarea>
-    <input type="submit" value="Fix">
-</form>
 <script>
     function popupFunc(id) {
         let popup = document.getElementById("myPopup" + id);
@@ -38,5 +41,4 @@
     }
 </script>
 </body>
-<footer th:insert="blocks/footer :: footer"></footer>
 </html>

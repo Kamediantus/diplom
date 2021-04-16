@@ -18,14 +18,15 @@
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
 </div>
 
 
-<div th:each="el : ${note}" class="fullNote">
-        <p th:text="${el.heading}" class="heading"></p>
-        <p th:utext="${el.finalFullText}" class="fullText"></p>
+<div th:each="el : ${note}" class="fullNote bigShadow">
+        <p th:text="${el.heading}" class="heading shadow"></p>
+        <p th:utext="${el.finalFullText}" class="fullText shadow"></p>
 
-        <h5 class="tagsDetails">tags:
+        <h5 class="tagsDetails shadow">tags:
             <span th:each="tag: ${tags}">
                 <span>
                     <a th:href="'/notes/search/' + ${tag}" th:text="${tag}" ></a>
@@ -34,19 +35,22 @@
         </h5>
 
         <p sec:authorize="hasRole('ROLE_SUPERTRAMP')">
-            <a th:href="'/notes/edit/' + ${el.id}" class="small-button">Edit</a>
-            <a th:href="'/notes/delete/' + ${el.id}" class="small-button">Delete</a>
+            <a th:href="'/notes/edit/' + ${el.id}" class="details bottomright shadow left">Edit</a>
+            <a th:href="'/notes/delete/' + ${el.id}" class="details bottomright shadow left">Delete</a>
         </p>
-    <p sec:authorize="isAnonymous()" class="warning monospace">Please sing in to comment</p>
+    <p sec:authorize="isAnonymous()" class="warning monospace shadow">Please sing in to comment</p>
     <div class="fullNote" sec:authorize="isAuthenticated()">
     <form  method="post" class="basicText">
-        <textarea id="comment" name="fullComment" class="full-comment"></textarea>
-        <input type="submit" value="add comment" class="ltborder ">
+        <textarea id="comment" name="fullComment" class="full-comment shadow"></textarea>
+        <div class="submit-button margin">
+            <button type="submit" class="big-button littleSmall">add comment</button>
+        </div>
+<!--        <input type="submit" value="add comment" class="ltborder shadow">-->
     </form>
 </div>
 
-<div class="allComments ">
-<div th:each="com : ${comments}" class="fullComment">
+<div class="allComments bigShadow ">
+<div th:each="com : ${comments}" class="fullComment shadow">
     <p th:text="${com.author}"></p>
     <p th:utext="${com.fullComment}"></p>
     <div th:text=" ${com.date}"></div>

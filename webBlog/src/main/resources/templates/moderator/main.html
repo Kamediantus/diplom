@@ -23,10 +23,12 @@
 
 <div th:each="el : ${notes}" class="fullNote shadow">
     <p th:text="${el.heading}" class="heading shadow"></p>
-    <div th:text="'tags: ' + ${el.tags}" class="tags shadow"></div>
     <p th:utext="${el.getShortText(el.rawFullText)}" class="fullText shadow"></p>
-    <p th:text="'Created: ' + ${el.date}" class="basicTextSmall shadow"></p>
-    <a class="singInButton shadow" th:href="'/moderate/' + ${el.id}">Moderate</a>
+    <div class="tags shadow">
+        <div th:text="'tags: ' + ${el.tags}"></div>
+        <p th:text="'Created: ' + ${el.date}"></p>
+    </div>
+    <a class="details bottomright shadow left" th:href="'/moderate/' + ${el.id}">Moderate</a>
 </div>
 
 </body>

@@ -22,12 +22,14 @@
 </div>
 
 <div class="fullNote bigShadow">
-    <h3 class="monospace white">Adding a new note:</h3>
+    <h3 class="heading shadow">Adding a new note:</h3>
     <form action="/notes/add" method="post">
         <input class="editHeading shadow" type="text" name="heading" placeholder="heading...">
         <textarea name="fullText" placeholder="full text..." class="editText shadow"></textarea>
         <input type="text" class="editTag shadow" name="tags" placeholder="tags...">
-        <input type="submit" class="loginButton shadow" value="Add">
+        <div class="submit-button margin">
+            <button type="submit" class="big-button">add note</button>
+        </div>
     </form>
 </div>
 

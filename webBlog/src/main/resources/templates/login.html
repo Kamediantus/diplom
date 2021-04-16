@@ -18,14 +18,17 @@
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
 </div>
 
 <div class="login bigShadow">
     <form action="/login" method="post" >
-            <input class="usernameInput" type="text" name="username" placeholder=" Username.." autofocus="true" th:error="*{loginError}">
+            <input class="usernameInput shadow" type="text" name="username" placeholder=" Username.." autofocus="true" th:error="*{loginError}">
             <p class="basicText" th:text="${loginError}"></p>
-            <input class="usernameInput" type="password" name="password" placeholder=" Password..">
-            <input type="submit" class="loginButton" value="sing in">
+            <input class="usernameInput shadow" type="password" name="password" placeholder=" Password..">
+        <div class="submit-button margin">
+            <button type="submit" class="big-button">sing in</button>
+        </div>
     </form>
 
 

@@ -22,15 +22,17 @@
 </div>
 
 
-<div class="login">
+<div class="changePass bigShadow">
     <div th:text="${msg}"></div>
-    <div th:text="'Change pass for ' + ${username}" class="basicText">
+    <div th:text="'Change pass for ' + ${username}" class="heading shadow">
     </div>
     <form method="post">
-        <input type="password" class="usernameInput" name="previousPass" placeholder="previous password..">
-        <input type="password"  class="usernameInput" placeholder="new password..">
-        <input type="password" class="usernameInput" name="confirmNewPass" placeholder="confirm new password..">
-        <input type="submit" class="loginButton" value="Update password">
+        <input type="password" class="usernameInput margin shadow" name="previousPass" placeholder="previous password..">
+        <input type="password"  class="usernameInput margin shadow" placeholder="new password..">
+        <input type="password" class="usernameInput margin shadow" name="confirmNewPass" placeholder="confirm new password..">
+        <div class="submit-button margin">
+            <button type="submit" class="big-button">update password</button>
+        </div>
     </form>
 </div>
 </body>

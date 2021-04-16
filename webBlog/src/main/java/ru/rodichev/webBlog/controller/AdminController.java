@@ -117,7 +117,7 @@ public class AdminController {
         return "admin/editBlock";
     }
 
-    @GetMapping("/admin/edit_contacts")
+    @GetMapping("/admin/edit_contact")
     public String editContactsPage(Model model){
         Iterable<Contact> contacts = contactRepository.findAll();
         model.addAttribute("contacts", contacts);
@@ -154,7 +154,7 @@ public class AdminController {
     @PostMapping("/admin/delete_contact/{id}")
     public String deleteContact(@PathVariable("id") Long id, Model model){
         contactRepository.delete(contactRepository.findById(id).orElseThrow());
-        return "redirect:/admin/edit_contacts";
+        return "redirect:/admin/edit_contact";
     }
 
 }

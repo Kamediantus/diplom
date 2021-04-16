@@ -18,16 +18,19 @@
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
 </div>
 
-    <div class="login bigShadow">
+    <div class="registration bigShadow">
         <form action="/registration" method="post">
-            <input class="usernameInput" type="text" name="username" placeholder="Username.." autofocus="true" th:error="*{usernameError}">
+            <input class="usernameInput shadow" type="text" name="username" placeholder="Username.." autofocus="true" th:error="*{usernameError}">
             <p th:text="${usernameError}"></p>
-            <input class="usernameInput" type="password" name="password" placeholder="Password.." th:error="*{passwordError}">
+            <input class="usernameInput shadow" type="password" name="password" placeholder="Password.." th:error="*{passwordError}">
             <p th:text="${passwordError}" ></p>
-            <input class="usernameInput" type="password" name="passwordConfirm" placeholder="Confirm password..">
-            <input type="submit" value="Sing up" class="loginButton">
+            <input class="usernameInput shadow" type="password" name="passwordConfirm" placeholder="Confirm password..">
+            <div class="submit-button margin">
+                <button type="submit" class="big-button">sing up</button>
+            </div>
         </form>
     </div>
 

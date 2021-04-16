@@ -18,6 +18,7 @@
         <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
         <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
         <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+        <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
     </div>
 
 
@@ -29,11 +30,11 @@
             <input type="text" name="tag" placeholder="search by tag..">
         </span>
         <span>
-                <button type="submit"><i class="fa fa-search"></i>go</button>
-            </span>
+            <button type="submit"><i class="fa fa-search"></i>go</button>
+        </span>
     </form>
 
-<div th:each="el : ${notes}" class="fullNote bigShadow">
+    <div th:each="el : ${notes}" class="fullNote bigShadow">
     <p th:text="${el.heading}" class="heading shadow"></p>
     <p th:utext="${el.getShortText(el.finalFullText)}" class="fullText shadow"></p>
     <div class="tags shadow">

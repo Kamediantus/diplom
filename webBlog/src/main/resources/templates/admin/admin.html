@@ -3,27 +3,42 @@
 <head>
     <title th:text="Admin_panel"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/global.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<header th:insert="blocks/header :: header"/><header/>
+<div class="multi-button">
+    <button onclick="window.location='/notes'">notes</button>
+    <button onclick="window.location='/aboutUs'">about us</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/login'">sing in</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/registration'">registration</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/logout'">sing out</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/changePass'">change password</button>
+    <button sec:authorize="hasRole('ROLE_MODERATOR')" onclick="window.location='/moderator'">Moderate</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')" onclick="window.location='/supertramp/fix'">Fix notes</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
+</div>
 
-<p th:text="${message}" class="error"></p>
+<p th:text="${message}" class="monospace warning shadow"></p>
 
-<form action="" method="post">
-    <input name="id" placeholder="id..">
-    <input name="username" placeholder="username..">
-    <select name="role">
+<form action="" method="post" class="login margin bigShadow">
+    <input class="usernameInput" name="id" placeholder="id..">
+    <input class="usernameInput" name="username" placeholder="username..">
+    <select class="searchInput" name="role">
         <option value="empty">Role..</option>
         <option value="ROLE_USER">ROLE_USER</option>
         <option value="ROLE_MODERATOR">ROLE_MODERATOR</option>
         <option value="ROLE_SUPERTRAMP">ROLE_SUPERTRAMP</option>
         <option value="ROLE_ADMIN">ROLE_ADMIN</option>
     </select>
-    <input type="submit" value="Search">
+    <div class="submit-button">
+        <button type="submit" class="big-button littleSmall">search</button>
+    </div>
 </form>
 
-
+<div class="fullTable maxWidth bigShadow">
 <table id="customers" class="basicTable">
     <thead>
     <th>ID</th>
@@ -40,12 +55,12 @@
         <td th:text="${el.role}"></td>
         <td>
             <form action="">
-            <a th:href="'/admin/edit/' + ${el.id}" class="editButton">Edit</a>
+            <a th:href="'/admin/edit/' + ${el.id}" class="details bottomright shadow left">Edit</a>
             </form>
         </td>
 
     </tr>
 </table>
+</div>
 </body>
-<footer th:insert="blocks/footer :: footer"></footer>
 </html>

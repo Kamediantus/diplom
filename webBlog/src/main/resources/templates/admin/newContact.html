@@ -3,12 +3,25 @@
 <head>
     <title th:text="Admin_panel"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:href="@{/css/global.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<header th:insert="blocks/header :: header"/><header/>
-<form method="post">
-    <table id="customers">
+<div class="multi-button">
+    <button onclick="window.location='/notes'">notes</button>
+    <button onclick="window.location='/aboutUs'">about us</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/login'">sing in</button>
+    <button sec:authorize="!isAuthenticated()" onclick="window.location='/registration'">registration</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/logout'">sing out</button>
+    <button sec:authorize="isAuthenticated()"  onclick="window.location='/changePass'">change password</button>
+    <button sec:authorize="hasRole('ROLE_MODERATOR')" onclick="window.location='/moderator'">Moderate</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')" onclick="window.location='/supertramp/fix'">Fix notes</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin'">Admin</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_site'">Edit blocks</button>
+    <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
+    <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
+</div>
+<form method="post" class="fullTable">
+    <table id="customers" class="basicTable shadow">
         <thead>
         <th>Name</th>
         <th>Visible text of link</th>
@@ -18,13 +31,13 @@
         </thead>
         <tr>
             <td>
-                <input type="text" name="name" placeholder="new name..">
+                <input class="usernameInput" type="text" name="name" placeholder="new name..">
             </td>
             <td>
-                <input type="text" name="visibleText" placeholder="new visible text of link..">
+                <input class="usernameInput" type="text" name="visibleText" placeholder="new visible text of link..">
             </td>
             <td>
-                <input type="text" name="link" placeholder="new link.." >
+                <input class="usernameInput" type="text" name="link" placeholder="new link.." >
             </td>
             <td>
                 <select name="isVisible">
@@ -33,14 +46,13 @@
                 </select>
             </td>
             <td>
-                <input type="text" name="description" placeholder="new description..">
+                <input class="usernameInput"  type="text" name="description" placeholder="new description..">
             </td>
         </tr>
     </table>
-    <div>
-        <input type="submit" value="Create contact">
+    <div class="submit-button margin">
+        <button type="submit" class="big-button warning">create</button>
     </div>
 </form>
 </body>
-<footer th:insert="blocks/footer :: footer"></footer>
 </html>
