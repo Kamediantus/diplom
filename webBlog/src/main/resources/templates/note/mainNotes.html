@@ -26,16 +26,16 @@
 
     <form class="example shadow topRight" aaction="/notes" method="post" style="margin:auto;max-width:300px">
         <span>
-            <input type="text" name="text" placeholder="search by text..">
+            <input onkeyup="success()" id="textsend" type="text" name="text" placeholder="search by text..">
             <input type="text" name="tag" placeholder="search by tag..">
         </span>
         <span>
-            <button type="submit"><i class="fa fa-search"></i>go</button>
+            <button id="button" disabled type="submit"><i class="fa fa-search"></i>go</button>
         </span>
     </form>
 
     <div th:each="el : ${notes}" class="fullNote bigShadow">
-    <p th:text="${el.heading}" class="heading shadow"></p>
+    <p th:text="${el.heading}" class="heading shadow textShadow"></p>
     <p th:utext="${el.getShortText(el.finalFullText)}" class="fullText shadow"></p>
     <div class="tags shadow">
             <div th:text="'tags: ' + ${el.tags}" ></div>
@@ -45,5 +45,6 @@
 
 </div>
     <a href="#" class="botRight topButton shadow">Back to top</a>
+    <script type="text/javascript" th:src="@{/js/moderator.js}"></script>
 </body>
 </html>

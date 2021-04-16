@@ -36,8 +36,8 @@ public class Remark implements Comparable<Remark>{
 //            } else mistake = remarksList.get(i).getMistake();
             mistake = remarksList.get(i).getMistake();
             popupText = popupText.substring(0, startCords.get(i)) +
-                    "<span class=\"popup\" onclick=\"popupFunc(" + i + ")\">" +
-                    mistake + "<span class=\"popuptext\" id=\"myPopup" + i +
+                    "<span class=\"popup shagow\" onclick=\"popupFunc(" + i + ")\">" +
+                    mistake + "<span class=\"popuptext shadow\" id=\"myPopup" + i +
                     "\">" + remarksList.get(i).getRemark() + "</span></span>" + popupText.substring(endCords.get(i));
         }
         return popupText;

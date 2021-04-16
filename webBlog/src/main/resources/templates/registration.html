@@ -23,16 +23,16 @@
 
     <div class="registration bigShadow">
         <form action="/registration" method="post">
-            <input class="usernameInput shadow" type="text" name="username" placeholder="Username.." autofocus="true" th:error="*{usernameError}">
+            <input onkeyup="success()" id="textsend" class="usernameInput shadow" type="text" name="username" placeholder="Username.." autofocus="true" th:error="*{usernameError}">
             <p th:text="${usernameError}"></p>
             <input class="usernameInput shadow" type="password" name="password" placeholder="Password.." th:error="*{passwordError}">
             <p th:text="${passwordError}" ></p>
             <input class="usernameInput shadow" type="password" name="passwordConfirm" placeholder="Confirm password..">
             <div class="submit-button margin">
-                <button type="submit" class="big-button">sing up</button>
+                <button disabled id="button" type="submit" class="big-button">sing up</button>
             </div>
         </form>
     </div>
-
+<script type="text/javascript" th:src="@{/js/moderator.js}"></script>
 </body>
 </html>

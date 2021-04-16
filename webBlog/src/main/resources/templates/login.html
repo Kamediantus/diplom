@@ -23,16 +23,17 @@
 
 <div class="login bigShadow">
     <form action="/login" method="post" >
-            <input class="usernameInput shadow" type="text" name="username" placeholder=" Username.." autofocus="true" th:error="*{loginError}">
+            <input onkeyup="success()" id="textsend" class="usernameInput shadow" type="text" name="username" placeholder=" Username.." autofocus="true" th:error="*{loginError}">
             <p class="basicText" th:text="${loginError}"></p>
             <input class="usernameInput shadow" type="password" name="password" placeholder=" Password..">
         <div class="submit-button margin">
-            <button type="submit" class="big-button">sing in</button>
+            <button disabled id="button" type="submit" class="big-button">sing in</button>
         </div>
     </form>
 
-
-
+<!--    <textarea class="input" id="textsend" onkeyup="success()" name="demo" placeholder="Enter your Message..."></textarea>-->
+<!--    <button type="submit" id="button" disabled>Send</button>-->
+    <script type="text/javascript" th:src="@{/js/moderator.js}"></script>
 </div>
 </body>
 </html>

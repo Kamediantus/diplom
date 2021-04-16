@@ -25,7 +25,7 @@
 
     <p th:text="${note.heading}" class="heading shadow"></p>
     <p th:utext="${fullText}" class="fullText shadow"></p>
-    <form method="post">
+    <form method="post" onsubmit="setFormSubmitting()">
         <textarea class="editText" th:utext="${note.toSqlBreakLines(note.rawFullText)}" name="fullNewText">
 
         </textarea>
@@ -34,11 +34,6 @@
         </div>
     </form>
 </div>
-<script>
-    function popupFunc(id) {
-        let popup = document.getElementById("myPopup" + id);
-        popup.classList.toggle("show");
-    }
-</script>
+<script type="text/javascript" th:src="@{/js/fixer.js}"></script>
 </body>
 </html>

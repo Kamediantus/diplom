@@ -24,14 +24,14 @@
 <div class="fullNote bigShadow">
     <h3 class="heading shadow">Adding a new note:</h3>
     <form action="/notes/add" method="post">
-        <input class="editHeading shadow" type="text" name="heading" placeholder="heading...">
+        <input onkeyup="success()" id="textsend" class="editHeading shadow" type="text" name="heading" placeholder="heading...">
         <textarea name="fullText" placeholder="full text..." class="editText shadow"></textarea>
         <input type="text" class="editTag shadow" name="tags" placeholder="tags...">
         <div class="submit-button margin">
-            <button type="submit" class="big-button">add note</button>
+            <button id="button" disabled type="submit" class="big-button">add note</button>
         </div>
     </form>
 </div>
-
+<script type="text/javascript" th:src="@{/js/moderator.js}"></script>
 </body>
 </html>

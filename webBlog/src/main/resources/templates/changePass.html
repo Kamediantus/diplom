@@ -26,14 +26,15 @@
     <div th:text="${msg}"></div>
     <div th:text="'Change pass for ' + ${username}" class="heading shadow">
     </div>
-    <form method="post">
-        <input type="password" class="usernameInput margin shadow" name="previousPass" placeholder="previous password..">
-        <input type="password"  class="usernameInput margin shadow" placeholder="new password..">
+    <form action="" method="post">
+        <input  type="password" class="usernameInput margin shadow" name="previousPass" placeholder="previous password..">
+        <input onkeyup="success()" id="textsend" type="password" name="newPass" class="usernameInput margin shadow" placeholder="new password..">
         <input type="password" class="usernameInput margin shadow" name="confirmNewPass" placeholder="confirm new password..">
         <div class="submit-button margin">
-            <button type="submit" class="big-button">update password</button>
+            <button disabled id="button" type="submit" class="big-button">update password</button>
         </div>
     </form>
 </div>
+<script type="text/javascript" th:src="@{/js/moderator.js}"></script>
 </body>
 </html>
