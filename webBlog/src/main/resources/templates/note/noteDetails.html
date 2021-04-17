@@ -41,7 +41,7 @@
     <p sec:authorize="isAnonymous()" class="warning monospace shadow">Please sing in to comment</p>
     <div class="fullNote" sec:authorize="isAuthenticated()">
     <form  method="post" class="basicText">
-        <textarea onkeyup="success()" id="textsend" name="fullComment" class="full-comment shadow"></textarea>
+        <textarea onkeyup="success()" name="fullComment" class="full-comment shadow"></textarea>
         <div class="submit-button margin">
             <button id="button" disabled type="submit" class="big-button littleSmall">add comment</button>
         </div>
@@ -56,6 +56,6 @@
     <div th:text=" ${com.date}"></div>
 </div>
 </div>
-    <script type="text/javascript" th:src="@{/js/moderator.js}"></script>
+    <script type="text/javascript" th:src="@{/js/disable.js}"></script>
 </body>
 </html>

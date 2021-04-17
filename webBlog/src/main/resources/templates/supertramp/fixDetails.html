@@ -21,12 +21,12 @@
     <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
 </div>
 
-<div class="fullNote">
+<div class="fullNote bigShadow">
 
     <p th:text="${note.heading}" class="heading shadow"></p>
     <p th:utext="${fullText}" class="fullText shadow"></p>
     <form method="post" onsubmit="setFormSubmitting()">
-        <textarea class="editText" th:utext="${note.toSqlBreakLines(note.rawFullText)}" name="fullNewText">
+        <textarea class="editText shadow" th:utext="${note.toSqlBreakLines(note.rawFullText)}" name="fullNewText">
 
         </textarea>
         <div class="submit-button margin">

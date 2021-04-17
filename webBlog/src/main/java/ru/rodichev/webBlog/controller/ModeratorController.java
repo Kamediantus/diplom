@@ -43,12 +43,13 @@ public class ModeratorController {
     @PostMapping("/moderate/{id}")
     public String uploadRemarks(@PathVariable("id") Long id,@RequestParam String allRemarks, Model model){
         Note note = notesRepository.getById(id);
-        note.setModerateFullText(allRemarks);
+        if (allRemarks==""){
+            note.setFixed(true);
+            note.setFinalFullText(note.getRawFullText());
+        } else  note.setModerateFullText(allRemarks);
         note.setChecked(true);
         notesRepository.save(note);
-
-
-        model.addAttribute("viewRemarks", Remark.getPopupText(note.getRawFullText(), Remark.getSortRemarks(allRemarks)));
+//        model.addAttribute("viewRemarks", Remark.getPopupText(note.getRawFullText(), Remark.getSortRemarks(allRemarks)));
 
 
         return "redirect:/moderator";

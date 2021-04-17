@@ -27,12 +27,12 @@
     <div class="fullNote bigShadow">
         <span>
             <p th:text="${note.heading}" class="heading shadow"></p>
-            <textarea th:utext="${note.breaklinesToWhitespace(note.rawFullText)}" class="editText shadow"></textarea>
+            <textarea disabled th:utext="${note.breaklinesToWhitespace(note.rawFullText)}" class="editText shadow"></textarea>
 <!--            <textarea th:utext="${note.rawFullText}" class="fullModerateText"></textarea>-->
         </span>
     </div>
 </span>
-    <span class="mistakeList">
+    <span class="mistakeList bigShadow">
         <p class="heading" th:text="'List of mistakes:'" ></p>
         <table id="myTable" class="basicTable">
              <thead>
@@ -42,13 +42,21 @@
             </thead>
         </table>
     </span>
+
+<span>
+    <form method="post">
+        <input type="text" name="allRemarks" id="allMistakes" class="invisible">
+        <div class="submit-button">
+            <button type="submit" class="big-button">send remarks</button>
+        </div>
+    </form>
+</span>
+<!--<span>-->
+<!--    <div class="submit-button">-->
+<!--        <button type="submit" class="big-button margin">all right</button>-->
+<!--    </div>-->
+<!--</span>-->
 </div>
-<form method="post">
-    <input type="text" name="allRemarks" id="allMistakes" class="invisible">
-    <div class="submit-button">
-        <button type="submit" class="big-button">send remarks</button>
-    </div>
-</form>
 <script type="text/javascript" th:src="@{/js/moderator.js}"></script>
 
 </body>

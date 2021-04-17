@@ -1,11 +1,3 @@
-function success() {
-    if(document.getElementById("textsend").value===null) {
-        document.getElementById('button').disabled = true;
-    } else {
-        document.getElementById('button').disabled = false;
-    }
-}
-
 let formSubmitting = false;
 let setFormSubmitting = function() { formSubmitting = true; };
 
@@ -22,8 +14,3 @@ window.onload = function() {
         return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
     });
 };
-
-function popupFunc(id) {
-    let popup = document.getElementById("myPopup" + id);
-    popup.classList.toggle("show");
-}

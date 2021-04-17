@@ -35,6 +35,14 @@ a{
     /*background: linear-gradient(45deg, 	 #ffb366, #5ca389);*/
     width: 30%;
 }
+
+.lineWarning{
+    background: #ffb366;
+    padding: 5pt;
+    border-radius: 5px;
+    border-bottom-right-radius: 20px;
+    /*background: linear-gradient(45deg, 	 #ffb366, #5ca389);*/
+}
 .mistake{
     background: #7d8596;
     margin: 1px;
@@ -155,6 +163,14 @@ body {
     max-width: 80%;
     background-image: url(../images/bckBlack.svg);
     background-color: #c7b39b; /* Цвет фона */
+}
+
+p:empty {
+    display: none;
+}
+
+.right{
+    margin-left: 330px;
 }
 
 .multi-button {
@@ -411,7 +427,22 @@ form.example::after {
     display: none;
     visibility: hidden;
 }
+.errorMsg{
+    border: 1px solid black;
+    border-bottom: none;
+    border-right: none;
+    border-radius: 1px;
+    width: 400px;
+    font: 12pt/12pt DejaVu Sans Mono, monospace;
+    /*margin-top: 15pt;*/
+    /*margin-bottom: 15pt;*/
+    border-radius: 10px;
+    border-bottom-right-radius: 105px;
+    background-color: #ffb366;
+    padding: 20pt;
+    position: relative;
 
+}
 .fullNote{
     border: 1px solid black;
     border-bottom: none;
@@ -432,7 +463,16 @@ form.example::after {
 .halfHeight{
     height: 100px;
 }
-
+.bottom{
+    position: absolute;
+    bottom: 30px;
+    right: 80px;
+    /*top: 50px;*/
+}
+.fullError{
+    min-width: 110%;
+    min-height: 120%;
+}
 .fullTable{
     border: 1px solid black;
     border-bottom: none;
@@ -477,7 +517,8 @@ form.example::after {
     /*background: linear-gradient(45deg, 	 #cdde85, #87cdde);*/
     padding: 10pt;
     border-radius: 20px;
-    border-bottom-right-radius: 105px;
+
+    border-top-right-radius: 105px;
 }
 
 .fullComment{
@@ -498,7 +539,7 @@ form.example::after {
     background-color: #e6e6e6;
     padding: 10pt;
     border-radius: 20px;
-    border-bottom-right-radius: 105px;
+    /*border-bottom-right-radius: 105px;*/
 }
 
 .fullModerateText{

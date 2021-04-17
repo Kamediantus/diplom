@@ -57,7 +57,7 @@ function popupFunc(id) {
 }
 
 function success() {
-    if(document.getElementById("textsend").value===null) {
+    if(document.getElementById("allMistakes").value===null) {
         document.getElementById('button').disabled = true;
     } else {
         document.getElementById('button').disabled = false;
