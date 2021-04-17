@@ -28,24 +28,6 @@ public class AuthenticationConltroller {
     @GetMapping("/login")
     public String login(Model model){return "login";}
 
-//    @PostMapping("/login")
-//    public String postLogin(@RequestParam String username, @RequestParam String password, Model model) {
-//
-//        if (userRepository.findByUsername(username) != null) {
-//
-//            User user = userRepository.findUserByUsername(username);
-//            if (!bCryptPasswordEncoder.matches(password, bCryptPasswordEncoder.encode(user.getPassword()))) {
-//                model.addAttribute("msg", "Incorrect username or password.");
-//            } else {
-//                UserService userService = new UserService();
-//                userService.loadUserByUsername(username);
-//                return "redirect: /";
-//            }
-//        } else {
-//            model.addAttribute("msg", "Incorrect username or password.");
-//        } return "login";
-//    }
-
     @PostMapping("/login")
     public String postLogin(@RequestParam String username, @RequestParam String password, Model model) {
         if (userRepository.findByUsername(username) != null) {
@@ -62,23 +44,6 @@ public class AuthenticationConltroller {
         } else model.addAttribute("loginError", "incorrect username");
         return "login";
     }
-
-
-
-//        if (bCryptPasswordEncoder.matches(password, bCryptPasswordEncoder.encode(user.getPassword()))){
-//            model.addAttribute("msg" , "Please enter correct previous password..");
-//        } else if(!newPass.equals(confirmNewPass)){
-//            model.addAttribute("msg", "Password mismatch..");
-//        }   else {
-//            user.setPassword(bCryptPasswordEncoder.encode(newPass));
-//            userRepository.save(user);
-//            model.addAttribute("msg", "password changed successfully");
-//        }
-//        return "changePass";
-//    }
-
-
-
 
     @GetMapping("/logout")
     public String logout(Model model, HttpServletRequest request, HttpServletResponse response){

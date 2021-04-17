@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
+
 <body>
 <div class="multi-button">
     <button onclick="window.location='/notes'">notes</button>
@@ -20,9 +21,7 @@
     <button sec:authorize="hasRole('ROLE_ADMIN')"onclick="window.location='/admin/edit_contact'">Edit contacts</button>
     <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
 </div>
-
 <p th:text="${message}" class="monospace warning shadow"></p>
-
 <form action="" method="post" class="login margin bigShadow">
     <input class="usernameInput" name="id" placeholder="id..">
     <input class="usernameInput" name="username" placeholder="username..">
@@ -39,28 +38,28 @@
 </form>
 
 <div class="fullTable maxWidth bigShadow">
-<table id="customers" class="basicTable">
-    <thead>
-    <th>ID</th>
-    <th>UserName</th>
-    <th>Password</th>
-    <th>Roles</th>
-    <th>Edit</th>
-    </thead>
+    <table id="customers" class="basicTable">
+        <thead>
+        <th>ID</th>
+        <th>UserName</th>
+        <th>Password</th>
+        <th>Roles</th>
+        <th>Edit</th>
+        </thead>
 
-    <tr th:each="el : ${user}" >
-        <td th:text="${el.id}"></td>
-        <td th:text="${el.username}"></td>
-        <td th:text="${el.password}"></td>
-        <td th:text="${el.role}"></td>
-        <td>
-            <form action="">
-            <a th:href="'/admin/edit/' + ${el.id}" class="details bottomright shadow left">Edit</a>
-            </form>
-        </td>
+        <tr th:each="el : ${user}" >
+            <td th:text="${el.id}"></td>
+            <td th:text="${el.username}"></td>
+            <td th:text="${el.password}"></td>
+            <td th:text="${el.role}"></td>
+            <td>
+                <form action="">
+                    <a  th:href="'/admin/edit/' + ${el.id}" class="details bottomright shadow left">Edit</a>
+                </form>
+            </td>
 
-    </tr>
-</table>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

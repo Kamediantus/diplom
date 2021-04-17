@@ -84,7 +84,6 @@ public class NoteController {
         Iterable<Note> notes = notesRepository.reverseFindByTag(SearchFromRepo.toLike(tag));
         model.addAttribute("notes", notes);
         return "note/mainNotes";
-
     }
 
     @PostMapping("/notes/{id}")
@@ -135,5 +134,4 @@ public class NoteController {
         }
         else return "redirect:/notes";
     }
-
 }

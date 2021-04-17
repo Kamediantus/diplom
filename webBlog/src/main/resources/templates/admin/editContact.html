@@ -22,55 +22,55 @@
 </div>
 
 
-<form method="post" class="fullTable">
-    <div th:text="'Id: ' + ${contact.id}" class="basicText"></div>
-    <table id="customers" class="basicTable">
-        <thead>
-        <th>Name</th>
-        <th>Visible text of link</th>
-        <th>Link</th>
-        <th>is Visible</th>
-        <th>Description</th>
-        </thead>
-        <tr>
-            <td th:text="${contact.name}"></td>
-            <td th:text="${contact.visibleTextOfLink}"></td>
-            <td th:text="${contact.link}"></td>
-            <td th:text="${contact.isVisible}"></td>
-            <td th:text="${contact.description}"></td>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input class="usernameInput" type="text" name="name" placeholder="new name.." th:value="${contact.name}">
-            </td>
-            <td>
-                <input class="usernameInput" type="text" name="visibleText" placeholder="new visible text of link.." th:value="${contact.visibleTextOfLink}">
-            </td>
-            <td>
-                <input class="usernameInput" type="text" name="link" placeholder="new link.." th:value="${contact.link}">
-            </td>
-            <td>
-                <select name="isVisible">
-                    <option value="true">true</option>
-                    <option value="false">false</option>
-                </select>
-            </td>
-            <td>
-                <input class="usernameInput" type="text" name="description" placeholder="new description.." th:value="${contact.description}">
-            </td>
-        </tr>
-    </table>
-    <div>
-        <div class="submit-button margin">
-            <button type="submit" class="big-button">update</button>
+    <form method="post" class="fullTable">
+        <div th:text="'Id: ' + ${contact.id}" class="basicText"></div>
+        <table id="customers" class="basicTable">
+            <thead>
+            <th>Name</th>
+            <th>Visible text of link</th>
+            <th>Link</th>
+            <th>is Visible</th>
+            <th>Description</th>
+            </thead>
+            <tr>
+                <td th:text="${contact.name}"></td>
+                <td th:text="${contact.visibleTextOfLink}"></td>
+                <td th:text="${contact.link}"></td>
+                <td th:text="${contact.isVisible}"></td>
+                <td th:text="${contact.description}"></td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="usernameInput" type="text" name="name" placeholder="new name.." th:value="${contact.name}">
+                </td>
+                <td>
+                    <input class="usernameInput" type="text" name="visibleText" placeholder="new visible text of link.." th:value="${contact.visibleTextOfLink}">
+                </td>
+                <td>
+                    <input class="usernameInput" type="text" name="link" placeholder="new link.." th:value="${contact.link}">
+                </td>
+                <td>
+                    <select name="isVisible">
+                        <option value="true">true</option>
+                        <option value="false">false</option>
+                    </select>
+                </td>
+                <td>
+                    <input class="usernameInput" type="text" name="description" placeholder="new description.." th:value="${contact.description}">
+                </td>
+            </tr>
+        </table>
+        <div>
+            <div class="submit-button margin">
+                <button type="submit" class="big-button">update</button>
+            </div>
         </div>
-    </div>
-</form>
-<form class="basicText" method="post" th:action="'/admin/delete_contact/' + ${contact.id}">
-    <div class="submit-delete margin">
-        <button type="submit" class="big-button">delete row</button>
-    </div>
-</form>
+    </form>
+    <form class="basicText" method="post" th:action="'/admin/delete_contact/' + ${contact.id}">
+        <div class="submit-delete margin">
+            <button type="submit" class="big-button">delete row</button>
+        </div>
+    </form>
 </body>
 </html>

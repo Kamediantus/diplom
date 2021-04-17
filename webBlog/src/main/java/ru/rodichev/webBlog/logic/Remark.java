@@ -2,9 +2,9 @@ package ru.rodichev.webBlog.logic;
 
 import ru.rodichev.webBlog.entity.Note;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.*;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
 
 public class Remark implements Comparable<Remark>{
 
@@ -31,9 +31,6 @@ public class Remark implements Comparable<Remark>{
         System.out.println(popupText);
         String mistake;
         for (int i = remarksList.size() - 1; i >= 0 ; i--){
-//            if (remarksList.get(i).getMistake().contains("<br />")){
-//                mistake = remarksList.get(i).getMistake().replace("<br />", "");
-//            } else mistake = remarksList.get(i).getMistake();
             mistake = remarksList.get(i).getMistake();
             popupText = popupText.substring(0, startCords.get(i)) +
                     "<span class=\"popup shagow\" onclick=\"popupFunc(" + i + ")\">" +
@@ -106,28 +103,6 @@ public class Remark implements Comparable<Remark>{
         }
         return cords;
     }
-//
-//    public static String createPopups(String fulltext, List<String> mistakes, List<String> remarks, List<String> cords){
-//        int start;
-//        int end;
-//        for (int i = remarks.size() - 1; i >= 0; i--){
-//            String mistake;
-//            if (mistakes.get(i).contains("\n")){
-//                mistake = mistakes.get(i).replace("\n", " ");
-//            } else mistake = mistakes.get(i);
-//
-////            String mistake = mistakes.get(i).replace("\n", " ");
-//            start = Integer.parseInt(cords.get(i).split(",")[0]);
-//            end = Integer.parseInt(cords.get(i).split(",")[1]);
-//            fulltext = fulltext.substring(0,start) +
-//                    "<span class=\"popup\" onclick=\"popupFunc(" + i + ")\">" +
-//                    mistake +
-//                    "<span class=\"popuptext\" id=\"myPopup" + i + "\">" +
-//                    remarks.get(i) + "</span></span>" + fulltext.substring(end);
-//        }
-//        return fulltext;
-//    }
-
 
     public int getFirstCord(){
         return this.getCords()[0];

@@ -68,5 +68,4 @@ public class RegistrationController {
         }
         return "changePass";
     }
-
 }

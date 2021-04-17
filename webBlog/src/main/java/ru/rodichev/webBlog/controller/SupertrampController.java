@@ -41,5 +41,4 @@ public class SupertrampController {
         model.addAttribute("fixList", notesRepository.getOnlyUnfixed());
         return "supertramp/fixMain";
     }
-
 }

@@ -39,14 +39,7 @@ public class MainController {
         model.addAttribute("notes", notes);
         return "main";
     }
-    @GetMapping("/contacts")
-    public String contacts(Model model){
-        Iterable<Contact> contacts = contactRepository.getVisibleContacts();
-        model.addAttribute("contacts", contacts);
-        return "contacts";
-    }
 
-//    @GetMapping("/aboutMe")
     @GetMapping("/aboutUs")
     public String aboutMe(Model model){
         Iterable<Contact> contacts = contactRepository.getVisibleContacts();
@@ -55,6 +48,4 @@ public class MainController {
         model.addAttribute("text", aboutMeInfo);
         return "aboutMe";
     }
-
-
 }
