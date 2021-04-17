@@ -21,20 +21,6 @@
     <button sec:authorize="hasRole('ROLE_SUPERTRAMP')"onclick="window.location='/notes/add'">new note</button>
 </div>
 
-
-<!--<div class="fullNote bigShadow">-->
-<!--    <h3 class="heading shadow">Adding a new note:</h3>-->
-<!--    <form action="/notes/add" method="post">-->
-<!--        <input class="editHeading shadow" type="text" name="heading" placeholder="heading...">-->
-<!--        <textarea name="fullText" placeholder="full text..." class="editText shadow"></textarea>-->
-<!--        <input type="text" class="editTag shadow" name="tags" placeholder="tags...">-->
-<!--        <div class="submit-button margin">-->
-<!--            <button type="submit" class="big-button">add note</button>-->
-<!--        </div>-->
-<!--    </form>-->
-<!--</div>-->
-
-
 <div th:each="el : ${note}" class="fullNote bigShadow">
     <h3>Editing note:</h3>
     <form method="post">
