@@ -34,15 +34,15 @@ public class AdminController {
     }
 
     @PostMapping("/admin")
-    public String searchUsers(@RequestParam(required = false) Long id, @RequestParam(required = false) String username, @RequestParam(required = false) String role,  Model model){
-        if (id != null){
-            if(userService.findUserById(id).getUsername() == null){
+    public String searchUsers(@RequestParam(required = false) Long id, @RequestParam(required = false) String username, @RequestParam(required = false) String role, Model model) {
+        if (id != null) {
+            if (userService.findUserById(id).getUsername() == null) {
                 model.addAttribute("message", "User with id: " + id + " wasn't found");
 
             } else
-            model.addAttribute("user", userService.findUserById(id));
-        } else if (username != ""){
-            if(userService.findUserByUsernameLike(username).size() == 0){
+                model.addAttribute("user", userService.findUserById(id));
+        } else if (username != "") {
+            if (userService.findUserByUsernameLike(username).size() == 0) {
                 model.addAttribute("message", "User with username mask: '" + username + "%' wasn't found");
             }
             model.addAttribute("user", userService.findUserByUsernameLike(username));
@@ -53,13 +53,13 @@ public class AdminController {
     }
 
     @GetMapping("/admin/edit/{id}")
-    public String  gtUser(@PathVariable("id") Long id, Model model) {
+    public String gtUser(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", userService.findUserById(id));
         return "admin/userEdit";
     }
 
     @PostMapping("/admin/edit/{id}")
-    public String  updateUser(@PathVariable("id") Long id,@RequestParam String role, Model model) {
+    public String updateUser(@PathVariable("id") Long id, @RequestParam String role, Model model) {
         User user = userService.findUserById(id);
         user.setRole(Role.valueOf(role));
         userRepository.save(user);
@@ -68,91 +68,94 @@ public class AdminController {
     }
 
     @PostMapping("/admin/edit/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id, Model model){
+    public String deleteUser(@PathVariable("id") Long id, Model model) {
         String msg;
         // disable to delete user with ROLE_ADMIN
-        if(userRepository.findUserById(id).getRole() != Role.ROLE_ADMIN){
+        if (userRepository.findUserById(id).getRole() != Role.ROLE_ADMIN) {
             System.out.println(userRepository.findUserById(id).getRole());
             if (userService.deleteUser(id)) {
                 msg = "User was deleted successfully. id: " + id;
-                model.addAttribute("message",msg);
+                model.addAttribute("message", msg);
 
-            } else{
+            } else {
                 msg = "User wasn't deleted successfully. id: " + id;
             }
         } else msg = "if you want to delete admin, please use DB";
 
-            model.addAttribute("message",msg);
-            return "admin/userDelete";
+        model.addAttribute("message", msg);
+        return "admin/userDelete";
     }
 
     @GetMapping("/admin/edit_site")
-    public String editWebsitePage(Model model){
+    public String editWebsitePage(Model model) {
         Iterable<BlockOfSite> mainInfos = blockRepository.findAll();
         model.addAttribute("blocks", mainInfos);
         return "admin/editSite";
     }
 
     @GetMapping("/admin/edit_site/{id}")
-    public String editWebsitePage(@PathVariable("id") Long id, Model model){
+    public String editWebsitePage(@PathVariable("id") Long id, Model model) {
         BlockOfSite blockOfSite = blockRepository.getBlockById(id);
         model.addAttribute("block", blockOfSite);
         return "admin/editBlock";
     }
 
     @PostMapping("/admin/edit_site/{id}")
-    public String saveChanges(@PathVariable("id") Long id, @RequestParam(required = false) String rollback, String newText, Model model){
+    public String saveChanges(@PathVariable("id") Long id, @RequestParam(required = false) String rollback, String newText, Model model) {
         BlockOfSite block = blockRepository.getBlockById(id);
         String massage;
-        if (rollback != null){
-            if( block.rollback()){
+        if (rollback != null) {
+            if (block.rollback()) {
                 blockRepository.save(block);
             } else model.addAttribute("msg", "rollback Error");
-        } else if(newText !=""){
+        } else if (newText != "") {
             if (block.setNewText(newText)) {
                 blockRepository.save(block);
-            } else model.addAttribute("msg", "new text Error. Please check that new text is different from the previous version");
-        } else  model.addAttribute("msg", "there are no changes");
+            } else
+                model.addAttribute("msg", "new text Error. Please check that new text is different from the previous version");
+        } else model.addAttribute("msg", "there are no changes");
         model.addAttribute("block", block);
         return "admin/editBlock";
     }
 
     @GetMapping("/admin/edit_contact")
-    public String editContactsPage(Model model){
+    public String editContactsPage(Model model) {
         Iterable<Contact> contacts = contactRepository.findAll();
         model.addAttribute("contacts", contacts);
         return "admin/listOfContacts";
     }
 
     @GetMapping("/admin/edit_contact/{id}")
-    public String editContact(@PathVariable("id") Long id, Model model){
+    public String editContact(@PathVariable("id") Long id, Model model) {
         Contact contact = contactRepository.getContactById(id);
         model.addAttribute("contact", contact);
         return "admin/editContact";
     }
+
     @PostMapping("/admin/edit_contact/{id}")
-    public String saveChanges(@PathVariable("id") Long id, String name, String visibleText, String link, String isVisible, String description, Model model){
+    public String saveChanges(@PathVariable("id") Long id, String name, String visibleText, String link, String isVisible, String description, Model model) {
         Contact contact = contactRepository.getContactById(id);
-        contact.update(name,link,visibleText,description,isVisible);
+        contact.update(name, link, visibleText, description, isVisible);
         contactRepository.save(contact);
         model.addAttribute("contact", contact);
         return "admin/editContact";
     }
 
     @GetMapping("/admin/new_contact")
-    public String toNewContactPage(Model model){
+    public String toNewContactPage(Model model) {
         return "admin/newContact";
     }
 
     @PostMapping("admin/new_contact")
-    public String createNewContact(String name, String visibleText, String link, String isVisible,@RequestParam(required = false) String description, Model model){
-        Contact contact = new Contact(name, link,visibleText,description,isVisible);
+    public String createNewContact(String name, String visibleText, String link, String isVisible, @RequestParam(required = false) String description, Model model) {
+        Contact contact = new Contact(name, link, visibleText, description, isVisible);
         contactRepository.save(contact);
         model.addAttribute("contact", contact);
         return "redirect:/admin/edit_contact/" + contact.getId();
     }
+
     @PostMapping("/admin/delete_contact/{id}")
-    public String deleteContact(@PathVariable("id") Long id, Model model){
+    public String deleteContact(@PathVariable("id") Long id, Model model) {
         contactRepository.delete(contactRepository.findById(id).orElseThrow());
         return "redirect:/admin/edit_contact";
     }

@@ -14,23 +14,23 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
     private String link;
     private String visibleTextOfLink;
     private String description;
     private String isVisible;
 
-    public Contact(){}
+    public Contact() {
+    }
 
     public Contact(String name, String link, String visibleTextOfLink, String description, String isVisible) {
         this.name = name;
         this.link = link;
         this.visibleTextOfLink = visibleTextOfLink;
-        if (description !=null) this.description = description;
+        if (description != null) this.description = description;
         this.isVisible = isVisible;
     }
 
-    public void update(String name, String link, String visibleTextOfLink, String description, String isVisible){
+    public void update(String name, String link, String visibleTextOfLink, String description, String isVisible) {
         this.setName(name);
         this.setLink(link);
         this.setVisibleTextOfLink(visibleTextOfLink);

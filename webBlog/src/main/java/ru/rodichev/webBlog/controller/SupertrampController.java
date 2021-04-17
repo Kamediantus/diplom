@@ -19,21 +19,22 @@ public class SupertrampController {
     private NotesRepository notesRepository;
 
     @GetMapping("/supertramp/fix")
-    public String goToFixList(Model model){
+    public String goToFixList(Model model) {
         model.addAttribute("fixList", notesRepository.getOnlyUnfixed());
         return "supertramp/fixMain";
     }
+
     @GetMapping("/supertramp/fix/{id}")
-    public String goToFixNote(@PathVariable("id") Long id, Model model){
+    public String goToFixNote(@PathVariable("id") Long id, Model model) {
         Note note = notesRepository.getById(id);
         String noteWithRemarks = Remark.getPopupText(note.getRawFullText(), Remark.getSortRemarks(note.getModerateFullText()));
         model.addAttribute("fullText", noteWithRemarks);
-        model.addAttribute("note", note );
+        model.addAttribute("note", note);
         return "supertramp/fixDetails";
     }
 
     @PostMapping("/supertramp/fix/{id}")
-    public String UploadFixes(@PathVariable("id") Long id,@RequestParam String fullNewText, Model model){
+    public String UploadFixes(@PathVariable("id") Long id, @RequestParam String fullNewText, Model model) {
         Note note = notesRepository.getById(id);
         note.setFinalFullText(Note.toHtmlBreakLines(fullNewText));
         note.setFixed(true);

@@ -18,31 +18,31 @@ public class ModeratorController {
     private NotesRepository notesRepository;
 
     @GetMapping("/moderator")
-    public String moderatorPage(Model model){
+    public String moderatorPage(Model model) {
         Iterable<Note> notes = notesRepository.getOnlyUnchecked();
         model.addAttribute("notes", notes);
         return "moderator/main";
     }
 
     @GetMapping("/moderate/{id}")
-    public String moderDetails(@PathVariable("id") Long id, Model model){
+    public String moderDetails(@PathVariable("id") Long id, Model model) {
         Note note = notesRepository.getById(id);
-        if (!note.isChecked()){
+        if (!note.isChecked()) {
             model.addAttribute("note", note);
         } else model.addAttribute("msg", "this note already checked");
         return "moderator/details";
     }
 
     @PostMapping("/moderate/{id}")
-    public String uploadRemarks(@PathVariable("id") Long id,@RequestParam String allRemarks, Model model){
+    public String uploadRemarks(@PathVariable("id") Long id, @RequestParam String allRemarks, Model model) {
         Note note = notesRepository.getById(id);
-        if (allRemarks==""){
+        if (allRemarks == "") {
             note.setFixed(true);
             note.setFinalFullText(note.getRawFullText());
-        } else  note.setModerateFullText(allRemarks);
+        } else note.setModerateFullText(allRemarks);
         note.setChecked(true);
         notesRepository.save(note);
-     return "redirect:/moderator";
+        return "redirect:/moderator";
     }
 
 }

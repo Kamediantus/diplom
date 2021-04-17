@@ -20,14 +20,16 @@
     /*--bez: cubic-bezier(0, 0, 0.43, 1.49);*/
 }
 
-a{
+a {
     color: #00664d;
     text-decoration: overline;
 }
-.white{
+
+.white {
     color: white;
 }
-.warning{
+
+.warning {
     background: #ffb366;
     padding: 20pt;
     border-radius: 5px;
@@ -36,14 +38,15 @@ a{
     width: 30%;
 }
 
-.lineWarning{
+.lineWarning {
     background: #ffb366;
     padding: 5pt;
     border-radius: 5px;
     border-bottom-right-radius: 20px;
     /*background: linear-gradient(45deg, 	 #ffb366, #5ca389);*/
 }
-.mistake{
+
+.mistake {
     background: #7d8596;
     margin: 1px;
     padding: 20pt;
@@ -53,7 +56,8 @@ a{
     width: 30%;
 
 }
-.about{
+
+.about {
     border: 1px solid black;
     border-right: none;
     border-bottom: none;
@@ -69,11 +73,13 @@ a{
     background: lightgray;
     /*background: linear-gradient(45deg, 	 #999180, #5ca389);*/
 }
-.aboutText{
+
+.aboutText {
     color: black;
     width: 70%;
 }
-.login{
+
+.login {
     border: 1px solid black;
     border-right: none;
     border-bottom: none;
@@ -89,7 +95,7 @@ a{
     background: lightgray;
 }
 
-.registration{
+.registration {
     border: 1px solid black;
     border-right: none;
     border-bottom: none;
@@ -104,7 +110,8 @@ a{
     padding: 25pt;
     background: lightgray;
 }
-.changePass{
+
+.changePass {
     border: 1px solid black;
     border-right: none;
     border-bottom: none;
@@ -121,24 +128,25 @@ a{
 }
 
 
-.usernameInput{
+.usernameInput {
     min-width: 100%;
     height: 30pt;
-    border: 1pt solid black ;
+    border: 1pt solid black;
     background: white;
     padding-top: 10pt;
     font: 12pt/12pt DejaVu Sans Mono, monospace;
 }
-.searchInput{
+
+.searchInput {
     min-width: 100%;
     height: 40pt;
-    border: 1pt solid black ;
+    border: 1pt solid black;
     background: white;
     padding-top: 10pt;
     font: 11pt/11pt DejaVu Sans Mono, monospace;
 }
 
-.loginButton{
+.loginButton {
     border: 2px solid black;
 
     border-radius: 10px;
@@ -169,7 +177,7 @@ p:empty {
     display: none;
 }
 
-.right{
+.right {
     margin-left: 330px;
 }
 
@@ -183,10 +191,7 @@ p:empty {
     flex-grow: 1;
     cursor: pointer;
     position: relative;
-    padding:
-            calc(var(--space) / 1.125)
-            var(--space)
-            var(--space);
+    padding: calc(var(--space) / 1.125) var(--space) var(--space);
     border: var(--border-size) solid black;
     color: var(--color-secondary);
     background-color: var(--color-primary);
@@ -227,7 +232,7 @@ p:empty {
     transform: translateY(var(--border-size));
 }
 
-img{
+img {
     position: absolute;
     right: 200px;
     bottom: 100px;
@@ -250,9 +255,11 @@ form.example input[type=text] {
     background: white;
     color: black;
 }
-.textShadow{
+
+.textShadow {
     text-shadow: var(--shadow) 2px 2px;
 }
+
 form.example button {
     outline: 2px solid black;
     height: 60pt;
@@ -306,10 +313,12 @@ form.example::after {
     clear: both;
     display: table;
 }
-.shadow{
+
+.shadow {
     box-shadow: var(--shadow) 4px 4px;
 }
-.ltborder{
+
+.ltborder {
     min-width: 50%;
     min-height: 30%;
     border: 2px solid black;
@@ -320,27 +329,30 @@ form.example::after {
     box-shadow: var(--shadow) 4px 4px;
     background: linear-gradient(45deg, #ffffb3, #cce5ff);
 }
-.full-comment{
+
+.full-comment {
     width: 80%;
 }
 
-.bigShadow{
+.bigShadow {
     box-shadow: var(--shadow) 10px 10px;
 }
-.topRight{
+
+.topRight {
     position: absolute;
     right: 10pt;
     top: 80pt;
 }
-.botRight{
+
+.botRight {
     position: sticky;
     right: 10px;
     bottom: 10pt;
 }
 
-.topButton{
+.topButton {
     font: 10pt/10pt DejaVu Sans Mono, monospace;
-    background-color:  white; /* Green */
+    background-color: white; /* Green */
     border: none;
     color: black;
     padding: 15px 32px;
@@ -352,18 +364,20 @@ form.example::after {
     cursor: pointer;
 }
 
-.monospace{
+.monospace {
     font: 12pt/12pt DejaVu Sans Mono, monospace;
 }
-.title{
+
+.title {
     font: 15pt/15pt Verdana, sans-serif;
     border: 10pt;
     border-radius: 5pt;
     border-bottom-right-radius: 50pt;
     padding: 5pt;
-    background: linear-gradient(45deg, 	 #cdde85, #87cdde);
+    background: linear-gradient(45deg, #cdde85, #87cdde);
 }
-.contact{
+
+.contact {
     position: absolute;
     width: 50%;
     font: 15pt/15pt Verdana, sans-serif;
@@ -374,7 +388,7 @@ form.example::after {
     background: lightgray;
 }
 
-.basicText{
+.basicText {
     font: 14pt/14pt Arial, sans-serif;
     margin-top: 10pt;
 }
@@ -382,16 +396,17 @@ form.example::after {
 .bottomright {
     position: relative;
     left: 530pt;
-    bottom:40pt;
+    bottom: 40pt;
     font-size: 18px;
 }
 
 .bottomLittleLeft {
     position: relative;
     right: 130pt;
-    top:40pt;
+    top: 40pt;
     font-size: 18px;
 }
+
 .basicTable {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -402,6 +417,7 @@ form.example::after {
     border: 1px solid #ddd;
     padding: 8px;
 }
+
 .basicTable th {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -409,7 +425,8 @@ form.example::after {
     background-color: #303030;
     color: white;
 }
-.mistakeList{
+
+.mistakeList {
     font: 12pt/12pt FreeMono, monospace;
     position: fixed;
     right: 35px;
@@ -423,11 +440,13 @@ form.example::after {
     /*right: 10pt;*/
     margin-left: 10pt; /* Отступ слева */
 }
-.invisible{
+
+.invisible {
     display: none;
     visibility: hidden;
 }
-.errorMsg{
+
+.errorMsg {
     border: 1px solid black;
     border-bottom: none;
     border-right: none;
@@ -443,7 +462,8 @@ form.example::after {
     position: relative;
 
 }
-.fullNote{
+
+.fullNote {
     border: 1px solid black;
     border-bottom: none;
     border-right: none;
@@ -460,20 +480,24 @@ form.example::after {
     padding-top: 15pt;
     padding-bottom: 10pt;
 }
-.halfHeight{
+
+.halfHeight {
     height: 100px;
 }
-.bottom{
+
+.bottom {
     position: absolute;
     bottom: 30px;
     right: 80px;
     /*top: 50px;*/
 }
-.fullError{
+
+.fullError {
     min-width: 110%;
     min-height: 120%;
 }
-.fullTable{
+
+.fullTable {
     border: 1px solid black;
     border-bottom: none;
     border-right: none;
@@ -491,7 +515,7 @@ form.example::after {
     padding-bottom: 10pt;
 }
 
-.allComments{
+.allComments {
     border: 1px solid black;
     border-bottom: none;
     border-right: none;
@@ -508,10 +532,11 @@ form.example::after {
     padding-bottom: 1pt;
 }
 
-.reverseColor{
-    background: linear-gradient(45deg, #b3f0ff,	#3b6958);
+.reverseColor {
+    background: linear-gradient(45deg, #b3f0ff, #3b6958);
 }
-.heading{
+
+.heading {
     font: 15pt/15pt Verdana, sans-serif;
     background-color: #e6e6e6;
     /*background: linear-gradient(45deg, 	 #cdde85, #87cdde);*/
@@ -521,7 +546,7 @@ form.example::after {
     border-top-right-radius: 105px;
 }
 
-.fullComment{
+.fullComment {
     background: lightgrey;
     border-radius: 10px;
     border-bottom-right-radius: 35px;
@@ -529,20 +554,21 @@ form.example::after {
     margin-top: 10pt;
 }
 
-.smallDate{
+.smallDate {
     max-width: 25%;
     border-bottom-style: groove;
     border-color: black;
     background-color: white;
 }
-.fullText{
+
+.fullText {
     background-color: #e6e6e6;
     padding: 10pt;
     border-radius: 20px;
     /*border-bottom-right-radius: 105px;*/
 }
 
-.fullModerateText{
+.fullModerateText {
     min-width: 400px;
     width: 70%;
     height: 320pt;
@@ -555,20 +581,23 @@ form.example::after {
     float: left; /* Обтекание справа */
     /*width: 200px; !* Ширина колонки *!*/
 }
-.editHeading{
+
+.editHeading {
     margin-top: 10pt;
     font: 16pt/16pt DejaVu Sans Mono, monospace;
     width: 70%;
     border-bottom-right-radius: 15px;
 }
-.editTag{
+
+.editTag {
     margin-top: 10pt;
     font: 13pt/13pt DejaVu Sans Mono, monospace;
     width: 50%;
     padding: 5px;
     border-bottom-right-radius: 15px;
 }
-.editText{
+
+.editText {
     margin-top: 10pt;
     width: 90%;
     height: 300pt;
@@ -581,7 +610,8 @@ form.example::after {
     resize: none;
     border-bottom-right-radius: 15px;
 }
-.tags{
+
+.tags {
     font: 11pt/11pt DejaVu Sans Mono, monospace;
     background-color: #e6e6e6;
     /*background: linear-gradient(70deg, #ffeeaa, #87cdde);*/
@@ -589,7 +619,8 @@ form.example::after {
     border-radius: 20px;
     border-bottom-right-radius: 200px;
 }
-.tagsDetails{
+
+.tagsDetails {
     font: 11pt/11pt DejaVu Sans Mono, monospace;
     background-color: #e6e6e6;
     min-height: 35pt;
@@ -600,7 +631,7 @@ form.example::after {
     border-bottom-right-radius: 200px;
 }
 
-.full-comment{
+.full-comment {
     width: 80%;
     height: 50pt;
     padding: 12px 20px;
@@ -612,7 +643,7 @@ form.example::after {
 }
 
 
-.date{
+.date {
     font: 11pt/11pt DejaVu Sans Mono, monospace;
     background: linear-gradient(45deg, #ffffb3, #cce5ff);
     padding: 5pt;
@@ -620,10 +651,10 @@ form.example::after {
     border-bottom-right-radius: 200px;
 }
 
-.details{
+.details {
     font: 10pt/10pt DejaVu Sans Mono, monospace;
     /*background-color:  #3b6958; !* Green *!*/
-    background: linear-gradient(45deg, 	#3b6958, #827a69);
+    background: linear-gradient(45deg, #3b6958, #827a69);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -661,7 +692,8 @@ form.singIn input[type=submit] {
 form.singIn input[type=submit]:hover {
     background-color: lightgreen;
 }
-.margin{
+
+.margin {
     margin-top: 10px;
 }
 
@@ -677,10 +709,7 @@ form.singIn input[type=submit]:hover {
     flex-grow: 1;
     cursor: pointer;
     position: relative;
-    padding:
-            calc(var(--space) / 1.125)
-            var(--space)
-            var(--space);
+    padding: calc(var(--space) / 1.125) var(--space) var(--space);
     border: var(--border-size) solid black;
     color: var(--color-secondary);
     background-color: var(--color-primary);
@@ -733,10 +762,7 @@ form.singIn input[type=submit]:hover {
     flex-grow: 1;
     cursor: pointer;
     position: relative;
-    padding:
-            calc(var(--space) / 1.125)
-            var(--space)
-            var(--space);
+    padding: calc(var(--space) / 1.125) var(--space) var(--space);
     border: var(--border-size) solid black;
     color: var(--color-secondary);
     background-color: #ff6666;
@@ -759,7 +785,7 @@ form.singIn input[type=submit]:hover {
     color: black;
     outline: none;
     text-shadow: none;
-    background-color: 	#f91f1f;
+    background-color: #f91f1f;
     /*background-color: var(--color-secondary);*/
 }
 
@@ -779,17 +805,18 @@ form.singIn input[type=submit]:hover {
     transform: translateY(var(--border-size));
 }
 
-.small{
+.small {
     width: 70px;
     height: 30px;
 }
 
-.littleSmall{
+.littleSmall {
     width: 70px;
     height: 60px;
     margin-bottom: 10px;
 }
-.left{
+
+.left {
     position: static;
     left: 100px;
 }
@@ -844,13 +871,21 @@ form.singIn input[type=submit]:hover {
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .basicTable {

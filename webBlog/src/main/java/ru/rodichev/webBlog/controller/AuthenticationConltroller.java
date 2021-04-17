@@ -26,7 +26,9 @@ public class AuthenticationConltroller {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping("/login")
-    public String login(Model model){return "login";}
+    public String login(Model model) {
+        return "login";
+    }
 
     @PostMapping("/login")
     public String postLogin(@RequestParam String username, @RequestParam String password, Model model) {
@@ -46,9 +48,9 @@ public class AuthenticationConltroller {
     }
 
     @GetMapping("/logout")
-    public String logout(Model model, HttpServletRequest request, HttpServletResponse response){
+    public String logout(Model model, HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
+        if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect: /";

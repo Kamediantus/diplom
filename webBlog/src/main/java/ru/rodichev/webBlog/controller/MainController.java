@@ -29,7 +29,7 @@ public class MainController {
     private ContactRepository contactRepository;
 
     @GetMapping("/")
-    public String homepage(Model model){
+    public String homepage(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             String currentUsername = auth.getName();
@@ -41,7 +41,7 @@ public class MainController {
     }
 
     @GetMapping("/aboutUs")
-    public String aboutMe(Model model){
+    public String aboutMe(Model model) {
         Iterable<Contact> contacts = contactRepository.getVisibleContacts();
         model.addAttribute("contacts", contacts);
         String aboutMeInfo = blockRepository.getTextById(1L);

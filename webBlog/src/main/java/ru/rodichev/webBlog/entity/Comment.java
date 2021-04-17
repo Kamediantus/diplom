@@ -8,14 +8,14 @@ import javax.persistence.*;
 @Entity
 public class Comment {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        private Long postId;
-        private String author;
-        @Type(type = "text")
-        private String fullComment;
-        private String date;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long postId;
+    private String author;
+    @Type(type = "text")
+    private String fullComment;
+    private String date;
 
     public Comment(Long postId, String author, String fullComment, String date) {
         this.postId = postId;
@@ -24,7 +24,7 @@ public class Comment {
         this.date = date;
     }
 
-    public Comment(){
+    public Comment() {
     }
 
     public Long getId() {

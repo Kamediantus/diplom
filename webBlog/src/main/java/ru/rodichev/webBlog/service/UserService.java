@@ -48,12 +48,12 @@ public class UserService implements UserDetailsService {
         return userFromDb.orElse(new User());
     }
 
-    public List<User>findUserByUsernameLike(String username){
+    public List<User> findUserByUsernameLike(String username) {
         List<User> usersFromDbLike = userRepository.findUsersByMask(username + "%");
         return usersFromDbLike;
     }
 
-    public List<User> findUserByRole(String role){
+    public List<User> findUserByRole(String role) {
         return userRepository.findUserByRole(role);
     }
 

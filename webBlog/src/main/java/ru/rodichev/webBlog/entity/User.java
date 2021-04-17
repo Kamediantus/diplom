@@ -10,83 +10,83 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-    @Table(name = "t_user")
-    public class User implements UserDetails {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        @Size(min=2, message = "Cannot be less than 2 characters")
-        private String username;
-        @Size(min=2, message = "Cannot be less than 2 characters")
-        private String password;
-        @Transient
-        private String passwordConfirm;
+@Table(name = "t_user")
+public class User implements UserDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Size(min = 2, message = "Cannot be less than 2 characters")
+    private String username;
+    @Size(min = 2, message = "Cannot be less than 2 characters")
+    private String password;
+    @Transient
+    private String passwordConfirm;
 
-        @Column(name = "role", nullable = false)
-        @Enumerated(EnumType.STRING)
-        private Role role;
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-        public User() {
-        }
+    public User() {
+    }
 
-        public Long getId() {
-            return id;
-        }
+    public Long getId() {
+        return id;
+    }
 
-        public void setId(Long id) {
-            this.id = id;
-        }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-        @Override
-        public String getUsername() {
-            return username;
-        }
+    @Override
+    public String getUsername() {
+        return username;
+    }
 
-        @Override
-        public boolean isAccountNonExpired() {
-            return true;
-        }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-        @Override
-        public boolean isAccountNonLocked() {
-            return true;
-        }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-        @Override
-        public boolean isCredentialsNonExpired() {
-            return true;
-        }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-        @Override
-        public boolean isEnabled() {
-            return true;
-        }
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
-        public void setUsername(String username) {
-            this.username = username;
-        }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-        @Override
-        public Collection<? extends GrantedAuthority> getAuthorities() {
-            return null;
-        }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
 
-        @Override
-        public String getPassword() {
-            return password;
-        }
+    @Override
+    public String getPassword() {
+        return password;
+    }
 
-        public void setPassword(String password) {
-            this.password = password;
-        }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-        public String getPasswordConfirm() {
-            return passwordConfirm;
-        }
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
 
-        public void setPasswordConfirm(String passwordConfirm) {
-            this.passwordConfirm = passwordConfirm;
-        }
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
 
     public Role getRole() {
         return role;

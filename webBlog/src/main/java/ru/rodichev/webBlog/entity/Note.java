@@ -3,6 +3,7 @@ package ru.rodichev.webBlog.entity;
 
 import org.hibernate.annotations.Type;
 import ru.rodichev.webBlog.logic.CurrDate;
+
 import javax.persistence.*;
 
 @Table(name = "t_notes")
@@ -13,7 +14,6 @@ public class Note {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String heading;
-
     @Type(type = "text")
     private String rawFullText;
     @Type(type = "text")
@@ -89,9 +89,13 @@ public class Note {
         this.tags = tags;
     }
 
-    public String getDate() { return date; }
+    public String getDate() {
+        return date;
+    }
 
-    public void setDate(String date) { this.date = date; }
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public Note(String heading, String fullText, String tags) {
         this.heading = heading;
@@ -101,29 +105,32 @@ public class Note {
         this.setChecked(false);
         this.setFixed(false);
     }
-    public static String toHtmlBreakLines(String text){
-        return text.replaceAll("\n","<br />");
+
+    public static String toHtmlBreakLines(String text) {
+        return text.replaceAll("\n", "<br />");
     }
-    public static String breaklinesToWhitespace(String text){
-        return text.replaceAll("<br />","      ");
+
+    public static String breaklinesToWhitespace(String text) {
+        return text.replaceAll("<br />", "      ");
     }
-    public static String toSqlBreakLines(String text){
-        return text.replaceAll("<br />","\n");
+
+    public static String toSqlBreakLines(String text) {
+        return text.replaceAll("<br />", "\n");
     }
 
     public String getShortText(String text) {
         if (text.length() > 1001) {
-            if (text.substring(0,1000).contains(" ")) {
+            if (text.substring(0, 1000).contains(" ")) {
                 return text.substring(0, text.substring(0, 1000).lastIndexOf(" ")) + "...";
             } else return text.substring(0, 1000) + "...";
         } else return text;
     }
 
-    public int getCountOfMistakes(){
+    public int getCountOfMistakes() {
         return this.moderateFullText.split("\\|\\|").length;
     }
 
     public Note() {
-        }
     }
+}
 

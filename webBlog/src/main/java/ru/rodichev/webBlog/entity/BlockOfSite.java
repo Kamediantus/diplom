@@ -21,8 +21,8 @@ public class BlockOfSite {
     private String bufferText;
 
 
-    public boolean setNewText(String newText){
-        if (newText.equals(fullText)){
+    public boolean setNewText(String newText) {
+        if (newText.equals(fullText)) {
             return false;
         } else {
             this.setBufferText(previousFullText);
@@ -32,8 +32,8 @@ public class BlockOfSite {
         }
     }
 
-    public boolean rollback(){
-        if (previousFullText == "" || previousFullText == null){
+    public boolean rollback() {
+        if (previousFullText == "" || previousFullText == null) {
             return false;
         } else {
             this.setFullText(previousFullText);
