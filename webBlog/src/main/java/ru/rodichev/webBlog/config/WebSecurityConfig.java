@@ -47,13 +47,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //Доступ только для не зарегистрированных пользователей
                 .antMatchers("/registration").not().fullyAuthenticated()
+                .antMatchers("/changePass").authenticated()
+
                 //Доступ только для пользователей с ролью Администратор
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/notes/edit/**").hasRole("SUPERTRAMP")
+                .antMatchers("/moderate/**").hasRole("MODERATOR")
+                .antMatchers("/moderator").hasRole("MODERATOR")
+                .antMatchers("/supertramp/**").hasRole("SUPERTRAMP")
                 .antMatchers("/notes/add").hasRole("SUPERTRAMP")
                 .antMatchers("/notes/delete/**").hasRole("SUPERTRAMP")
+
+
                 //Доступ разрешен всем пользователей
                 .antMatchers("/**").permitAll()
+
                 //Все остальные страницы требуют аутентификации
                 .anyRequest().authenticated()
                 .and()
