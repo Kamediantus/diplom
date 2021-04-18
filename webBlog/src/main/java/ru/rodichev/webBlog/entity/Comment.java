@@ -4,6 +4,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
+/***
+ * Class of comment to useful displaying
+ */
 @Table(name = "t_comment")
 @Entity
 public class Comment {

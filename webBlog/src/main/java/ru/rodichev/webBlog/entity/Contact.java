@@ -6,6 +6,9 @@ import org.springframework.core.codec.StringDecoder;
 
 import javax.persistence.*;
 
+/***
+ * Class of contact to useful displaying
+ */
 @Table(name = "t_contact")
 @Entity
 public class Contact {

@@ -97,6 +97,13 @@ public class Note {
         this.date = date;
     }
 
+    /***
+     * Create new note and set Checked and Fixed flags = false
+     * later moderator will check it and Supertramp will fix if
+     * @param heading String heading of note
+     * @param fullText String rawFullText of note
+     * @param tags String tags. Must have structure: tag1, tag2, tag3...
+     */
     public Note(String heading, String fullText, String tags) {
         this.heading = heading;
         this.rawFullText = toHtmlBreakLines(fullText);
@@ -106,18 +113,36 @@ public class Note {
         this.setFixed(false);
     }
 
+    /***
+     * replace all \n to <br /> for correct displaying at site
+     * @param text String raw text
+     * @return String text that ready to display as HTML code
+     */
     public static String toHtmlBreakLines(String text) {
         return text.replaceAll("\n", "<br />");
     }
-
+    /***
+     * replace all <br />  to 6 whitespaces for correct displaying at fix page. 6 because '<br />'.length == 6
+     * @param text String raw text
+     * @return String text that ready to display at fix page
+     */
     public static String breaklinesToWhitespace(String text) {
         return text.replaceAll("<br />", "      ");
     }
-
+    /***
+     * replace all <br />  to \n  for correct displaying at db
+     * @param text String raw text
+     * @return String text that ready to display at db
+     */
     public static String toSqlBreakLines(String text) {
         return text.replaceAll("<br />", "\n");
     }
 
+    /***
+     * get only 1000 chars for display short text at the main page or full text if it less than 1000 chars
+     * @param text String raw text
+     * @return String only 1000 chars for display short text at the main page or full text if it less than 1000 chars
+     */
     public String getShortText(String text) {
         if (text.length() > 1001) {
             if (text.substring(0, 1000).contains(" ")) {
@@ -126,6 +151,10 @@ public class Note {
         } else return text;
     }
 
+    /***
+     * get count of mistakes
+     * @return int count of mistakes
+     */
     public int getCountOfMistakes() {
         return this.moderateFullText.split("\\|\\|").length;
     }

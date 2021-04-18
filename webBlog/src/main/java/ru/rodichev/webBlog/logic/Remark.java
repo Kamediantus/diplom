@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
+/***
+ * represents an Remark
+ */
 public class Remark implements Comparable<Remark> {
 
     private String mistake;
@@ -13,6 +16,10 @@ public class Remark implements Comparable<Remark> {
     private int[] cords = new int[2];
     private String popupView;
 
+    /***
+     * create new Remark from raw string from db
+     * @param rawRemark raw string for one remark
+     */
     public Remark(String rawRemark) {
         String[] elements = rawRemark.split("\\|");
         this.mistake = elements[0];
@@ -21,7 +28,13 @@ public class Remark implements Comparable<Remark> {
         this.cords[1] = Integer.parseInt(elements[2].split(",")[1]);
     }
 
-
+    /***
+     * create text with popups from raw text and List of Remarks. Needs to display mistakes as popups
+     * @param fullText raw full text from db
+     * @param remarksList  List of Remarks
+     * @see Remark#getSortRemarks(String) to get sorted list of Remarks
+     * @return String full text with necessary tags and classes
+     */
     public static String getPopupText(String fullText, List<Remark> remarksList) {
         List<Integer> startCords = Remark.getStartCords(remarksList);
         List<Integer> endCords = Remark.getEndCords(remarksList);
@@ -40,7 +53,12 @@ public class Remark implements Comparable<Remark> {
         return popupText;
     }
 
-
+    /***
+     * get List of start cords of mistakes
+     * @param remarkList List of Remarks
+     * @see Remark#getSortRemarks(String) to create List of Remarks
+     * @return List of start cords as Ints
+     */
     public static List<Integer> getStartCords(List<Remark> remarkList) {
         List<Integer> endCords = new ArrayList<>();
         for (int i = 0; i < remarkList.size(); i++) {
@@ -49,6 +67,12 @@ public class Remark implements Comparable<Remark> {
         return endCords;
     }
 
+    /***
+     * get List of end cords of mistakes
+     * @param remarkList List of Remarks
+     * @see Remark#getSortRemarks(String) to create List of Remarks
+     * @return List of end cords as Ints
+     */
     public static List<Integer> getEndCords(List<Remark> remarkList) {
         List<Integer> endCords = new ArrayList<>();
         for (int i = 0; i < remarkList.size(); i++) {
@@ -57,6 +81,11 @@ public class Remark implements Comparable<Remark> {
         return endCords;
     }
 
+    /***
+     * create sorted List of Remarks from raw Moderators text from db
+     * @param moderatorsText String moderators text from db
+     * @return  List of remarks sorted by start cords
+     */
     public static List<Remark> getSortRemarks(String moderatorsText) {
         TreeSet<Remark> remarks = new TreeSet<>();
         String[] rawRemarks = moderatorsText.split("\\|\\|");
@@ -69,37 +98,6 @@ public class Remark implements Comparable<Remark> {
             remarkList.add(el);
         }
         return remarkList;
-    }
-
-
-    public static List<String> getRemarks(String allRemarks) {
-        List<String> remarks = new ArrayList<>();
-        String[] splitRemarks = allRemarks.split("\\|\\|");
-        for (int i = 0; i < splitRemarks.length; i++) {
-            String[] oneRemark = splitRemarks[i].split("\\|");
-            remarks.add(oneRemark[1]);
-        }
-        return remarks;
-    }
-
-    public static List<String> getMistakes(String allRemarks) {
-        List<String> mistakes = new ArrayList<>();
-        String[] splitRemarks = allRemarks.split("\\|\\|");
-        for (int i = 0; i < splitRemarks.length; i++) {
-            String[] oneRemark = splitRemarks[i].split("\\|");
-            mistakes.add(oneRemark[0]);
-        }
-        return mistakes;
-    }
-
-    public static List<String> getCords(String allRemarks) {
-        List<String> cords = new ArrayList<>();
-        String[] splitRemarks = allRemarks.split("\\|\\|");
-        for (int i = 0; i < splitRemarks.length; i++) {
-            String[] oneRemark = splitRemarks[i].split("\\|");
-            cords.add(oneRemark[2]);
-        }
-        return cords;
     }
 
     public int getFirstCord() {
@@ -142,6 +140,11 @@ public class Remark implements Comparable<Remark> {
         this.popupView = popupView;
     }
 
+    /***
+     * comparator for sort Remarks by start cords
+     * @param o
+     * @return
+     */
     @Override
     public int compareTo(Remark o) {
         return this.getFirstCord() - o.getFirstCord();

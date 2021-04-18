@@ -4,6 +4,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
+/***
+ * Class of contact to useful displaying and editing info AboutUs from interface
+ */
 @Table(name = "t_block")
 @Entity
 public class BlockOfSite {
@@ -32,6 +35,10 @@ public class BlockOfSite {
         }
     }
 
+    /***
+     * rollback to previous version of block
+     * @return true if previous version exist, false if not exist
+     */
     public boolean rollback() {
         if (previousFullText == "" || previousFullText == null) {
             return false;

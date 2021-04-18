@@ -21,6 +21,9 @@ import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 import java.util.*;
 
+/*** class for communicate with user repository and realize authenticates user ot site
+ * @author
+ */
 @Service
 public class UserService implements UserDetailsService {
     @PersistenceContext
@@ -30,6 +33,12 @@ public class UserService implements UserDetailsService {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    /***
+     *
+     * @param username from login page which is entered by the user
+     * @return  new session and authenticates user ot site
+     * @throws UsernameNotFoundException if user not found
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
@@ -43,26 +52,48 @@ public class UserService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthoritySet);
     }
 
+    /***
+     *
+     * @param userId user ID to search
+     * @return user which have id from param OR if user with this param dose not exist, new user
+     */
     public User findUserById(Long userId) {
         Optional<User> userFromDb = userRepository.findById(userId);
         return userFromDb.orElse(new User());
     }
 
+    /***
+     * add '%' after username and search users by mask
+     * @param username substring of username which will be used as mask
+     * @return list of users which username match the mask
+     */
     public List<User> findUserByUsernameLike(String username) {
         List<User> usersFromDbLike = userRepository.findUsersByMask(username + "%");
         return usersFromDbLike;
     }
 
+    /***
+     *
+     * @param role to search for users
+     * @return List of users which have role from param
+     */
     public List<User> findUserByRole(String role) {
         return userRepository.findUserByRole(role);
     }
 
-
+    /***
+     *
+     * @return all users
+     */
     public List<User> allUsers() {
         return userRepository.findAll();
     }
 
-
+    /***
+     *  save user's fields in db, uses an encoder for secure password storage
+     * @param user which will be saved id db
+     * @return true if the save was successful, false if the user does not exist
+     */
     public boolean saveUser(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
 
@@ -70,12 +101,16 @@ public class UserService implements UserDetailsService {
             return false;
         }
         user.setRole(Role.ROLE_USER);
-
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
     }
 
+    /***
+     *  delete user from db
+     * @param userId user ID to be deleted
+     * @return true if the delete was successful, false if the user does not exist
+     */
     public boolean deleteUser(Long userId) {
         if (userRepository.findById(userId).isPresent()) {
             userRepository.deleteById(userId);

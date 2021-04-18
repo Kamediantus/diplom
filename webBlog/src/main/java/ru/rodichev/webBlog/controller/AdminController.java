@@ -16,6 +16,9 @@ import ru.rodichev.webBlog.repo.ContactRepository;
 import ru.rodichev.webBlog.repo.UserRepository;
 import ru.rodichev.webBlog.service.UserService;
 
+/**
+ *
+ */
 @Controller
 public class AdminController {
     @Autowired
@@ -38,7 +41,6 @@ public class AdminController {
         if (id != null) {
             if (userService.findUserById(id).getUsername() == null) {
                 model.addAttribute("message", "User with id: " + id + " wasn't found");
-
             } else
                 model.addAttribute("user", userService.findUserById(id));
         } else if (username != "") {
