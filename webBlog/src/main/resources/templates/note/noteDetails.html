@@ -4,6 +4,7 @@
     <title>Notes</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link rel="shortcut icon" th:href="@{/images/icon.svg}" type="image/x-icon">
 </head>
 <body>
 <div class="multi-button">
@@ -39,7 +40,7 @@
         <a th:href="'/notes/delete/' + ${el.id}" class="details bottomright shadow left">Delete</a>
     </p>
     <p sec:authorize="isAnonymous()" class="warning monospace shadow">Please sing in to comment</p>
-    <div class="fullNote" sec:authorize="isAuthenticated()">
+    <div class="fullNote bigShadow" sec:authorize="isAuthenticated()">
         <form method="post" class="basicText">
             <textarea onkeyup="success()" name="fullComment" class="full-comment shadow"></textarea>
             <div class="submit-button margin">
