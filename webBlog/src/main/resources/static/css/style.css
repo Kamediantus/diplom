@@ -76,7 +76,7 @@ a {
 
 .aboutText {
     color: black;
-    width: 70%;
+    width: 60%;
 }
 
 .login {
@@ -174,6 +174,9 @@ body {
 }
 
 p:empty {
+    display: none;
+}
+div:empty {
     display: none;
 }
 
@@ -332,6 +335,11 @@ form.example::after {
 
 .full-comment {
     width: 80%;
+}
+.pict {
+    right: 10px;
+    /*background-color: dimgray;*/
+    border-radius: 20px;
 }
 
 .bigShadow {

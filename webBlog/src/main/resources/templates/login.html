@@ -23,10 +23,10 @@
 
 <div class="login bigShadow">
     <form action="/login" method="post">
-        <input onkeyup="success()" id="textsend" class="usernameInput shadow" type="text" name="username"
+        <input onkeyup="success()" id="textsend" class="usernameInput shadow margin" type="text" name="username"
                placeholder=" Username.." autofocus="true" th:error="*{loginError}">
         <p th:text="${msg}" class="monospace warning shadow"></p>
-        <input class="usernameInput shadow" type="password" name="password" placeholder=" Password.."
+        <input class="usernameInput shadow margin" type="password" name="password" placeholder=" Password.."
                th:error="*{passwordError}">
         <div class="submit-button margin">
             <button disabled id="button" type="submit" class="big-button">sing in</button>

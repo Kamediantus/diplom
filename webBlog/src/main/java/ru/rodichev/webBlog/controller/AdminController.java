@@ -105,7 +105,6 @@ public class AdminController {
     @PostMapping("/admin/edit_site/{id}")
     public String saveChanges(@PathVariable("id") Long id, @RequestParam(required = false) String rollback, String newText, Model model) {
         BlockOfSite block = blockRepository.getBlockById(id);
-        String massage;
         if (rollback != null) {
             if (block.rollback()) {
                 blockRepository.save(block);

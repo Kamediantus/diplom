@@ -23,13 +23,13 @@
 
 <div class="registration bigShadow">
     <form action="/registration" method="post">
-        <input onkeyup="success()" id="textsend" class="usernameInput shadow" type="text" name="username"
+        <input onkeyup="success()" id="textsend" class="usernameInput shadow margin" type="text" name="username"
                placeholder="Username.." autofocus="true" th:error="*{usernameError}">
         <p th:text="${usernameError}" class="monospace lineWarning shadow"></p>
-        <input class="usernameInput shadow" type="password" name="password" placeholder="Password.."
+        <input class="usernameInput shadow margin" type="password" name="password" placeholder="Password.."
                th:error="*{passwordError}">
         <p th:text="${passwordError}" class="monospace lineWarning shadow"></p>
-        <input class="usernameInput shadow" type="password" name="passwordConfirm" placeholder="Confirm password..">
+        <input class="usernameInput shadow margin" type="password" name="passwordConfirm" placeholder="Confirm password..">
         <div class="submit-button margin">
             <button disabled id="button" type="submit" class="big-button">sing up</button>
         </div>

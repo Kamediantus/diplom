@@ -48,7 +48,7 @@
         </form>
     </div>
 
-    <div class="allComments bigShadow ">
+    <div class="allComments bigShadow">
         <div th:each="com : ${comments}" class="fullComment shadow">
             <p th:text="${com.author}"></p>
             <p th:utext="${com.fullComment}"></p>
