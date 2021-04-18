@@ -31,7 +31,7 @@
         <div th:text="'tags: ' + ${el.tags}"></div>
         <p th:text="'Created: ' + ${el.date}"></p>
     </div>
-    <p th:text="'error count: ' + ${el.getCountOfMistakes}" class="warning"></p>
+    <p th:text="'error count: ' + ${el.getCountOfMistakes}" class="warning shadow"></p>
     <a class="details bottomright shadow" th:href="'/supertramp/fix/' + ${el.id}">fix it</a>
 </div>
 
