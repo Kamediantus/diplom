@@ -37,7 +37,7 @@ public class MainController {
         }
         Iterable<Note> notes = notesRepository.getOnlyChecked();
         model.addAttribute("notes", notes);
-        return "main";
+        return "index";
     }
 
     @GetMapping("/aboutUs")
