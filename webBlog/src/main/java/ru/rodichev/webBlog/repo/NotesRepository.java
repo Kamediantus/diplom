@@ -5,6 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import ru.rodichev.webBlog.entity.Note;
 
+import java.util.List;
+
 public interface NotesRepository extends CrudRepository<Note, Long> {
 
 
@@ -29,16 +31,16 @@ public interface NotesRepository extends CrudRepository<Note, Long> {
      * @param text substring to search. Must have structure: %substring%
      * @return List of Notes that include in final full text substring from param
      */
-    @Query(value = "SELECT * FROM `t_notes` WHERE final_full_text like :text ORDER by id DESC", nativeQuery = true)
-    Iterable<Note> reverseFindByText(@Param("text") String text);
+    @Query(value = "SELECT * FROM `t_notes` WHERE is_fixed = true and final_full_text like :text ORDER by id DESC", nativeQuery = true)
+    List<Note> reverseFindByText(@Param("text") String text);
 
     /***
      * find notes that include tag from params
      * @param tag tag to search. Must have structure: %tag%
      * @return List of Notes which have tags like tag from param
      */
-    @Query(value = "SELECT * FROM `t_notes` WHERE tags like :tag ORDER by id DESC", nativeQuery = true)
-    Iterable<Note> reverseFindByTag(@Param("tag") String tag);
+    @Query(value = "SELECT * FROM `t_notes` WHERE is_fixed = true and tags like :tag ORDER by id DESC", nativeQuery = true)
+    List<Note> reverseFindByTag(@Param("tag") String tag);
 
     /***
      *  search only unchecked notes for moderator

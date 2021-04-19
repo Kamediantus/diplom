@@ -38,13 +38,21 @@ public class NoteController {
 
     @PostMapping("/notes")
     public String searchNotes(@RequestParam String text, @RequestParam String tag, Model model) {
+        List<Note> notes = null;
+        String msg;
         if (text != "") {
-            Iterable<Note> notes = notesRepository.reverseFindByText(SearchFromRepo.toLike(text));
+            notes = notesRepository.reverseFindByText(SearchFromRepo.toLike(text));
             model.addAttribute("notes", notes);
+            if (notes.size() == 0){
+                model.addAttribute("msg", "nothing was found");
+            }
         } else if (tag != "") {
-            Iterable<Note> notes = notesRepository.reverseFindByTag(SearchFromRepo.toLike(tag));
+            notes = notesRepository.reverseFindByTag(SearchFromRepo.toLike(tag));
             model.addAttribute("notes", notes);
-        } else if (text == "" && tag == "") {
+            if (notes.size() == 0){
+                model.addAttribute("msg", "nothing was found");
+            }
+        } else {
             model.addAttribute("msg", "Please choose at least one parameter for search");
         }
         return "note/mainNotes";

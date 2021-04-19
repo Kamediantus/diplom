@@ -23,15 +23,15 @@
 </div>
 
 
-<p th:text="${msg}" class="error"></p>
+<p th:text="${msg}" class="monospace warning shadow"></p>
 
 <form class="example shadow topRight" aaction="/notes" method="post" style="margin:auto;max-width:300px">
         <span>
-            <input onkeyup="success()" id="textsend" type="text" name="text" placeholder="search by text..">
+            <input id="textsend" type="text" name="text" placeholder="search by text..">
             <input type="text" name="tag" placeholder="search by tag..">
         </span>
     <span>
-            <button id="button" disabled type="submit"><i class="fa fa-search"></i>go</button>
+            <button id="button"  type="submit"><i class="fa fa-search"></i>go</button>
         </span>
 </form>
 
