@@ -26,15 +26,12 @@ import java.util.*;
  */
 @Service
 public class UserService implements UserDetailsService {
-    @PersistenceContext
-    private EntityManager em;
     @Autowired
     UserRepository userRepository;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /***
-     *
      * @param username from login page which is entered by the user
      * @return  new session and authenticates user ot site
      * @throws UsernameNotFoundException if user not found

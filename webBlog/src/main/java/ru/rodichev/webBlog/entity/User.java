@@ -15,12 +15,13 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min = 2, message = "Cannot be less than 2 characters")
+    private String name;
+    private String surname;
+    private String emailAdress;
+    private int phone;
+    private Long cardNumber;
     private String username;
-    @Size(min = 2, message = "Cannot be less than 2 characters")
     private String password;
-    @Transient
-    private String passwordConfirm;
 
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -78,14 +79,6 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
     }
 
     public Role getRole() {
