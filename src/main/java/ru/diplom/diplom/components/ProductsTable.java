@@ -21,11 +21,15 @@ public class ProductsTable {
         productsList.add(viewer.addPaddingsAndReturn(new Label("Наименование"), 10), 0, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Описание товара"), 10), 1, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Цена"), 10), 2, 0);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Зарезервировать \nтовар"), 10), 3, 0);
 
         for (int productIndex = 0, rowIndex = 1; productIndex < products.size(); productIndex++, rowIndex++) {
             productsList.add(viewer.addPaddingsAndReturn(new Label(products.get(productIndex).getTitle()), 10), 0, rowIndex);
             productsList.add(viewer.addPaddingsAndReturn(new Label(products.get(productIndex).getDescription()), 10), 1, rowIndex);
             productsList.add(viewer.addPaddingsAndReturn(new Label(products.get(productIndex).getStringPrice()), 10), 2, rowIndex);
+            Button buy = new Button("Зарезервировать");
+            buy.setId("buy_" + productIndex);
+            productsList.add(viewer.addPaddingsAndReturn(buy, 10), 3, rowIndex);
         }
         productsGrid.add(productsList, 0, 0);
         return productsGrid;
