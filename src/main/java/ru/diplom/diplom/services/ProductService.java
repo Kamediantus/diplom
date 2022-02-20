@@ -14,10 +14,10 @@ public class ProductService {
         List<Product> result = new ArrayList<>();
         products.forEach(pr -> {
             Product product = new Product();
-            product.setId(Long.getLong((((JSONObject)pr)).get("id").toString()));
+            product.setId(((Integer) ((((JSONObject)pr)).get("id"))).longValue());
             product.setPrice(Double.valueOf(((((JSONObject)pr)).get("price").toString())));
             product.setTitle((((JSONObject)pr)).get("title").toString());
-            product.setStoreId(Long.getLong((((JSONObject)pr)).get("storeId").toString()));
+            product.setStoreId(((Integer) ((((JSONObject)pr)).get("storeId"))).longValue());
             product.setDescription((((JSONObject)pr)).get("storeId").toString());
             result.add(product);
         });
