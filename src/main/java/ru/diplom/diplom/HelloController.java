@@ -1,14 +1,14 @@
 package ru.diplom.diplom;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 
 public class HelloController {
     @FXML
-    private Label welcomeText;
+    private Button btn;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    protected void onClick() {
+        btn.setText("Welcome to JavaFX Application!");
     }
 }
