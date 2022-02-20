@@ -3,7 +3,7 @@ package ru.diplom.diplom.services;
 import java.io.*;
 import java.net.*;
 import java.net.http.*;
-import com.github.tsohr.*;
+import org.json.*;
 
 public class SimpRequest {
 
@@ -60,8 +60,8 @@ public class SimpRequest {
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI(url))
-                    .header("Accept", "application/json")
-                    .header("Content-Type", "application/json")
+//                    .header("Accept", "application/json")
+//                    .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(params.toString()))
 
                     .build();

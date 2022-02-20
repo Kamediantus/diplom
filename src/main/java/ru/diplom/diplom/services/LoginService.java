@@ -1,6 +1,6 @@
 package ru.diplom.diplom.services;
 
-import com.github.tsohr.*;
+import org.json.*;
 
 public class LoginService {
 

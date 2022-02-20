@@ -8,8 +8,6 @@ module ru.diplom.diplom {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires java.net.http;
-    requires json;
-
-    opens ru.diplom.diplom to javafx.fxml;
+    requires org.json;
     exports ru.diplom.diplom;
 }
