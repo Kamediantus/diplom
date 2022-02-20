@@ -60,10 +60,7 @@ public class SimpRequest {
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI(url))
-//                    .header("Accept", "application/json")
-//                    .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(params.toString()))
-
                     .build();
 
             response = HttpClient.newBuilder()
