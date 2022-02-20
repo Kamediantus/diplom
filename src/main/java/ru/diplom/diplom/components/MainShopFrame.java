@@ -37,12 +37,9 @@ public class MainShopFrame {
 
         mainToolbar.getItems().addAll(shops, products, orders);
 
-
         TilePane tilePane = new TilePane(label1);
         viewer.addPaddings(tilePane, 10);
         label1.setContextMenu(mainToolbar);
-
-
 
         shopGrid.add(tilePane, 0, 0);
         shopGrid.add(content, 1, 2);

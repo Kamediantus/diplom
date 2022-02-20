@@ -7,28 +7,16 @@ import org.json.*;
 
 public class SimpRequest {
 
-//    static JSONParser parser = new JSONParser();
-
-    public static HttpResponse<String> get(String url, String token) {
+    public static HttpResponse<String> get(String url) {
         HttpResponse<String> response = null;
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI(url))
-                    .header("Accept", "application/json")
-                    .header("authorization", "Bearer " + token)
                     .GET()
 
                     .build();
 
             response = HttpClient.newBuilder()
-                    .authenticator(new Authenticator() {
-                        @Override
-                        protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication(
-                                    "username",
-                                    "password".toCharArray());
-                        }
-                    })
                     .build().send(request, HttpResponse.BodyHandlers.ofString());
 
         }
@@ -43,17 +31,6 @@ public class SimpRequest {
         }
         return response;
     }
-
-//    public static JSONObject getBodyObject(String url, String token) {
-//        JSONObject result = null;
-//        try {
-//            result = (JSONObject) parser.parse(get(url, token).body());
-//        }
-//        catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        return result;
-//    }
 
     public static HttpResponse<String> post(String url, JSONObject params) {
         HttpResponse<String> response = null;
