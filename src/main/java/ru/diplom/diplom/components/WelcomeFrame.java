@@ -1,14 +1,16 @@
 package ru.diplom.diplom.components;
 
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.*;
 import ru.diplom.diplom.services.*;
 import ru.diplom.diplom.viewUtils.*;
 
 public class WelcomeFrame {
     static FancyViewer viewer = new FancyViewer();
 
-    public static GridPane getWelcomeFrame() {
+    public static GridPane getFrame() {
         Label emailLabel = new Label("Email:");
         viewer.addPaddings(emailLabel, 10);
         TextField emailTextField = new TextField();
@@ -23,7 +25,17 @@ public class WelcomeFrame {
 
         Button singIn = new Button("Sing in");
         singIn.setOnAction(e -> {
-            LoginService.login("imail", "pass");
+            if (LoginService.login(emailTextField.getText(), passwordTextField.getText())) {
+                Stage oldStage = (Stage) singIn.getScene().getWindow();
+                oldStage.close();
+                Parent root1 = MainShopFrame.getFrame();
+                Stage stage = new Stage();
+                stage.setTitle("ABC");
+                stage.setWidth(800);
+                stage.setHeight(600);
+                stage.setScene(new Scene(root1));
+                stage.show();
+            }
         });
 
         Button singUp = new Button("Sing up");

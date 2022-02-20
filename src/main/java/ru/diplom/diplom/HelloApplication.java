@@ -18,7 +18,7 @@ public class HelloApplication extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(WelcomeFrame.getWelcomeFrame());
+        Scene scene = new Scene(WelcomeFrame.getFrame());
         stage.setScene(scene);
         stage.setTitle("Магазинчек");
         stage.setWidth(800);
