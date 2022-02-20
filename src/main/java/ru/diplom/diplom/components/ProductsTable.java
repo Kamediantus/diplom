@@ -17,14 +17,17 @@ public class ProductsTable {
         productsGrid.setId(FrameType.PRODUCTS);
         List<Product> products = ProductService.getAllProducts();
         GridPane productsList = new GridPane();
-        for (int i = 0; i < products.size(); i++) {
-            productsList.add(new Label(products.get(i).getTitle()), 0, i);
-            productsList.add(new Label(products.get(i).getDescription()), 1, i);
-            productsList.add(new Label(products.get(i).getStringPrice()), 2, i);
+        productsList.setGridLinesVisible(true);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Наименование"), 10), 0, 0);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Описание товара"), 10), 1, 0);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Цена"), 10), 2, 0);
+
+        for (int productIndex = 0, rowIndex = 1; productIndex < products.size(); productIndex++, rowIndex++) {
+            productsList.add(viewer.addPaddingsAndReturn(new Label(products.get(productIndex).getTitle()), 10), 0, rowIndex);
+            productsList.add(viewer.addPaddingsAndReturn(new Label(products.get(productIndex).getDescription()), 10), 1, rowIndex);
+            productsList.add(viewer.addPaddingsAndReturn(new Label(products.get(productIndex).getStringPrice()), 10), 2, rowIndex);
         }
-        Label test = new Label("here will be products");
-        productsGrid.add(test, 0, 0);
-        productsGrid.add(productsList, 0, 1);
+        productsGrid.add(productsList, 0, 0);
         return productsGrid;
     }
 }
