@@ -35,6 +35,10 @@ public class Product {
         return price;
     }
 
+    public String getStringPrice() {
+        return Double.toString(this.price);
+    }
+
     public void setPrice(double price) {
         this.price = price;
     }

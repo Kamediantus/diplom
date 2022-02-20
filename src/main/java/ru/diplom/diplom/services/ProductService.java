@@ -18,7 +18,7 @@ public class ProductService {
             product.setPrice(Double.valueOf(((((JSONObject)pr)).get("price").toString())));
             product.setTitle((((JSONObject)pr)).get("title").toString());
             product.setStoreId(((Integer) ((((JSONObject)pr)).get("storeId"))).longValue());
-            product.setDescription((((JSONObject)pr)).get("storeId").toString());
+            product.setDescription((((JSONObject)pr)).get("description").toString());
             result.add(product);
         });
         return result;

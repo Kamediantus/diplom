@@ -16,8 +16,15 @@ public class ProductsTable {
         GridPane productsGrid = new GridPane();
         productsGrid.setId(FrameType.PRODUCTS);
         List<Product> products = ProductService.getAllProducts();
+        GridPane productsList = new GridPane();
+        for (int i = 0; i < products.size(); i++) {
+            productsList.add(new Label(products.get(i).getTitle()), 0, i);
+            productsList.add(new Label(products.get(i).getDescription()), 1, i);
+            productsList.add(new Label(products.get(i).getStringPrice()), 2, i);
+        }
         Label test = new Label("here will be products");
         productsGrid.add(test, 0, 0);
+        productsGrid.add(productsList, 0, 1);
         return productsGrid;
     }
 }
