@@ -1,4 +1,4 @@
-package ru.diplom.diplom.constant;
+package ru.diplom.diplom.client.constant;
 
 import java.util.*;
 

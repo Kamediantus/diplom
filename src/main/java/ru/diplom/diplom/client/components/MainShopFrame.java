@@ -1,12 +1,9 @@
-package ru.diplom.diplom.components;
+package ru.diplom.diplom.client.components;
 
-import javafx.event.*;
-import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import ru.diplom.diplom.constant.*;
-import ru.diplom.diplom.services.*;
-import ru.diplom.diplom.viewUtils.*;
+import ru.diplom.diplom.client.constant.*;
+import ru.diplom.diplom.client.viewUtils.*;
 
 public class MainShopFrame {
     static FancyViewer viewer = new FancyViewer();

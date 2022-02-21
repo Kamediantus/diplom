@@ -1,13 +1,13 @@
-package ru.diplom.diplom.components;
+package ru.diplom.diplom.client.components;
 
 import java.util.*;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import ru.diplom.diplom.constant.*;
-import ru.diplom.diplom.services.*;
-import ru.diplom.diplom.services.entity.*;
-import ru.diplom.diplom.viewUtils.*;
+import ru.diplom.diplom.client.constant.*;
+import ru.diplom.diplom.client.services.*;
+import ru.diplom.diplom.client.services.entity.*;
+import ru.diplom.diplom.client.viewUtils.*;
 
 public class ProductsTable {
     static FancyViewer viewer = new FancyViewer();
@@ -21,15 +21,22 @@ public class ProductsTable {
         productsList.add(viewer.addPaddingsAndReturn(new Label("Наименование"), 10), 0, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Описание товара"), 10), 1, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Цена"), 10), 2, 0);
-        productsList.add(viewer.addPaddingsAndReturn(new Label("Зарезервировать \nтовар"), 10), 3, 0);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Магазин"), 10), 3, 0);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Скидка от магазина"), 10), 4, 0);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Зарезервировать \nтовар"), 10), 5, 0);
 
         for (int productIndex = 0, rowIndex = 1; productIndex < products.size(); productIndex++, rowIndex++) {
             productsList.add(viewer.addPaddingsAndReturn(new Label(products.get(productIndex).getTitle()), 10), 0, rowIndex);
             productsList.add(viewer.addPaddingsAndReturn(new Label(products.get(productIndex).getDescription()), 10), 1, rowIndex);
             productsList.add(viewer.addPaddingsAndReturn(new Label(products.get(productIndex).getStringPrice()), 10), 2, rowIndex);
-            Button buy = new Button("Зарезервировать");
-            buy.setId("buy_" + productIndex);
-            productsList.add(viewer.addPaddingsAndReturn(buy, 10), 3, rowIndex);
+            productsList.add(viewer.addPaddingsAndReturn(new Label(products.get(productIndex).getStringPrice()), 10), 3, rowIndex);
+            productsList.add(viewer.addPaddingsAndReturn(new Label(products.get(productIndex).getStringPrice()), 10), 4, rowIndex);
+            Button buyButton = new Button("Зарезервировать");
+            buyButton.setId("buy_" + productIndex);
+            buyButton.setOnAction(e -> {
+
+            });
+            productsList.add(viewer.addPaddingsAndReturn(buyButton, 10), 5, rowIndex);
         }
         productsGrid.add(productsList, 0, 0);
         return productsGrid;

@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.diplom.diplom.HelloController"
+            fx:controller="ru.diplom.diplom.client.HelloController"
             prefHeight="400.0" prefWidth="600.0">
     <Group >
     <Button text="bb" onAction="#onClick" fx:id="btn"/>

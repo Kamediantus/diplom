@@ -1,4 +1,4 @@
-package ru.diplom.diplom.services;
+package ru.diplom.diplom.client.services;
 
 import java.io.*;
 import java.net.*;

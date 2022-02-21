@@ -9,5 +9,5 @@ module ru.diplom.diplom {
     requires org.kordamp.bootstrapfx.core;
     requires java.net.http;
     requires org.json;
-    exports ru.diplom.diplom;
+    exports ru.diplom.diplom.client;
 }

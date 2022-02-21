@@ -1,4 +1,4 @@
-package ru.diplom.diplom;
+package ru.diplom.diplom.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

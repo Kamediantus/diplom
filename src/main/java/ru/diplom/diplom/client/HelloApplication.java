@@ -1,12 +1,10 @@
-package ru.diplom.diplom;
+package ru.diplom.diplom.client;
 
 import javafx.application.Application;
-import javafx.geometry.*;
 import javafx.scene.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
 
 import javafx.stage.Stage;
+import ru.diplom.diplom.client.components.*;
 import ru.diplom.diplom.components.*;
 
 

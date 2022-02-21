@@ -1,4 +1,4 @@
-package ru.diplom.diplom.services.entity;
+package ru.diplom.diplom.client.services.entity;
 
 public class Product {
     private Long id;
@@ -6,6 +6,24 @@ public class Product {
     private String title;
     private String description;
     private double price;
+    private String storeName;
+    private Double storeDiscount;
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public Double getStoreDiscount() {
+        return storeDiscount;
+    }
+
+    public void setStoreDiscount(Double storeDiscount) {
+        this.storeDiscount = storeDiscount;
+    }
 
     public Long getId() {
         return id;

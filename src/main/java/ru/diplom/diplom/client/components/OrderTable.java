@@ -1,7 +1,9 @@
-package ru.diplom.diplom.components;
+package ru.diplom.diplom.client.components;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import ru.diplom.diplom.client.constant.*;
+import ru.diplom.diplom.client.viewUtils.*;
 import ru.diplom.diplom.constant.*;
 import ru.diplom.diplom.viewUtils.*;
 

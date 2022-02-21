@@ -1,10 +1,11 @@
-package ru.diplom.diplom.components;
+package ru.diplom.diplom.client.components;
 
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
-import ru.diplom.diplom.services.*;
+import ru.diplom.diplom.client.services.*;
+import ru.diplom.diplom.client.viewUtils.*;
 import ru.diplom.diplom.viewUtils.*;
 
 public class WelcomeFrame {

@@ -1,4 +1,4 @@
-package ru.diplom.diplom.viewUtils;
+package ru.diplom.diplom.client.viewUtils;
 
 import javafx.geometry.*;
 import javafx.scene.*;
