@@ -1,5 +1,6 @@
 package ru.rodichev.webBlog.controller;
 
+import org.json.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -7,9 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.rodichev.webBlog.entity.User;
 import ru.rodichev.webBlog.repo.UserRepository;
 import ru.rodichev.webBlog.service.UserService;
@@ -31,15 +30,18 @@ public class AuthenticationConltroller {
     }
 
     @PostMapping("/login")
-    public String postLogin(@RequestParam String username, @RequestParam String password, Model model) {
-        if (userRepository.findByUsername(username) != null) {
-            User user = userRepository.findUserByUsername(username);
+    public String postLogin(@RequestBody String creds, Model model) {
+        JSONObject usersCreds = new JSONObject(creds);
+        String email = usersCreds.getString("email");
+        String password = usersCreds.getString("password");
+        if (userRepository.findByUsername(email) != null) {
+            User user = userRepository.findUserByUsername(email);
             if (bCryptPasswordEncoder.matches(password, bCryptPasswordEncoder.encode(user.getPassword()))) {
                 model.addAttribute("passwordError", "Please enter correct password..");
                 return "login";
             } else if (!bCryptPasswordEncoder.matches(password, bCryptPasswordEncoder.encode(user.getPassword()))) {
                 UserService userService = new UserService();
-                userService.loadUserByUsername(username);
+                userService.loadUserByUsername(email);
                 return "redirect: /";
             }
 
