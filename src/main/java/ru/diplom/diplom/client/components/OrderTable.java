@@ -4,8 +4,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import ru.diplom.diplom.client.constant.*;
 import ru.diplom.diplom.client.viewUtils.*;
-import ru.diplom.diplom.constant.*;
-import ru.diplom.diplom.viewUtils.*;
 
 public class OrderTable {
     static FancyViewer viewer = new FancyViewer();

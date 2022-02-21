@@ -1,11 +1,10 @@
-package ru.diplom.diplom.client;
+package ru.diplom.diplom;
 
 import javafx.application.Application;
 import javafx.scene.*;
 
 import javafx.stage.Stage;
 import ru.diplom.diplom.client.components.*;
-import ru.diplom.diplom.components.*;
 
 
 public class HelloApplication extends Application{

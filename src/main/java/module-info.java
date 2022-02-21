@@ -10,4 +10,5 @@ module ru.diplom.diplom {
     requires java.net.http;
     requires org.json;
     exports ru.diplom.diplom.client;
+    exports ru.diplom.diplom;
 }

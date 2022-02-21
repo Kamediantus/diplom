@@ -6,7 +6,6 @@ import javafx.scene.layout.*;
 import javafx.stage.*;
 import ru.diplom.diplom.client.services.*;
 import ru.diplom.diplom.client.viewUtils.*;
-import ru.diplom.diplom.viewUtils.*;
 
 public class WelcomeFrame {
     static FancyViewer viewer = new FancyViewer();

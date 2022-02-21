@@ -3,7 +3,6 @@ package ru.diplom.diplom.client.services;
 import org.json.*;
 import ru.diplom.diplom.client.constant.*;
 import ru.diplom.diplom.client.services.entity.*;
-import ru.diplom.diplom.constant.*;
 
 public class StoreService {
     public static Store getStoreById(Long id) {

@@ -5,7 +5,6 @@ import java.util.*;
 import org.json.*;
 import ru.diplom.diplom.client.constant.*;
 import ru.diplom.diplom.client.services.entity.*;
-import ru.diplom.diplom.constant.*;
 
 public class ProductService {
 
