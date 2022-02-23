@@ -8,6 +8,15 @@ public class Product {
     private double price;
     private String storeName;
     private Double storeDiscount;
+    private Store store;
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
 
     public String getStoreName() {
         return storeName;

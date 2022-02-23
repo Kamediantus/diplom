@@ -9,7 +9,7 @@ import ru.diplom.diplom.client.services.entity.*;
 public class ProductService {
 
     public static List<Product> getAllProducts() {
-        JSONArray products = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.singInUrl).body());
+        JSONArray products = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.allProducts).body());
         List<Product> result = new ArrayList<>();
         products.forEach(pr -> {
             Product product = new Product();
@@ -24,7 +24,7 @@ public class ProductService {
     }
 
     public static List<Product> getAllProductsWithFullInfoAndActualPrices() {
-        JSONArray products = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.singInUrl).body());
+        JSONArray products = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.allProducts).body());
         List<Product> result = new ArrayList<>();
         products.forEach(pr -> {
             Product product = new Product();
@@ -34,8 +34,7 @@ public class ProductService {
             product.setStoreId(((Integer) ((((JSONObject)pr)).get("storeId"))).longValue());
             product.setDescription((((JSONObject)pr)).get("description").toString());
             Store store = StoreService.getStoreById(product.getStoreId());
-            product.setStoreName(store.getTitle());
-            product.setStoreDiscount(store.getDiscount());
+            product.setStore(store);
             result.add(product);
         });
         return result;
