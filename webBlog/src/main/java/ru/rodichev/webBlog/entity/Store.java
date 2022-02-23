@@ -27,6 +27,14 @@ public class Store {
         this.title = title;
     }
 
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
     public Store(String title, Double discount) {
         this.title = title;
         this.discount = discount;

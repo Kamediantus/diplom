@@ -1,6 +1,8 @@
 package ru.rodichev.webBlog.entity;
 
-import org.hibernate.annotations.Type;
+import java.util.*;
+import java.util.concurrent.*;
+
 import javax.persistence.*;
 
 @Table(name = "products")
@@ -12,7 +14,14 @@ public class Product {
     private Long storeId;
     private String title;
     private String description;
+    // срок годности в часах
+    private int shelLife;
+    // значение в часах, определяющее за сколько до истечения срока годности начислять скидку
+    private int shelLifeWarning;
     private double price;
+    // дата изготовления. В базе не храним, эти данные хранятся в таблице поставок.
+    @Transient
+    private Date dateOfProduction;
 
     public Long getId() {
         return id;
@@ -46,12 +55,36 @@ public class Product {
         this.price = price;
     }
 
+    public int getShelLife() {
+        return shelLife;
+    }
+
+    public void setShelLife(int shelLife) {
+        this.shelLife = shelLife;
+    }
+
     public Long getStoreId() {
         return storeId;
     }
 
     public void setStoreId(Long storeId) {
         this.storeId = storeId;
+    }
+
+    public int getShelLifeWarning() {
+        return shelLifeWarning;
+    }
+
+    public void setShelLifeWarning(int shelLifeWarning) {
+        this.shelLifeWarning = shelLifeWarning;
+    }
+
+    public Date getDateOfProduction() {
+        return dateOfProduction;
+    }
+
+    public void setDateOfProduction(Date dateOfProduction) {
+        this.dateOfProduction = dateOfProduction;
     }
 
     public Product(String title, String description, Double price, Long storeId) {
