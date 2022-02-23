@@ -14,7 +14,6 @@ public class ProductController {
 
     @GetMapping("/store{id}")
     public ResponseEntity<Store> getStoreNameAndDiscount(@PathVariable(value="id") Long storeId) {
-        Store store = storeRepository.findById(storeId).get();
         return new ResponseEntity<>(storeRepository.findById(storeId).get(), HttpStatus.OK);
     }
 }
