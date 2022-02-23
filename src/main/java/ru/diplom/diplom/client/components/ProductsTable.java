@@ -17,7 +17,7 @@ public class ProductsTable {
     private final static int COL_PRICE = 2;
     private final static int COL_STORE = 3;
     private final static int COL_STORE_DISCOUNT = 4;
-    private final static int COL_RESERV = 5;
+    private final static int COL_RESERVE = 5;
 
     public static GridPane getFrame() {
         GridPane productsGrid = new GridPane();
@@ -49,9 +49,6 @@ public class ProductsTable {
             productsList.add(viewer.addPaddingsAndReturn(buyButton, 10), 5, rowIndex);
         }
         productsGrid.add(productsList, 0, 0);
-//        productsList.getColumnConstraints().stream().forEach(col -> {
-//            col.setHgrow(Priority.ALWAYS);
-//        });
         return productsGrid;
     }
 
@@ -61,6 +58,6 @@ public class ProductsTable {
         gridPane.getColumnConstraints().add(COL_PRICE, new ColumnConstraints(60));
         gridPane.getColumnConstraints().add(COL_STORE, new ColumnConstraints(100));
         gridPane.getColumnConstraints().add(COL_STORE_DISCOUNT, new ColumnConstraints(80));
-        gridPane.getColumnConstraints().add(COL_RESERV, new ColumnConstraints(120));
+        gridPane.getColumnConstraints().add(COL_RESERVE, new ColumnConstraints(120));
     }
 }
