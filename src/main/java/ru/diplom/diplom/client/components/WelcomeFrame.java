@@ -10,22 +10,30 @@ import ru.diplom.diplom.client.constant.*;
 import ru.diplom.diplom.client.services.*;
 import ru.diplom.diplom.client.viewUtils.*;
 
-public class WelcomeFrame {
+public class WelcomeFrame extends EditFrame {
     static FancyViewer viewer = new FancyViewer();
+    private GridPane frame;
+    private MainShopFrame mainShopFrame;
 
-    public static GridPane getFrame() {
+    public static WelcomeFrame createNew() {
+        WelcomeFrame frame = new WelcomeFrame();
+        frame.frame = frame.initFrame();
+        return frame;
+    }
+
+    public GridPane initFrame() {
         GridPane parent = new GridPane();
         parent.add(getSingInFrame(), 0, 0);
         return parent;
     }
 
-    public static GridPane getSingInFrame() {
+    private GridPane getSingInFrame() {
         GridPane singInGrid = new GridPane();
         singInGrid.setId(FrameType.SING_IN);
         singInGrid.add(new Label("Sing in"), 0, 0);
 
         TextField emailTextField = new TextField();
-        HBox emailInput = getEmailInput(emailTextField, "Email: ");
+        HBox emailInput = getStringInput(emailTextField, "Email: ");
 
         PasswordField passwordTextField = new PasswordField();
         HBox passwordInput = getPasswordInput(passwordTextField, "Password: ");
@@ -33,10 +41,11 @@ public class WelcomeFrame {
         Button singIn = new Button("Sing in");
         singIn.setOnAction(e -> {
             if (LoginService.login(emailTextField.getText(), passwordTextField.getText())) {
+                this.mainShopFrame = MainShopFrame.createNew();
 //            if (true) {
                 Stage oldStage = (Stage) singIn.getScene().getWindow();
                 oldStage.close();
-                Parent root1 = MainShopFrame.getFrame();
+                Parent root1 = mainShopFrame.getFrame();
                 Stage stage = new Stage();
                 stage.setTitle("ABC");
                 stage.setWidth(800);
@@ -65,19 +74,19 @@ public class WelcomeFrame {
         return singInGrid;
     }
 
-    public static GridPane getSingUpFrame() {
+    public GridPane getSingUpFrame() {
         GridPane singUpGrid = new GridPane();
         singUpGrid.setId(FrameType.SING_UP);
         singUpGrid.add(new Label("Sing up"), 0, 0);
 
         TextField emailTextField = new TextField();
-        HBox emailInput = getEmailInput(emailTextField, "Email: ");
+        HBox emailInput = getStringInput(emailTextField, "Email: ");
 
         TextField nameTextField = new TextField();
-        HBox nameInput = getEmailInput(nameTextField, "Name: ");
+        HBox nameInput = getStringInput(nameTextField, "Name: ");
 
         TextField surnameTextField = new TextField();
-        HBox surnameInput = getEmailInput(surnameTextField, "Surname: ");
+        HBox surnameInput = getStringInput(surnameTextField, "Surname: ");
 
         PasswordField passwordTextField = new PasswordField();
         HBox passwordInput = getPasswordInput(passwordTextField, "Password: ");
@@ -89,7 +98,7 @@ public class WelcomeFrame {
         singIn.setOnAction(e -> {
             GridPane parent = (GridPane) singUpGrid.getParent();
             ((GridPane) singUpGrid.getParent()).getChildren().removeIf(child -> child.getId().equalsIgnoreCase(FrameType.SING_UP));
-            parent.add(getSingInFrame(), 0 , 0);
+            parent.add(this.getSingInFrame(), 0 , 0);
         });
 
         Button singUp = new Button("Sing up");
@@ -120,21 +129,11 @@ public class WelcomeFrame {
 
         return singUpGrid;
     }
-
-
-    private static HBox getEmailInput(TextField emailTextField, String label) {
-        Label emailLabel = new Label(label);
-        viewer.addPaddings(emailLabel, 10);
-        HBox result = new HBox();
-        result.getChildren().addAll(emailLabel, emailTextField);
-        return result;
+    public GridPane getFrame() {
+        return frame;
     }
 
-    private static HBox getPasswordInput(TextField passTextField, String label) {
-        Label passwordLabel = new Label(label);
-        viewer.addPaddings(passwordLabel, 10);
-        HBox result = new HBox();
-        result.getChildren().addAll(passwordLabel, passTextField);
-        return result;
+    public void setFrame(GridPane frame) {
+        this.frame = frame;
     }
 }

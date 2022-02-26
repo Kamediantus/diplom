@@ -3,11 +3,13 @@ package ru.diplom.diplom;
 import javafx.application.Application;
 import javafx.scene.*;
 
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import ru.diplom.diplom.client.components.*;
 
 
 public class HelloApplication extends Application{
+    private WelcomeFrame frame;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -15,7 +17,8 @@ public class HelloApplication extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(WelcomeFrame.getFrame());
+        this.frame = WelcomeFrame.createNew();
+        Scene scene = new Scene(frame.getFrame());
         stage.setScene(scene);
         stage.setTitle("Магазинчек");
         stage.setWidth(800);
