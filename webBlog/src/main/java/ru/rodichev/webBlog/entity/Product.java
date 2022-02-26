@@ -94,7 +94,6 @@ public class Product {
         this.storeId = storeId;
     }
 
-    public Product() {
-    }
+    public Product() {}
 }
 

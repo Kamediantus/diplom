@@ -25,28 +25,19 @@ import java.util.*;
  * @author
  */
 @Service
-public class UserService implements UserDetailsService {
+public class UserService  {
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+//    @Autowired
+//    BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    /***
-     * @param username from login page which is entered by the user
-     * @return  new session and authenticates user ot site
-     * @throws UsernameNotFoundException if user not found
-     */
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
 
+    public User loadUserByEmail(String email) throws UsernameNotFoundException {
+        User user = userRepository.findUserByEmail(email.trim());
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        Set<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
-        grantedAuthoritySet.add(new SimpleGrantedAuthority(user.getRole().toString()));
-
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthoritySet);
+        return user;
     }
 
     /***
@@ -64,19 +55,19 @@ public class UserService implements UserDetailsService {
      * @param username substring of username which will be used as mask
      * @return list of users which username match the mask
      */
-    public List<User> findUserByUsernameLike(String username) {
-        List<User> usersFromDbLike = userRepository.findUsersByMask(username + "%");
-        return usersFromDbLike;
-    }
-
-    /***
-     *
-     * @param role to search for users
-     * @return List of users which have role from param
-     */
-    public List<User> findUserByRole(String role) {
-        return userRepository.findUserByRole(role);
-    }
+//    public List<User> findUserByUsernameLike(String username) {
+//        List<User> usersFromDbLike = userRepository.findUsersByMask(username + "%");
+//        return usersFromDbLike;
+//    }
+//
+//    /***
+//     *
+//     * @param role to search for users
+//     * @return List of users which have role from param
+//     */
+//    public List<User> findUserByRole(String role) {
+//        return userRepository.findUserByRole(role);
+//    }
 
     /***
      *
@@ -92,14 +83,14 @@ public class UserService implements UserDetailsService {
      * @return true if the save was successful, false if the user does not exist
      */
     public boolean saveUser(User user) {
-        User userFromDB = userRepository.findByUsername(user.getUsername());
-
-        if (userFromDB != null) {
-            return false;
-        }
-        user.setRole(Role.ROLE_USER);
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+//        User userFromDB = userRepository.findByUsername(user.getUsername());
+//
+//        if (userFromDB != null) {
+//            return false;
+//        }
+//        user.setRole(Role.ROLE_USER);
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        userRepository.save(user);
         return true;
     }
 
