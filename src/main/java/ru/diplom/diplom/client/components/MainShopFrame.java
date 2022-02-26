@@ -3,28 +3,33 @@ package ru.diplom.diplom.client.components;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import ru.diplom.diplom.client.constant.*;
+import ru.diplom.diplom.client.services.*;
 import ru.diplom.diplom.client.viewUtils.*;
 
 public class MainShopFrame {
-    private GridPane frame;
+    private Pane frame;
+    private ProductsFrame productsFrame;
     private StoresFrame storesFrame;
     private AddProductFrame addProductFrame;
     private AddStoreFrame addStoreFrame;
 
     public static MainShopFrame createNew() {
         MainShopFrame frame = new MainShopFrame();
-        frame.frame = frame.initFrame();
+        frame.productsFrame = ProductsFrame.createNew();
         frame.storesFrame = StoresFrame.createNew();
         frame.addProductFrame = AddProductFrame.createNew();
         frame.addStoreFrame = AddStoreFrame.createNew();
+        frame.frame = frame.initFrame();
         return frame;
     }
 
+
+
     static FancyViewer viewer = new FancyViewer();
 
-    private GridPane initFrame() {
+    private Pane initFrame() {
         GridPane shopGrid = new GridPane();
-        GridPane content = ProductsTable.getFrame();
+        Pane content = productsFrame.getFrame();
 
         Label label1 = new Label("Менюшка");
         ContextMenu mainToolbar = new ContextMenu();
@@ -37,7 +42,7 @@ public class MainShopFrame {
         MenuItem products = new MenuItem("Все товары");
         products.setOnAction(event -> {
             shopGrid.getChildren().removeIf(node -> FrameType.getContentIds().contains(node.getId()));
-            shopGrid.add(ProductsTable.getFrame(), 1, 2);
+            shopGrid.add(productsFrame.getFrame(), 1, 2);
         });
 
         MenuItem orders = new MenuItem("Заказы");
@@ -74,7 +79,7 @@ public class MainShopFrame {
         this.frame = frame;
     }
 
-    public GridPane getFrame() {
+    public Pane getFrame() {
         return frame;
     }
 }

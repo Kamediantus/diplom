@@ -9,7 +9,7 @@ import ru.diplom.diplom.client.services.*;
 import ru.diplom.diplom.client.services.entity.*;
 import ru.diplom.diplom.client.viewUtils.*;
 
-public class ProductsTable {
+public class ProductsFrame {
     static FancyViewer viewer = new FancyViewer();
     private final static int MAX_COL = 6;
     private final static int COL_NAME = 0;
@@ -19,14 +19,39 @@ public class ProductsTable {
     private final static int COL_STORE_DISCOUNT = 4;
     private final static int COL_RESERVE = 5;
 
-    public static GridPane getFrame() {
-        GridPane productsGrid = new GridPane();
+    private List<Product> products;
+    private Pane frame;
+
+    public static ProductsFrame createNew() {
+        ProductsFrame frame = new ProductsFrame();
+        frame.products = ProductService.getAllProductsWithFullInfoAndActualPrices();
+        frame.frame = frame.initFrame();
+        return frame;
+    }
+
+    public void refreshEntities() {
+        this.products = ProductService.getAllProductsWithFullInfoAndActualPrices();
+    }
+
+    public Pane getFrame() {
+        refreshEntities();
+        return frame;
+    }
+
+    public void setFrame(GridPane frame) {
+        this.frame = frame;
+    }
+
+    public Pane initFrame() {
         GridPane productsList = new GridPane();
+        ScrollPane scrollPane = new ScrollPane(productsList);
+        scrollPane.setPrefViewportHeight(600);
+        scrollPane.setPrefViewportWidth(800);
+        FlowPane result = new FlowPane(scrollPane);
+        result.setId(FrameType.PRODUCTS);
 
         setColumnsWidth(productsList);
 
-        productsGrid.setId(FrameType.PRODUCTS);
-        List<Product> products = ProductService.getAllProductsWithFullInfoAndActualPrices();
         productsList.setGridLinesVisible(true);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Наименование"), 10), 0, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Описание товара"), 10), 1, 0);
@@ -48,8 +73,7 @@ public class ProductsTable {
             });
             productsList.add(viewer.addPaddingsAndReturn(buyButton, 10), 5, rowIndex);
         }
-        productsGrid.add(productsList, 0, 0);
-        return productsGrid;
+        return result;
     }
 
     private static void setColumnsWidth(GridPane gridPane) {

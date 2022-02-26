@@ -16,11 +16,16 @@ public class StoresFrame extends EditFrame {
 
     static FancyViewer viewer = new FancyViewer();
     private GridPane frame;
+    private List<Store> stores;
 
     public static StoresFrame createNew() {
         StoresFrame frame = new StoresFrame();
         frame.frame = frame.initFrame();
         return frame;
+    }
+
+    public void refreshEntities() {
+        this.stores = StoreService.getAllStores();
     }
 
     private GridPane initFrame() {
@@ -30,7 +35,8 @@ public class StoresFrame extends EditFrame {
 
         setColumnsWidth(productsList);
 
-        List<Store> stores = StoreService.getAllStores();
+        refreshEntities();
+
         productsList.setGridLinesVisible(true);
         productsList.add(viewer.addPaddingsAndReturn(new Label("id"), 10), COL_ID, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Название"), 10), COL_TITLE, 0);
@@ -40,7 +46,7 @@ public class StoresFrame extends EditFrame {
             productsList.add(viewer.addPaddingsAndReturn(new Label(Long.toString(stores.get(productIndex).getId())), 10), COL_ID, rowIndex);
             productsList.add(viewer.addPaddingsAndReturn(new Label(stores.get(productIndex).getTitle()), 10), COL_TITLE, rowIndex);
             productsList.add(viewer.addPaddingsAndReturn(new Label(Double.toString(stores.get(productIndex).getDiscount())), 10), COL_DISCOUNT, rowIndex);
-           Button buyButton = new Button("Зарезервировать");
+           Button buyButton = new Button("");
             buyButton.setId("buy_" + productIndex);
             buyButton.setOnAction(e -> {
 
@@ -58,6 +64,7 @@ public class StoresFrame extends EditFrame {
     }
 
     public GridPane getFrame() {
+        refreshEntities();
         return frame;
     }
 
