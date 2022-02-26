@@ -1,5 +1,7 @@
 package ru.diplom.diplom.client.components;
 
+import java.util.*;
+
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -75,7 +77,7 @@ public class WelcomeFrame {
         HBox nameInput = getEmailInput(nameTextField, "Name: ");
 
         TextField surnameTextField = new TextField();
-        HBox surnameInput = getEmailInput(surnameTextField, "Name: ");
+        HBox surnameInput = getEmailInput(surnameTextField, "Surname: ");
 
         PasswordField passwordTextField = new PasswordField();
         HBox passwordInput = getPasswordInput(passwordTextField, "Password: ");
@@ -92,17 +94,15 @@ public class WelcomeFrame {
 
         Button singUp = new Button("Sing up");
         singUp.setOnAction(e -> {
-            if (LoginService.login(emailTextField.getText(), passwordTextField.getText())) {
-//            if (true) {
-                Stage oldStage = (Stage) singIn.getScene().getWindow();
-                oldStage.close();
-                Parent root1 = MainShopFrame.getFrame();
-                Stage stage = new Stage();
-                stage.setTitle("ABC");
-                stage.setWidth(800);
-                stage.setHeight(600);
-                stage.setScene(new Scene(root1));
-                stage.show();
+            if (!Objects.equals(passwordTextField.getText(), passwordConfirmTextField.getText())) {
+                // password mismatch
+            } else {
+                if (LoginService.sungUp(emailTextField.getText(), passwordTextField.getText(),
+                        nameTextField.getText(), surnameTextField.getText())) {
+                    GridPane parent = (GridPane) singUpGrid.getParent();
+                    ((GridPane) singUpGrid.getParent()).getChildren().removeIf(child -> child.getId().equalsIgnoreCase(FrameType.SING_UP));
+                    parent.add(getSingInFrame(), 0 , 0);
+                }
             }
         });
 
