@@ -3,6 +3,7 @@ package ru.diplom.diplom.client.services.entity;
 public class Product {
     private Long id;
     private Long storeId;
+    private int selfLife;
     private String title;
     private String description;
     private double price;
@@ -70,6 +71,14 @@ public class Product {
         this.price = price;
     }
 
+    public int getSelfLife() {
+        return selfLife;
+    }
+
+    public void setSelfLife(int selfLife) {
+        this.selfLife = selfLife;
+    }
+
     public Long getStoreId() {
         return storeId;
     }
@@ -78,11 +87,12 @@ public class Product {
         this.storeId = storeId;
     }
 
-    public Product(String title, String description, Double price, Long storeId) {
+    public Product(String title, String description, Double price, Long storeId, int selfLife) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.storeId = storeId;
+        this.selfLife = selfLife;
     }
 
     public Product() {

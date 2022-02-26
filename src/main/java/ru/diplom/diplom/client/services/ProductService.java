@@ -40,4 +40,35 @@ public class ProductService {
         return result;
     }
 
+    public static Map<Boolean, String> addProduct(String title, String description, String price, String selfLife, String storeName, List<Store> stores) {
+        Map<Boolean, String> result = new HashMap<>();
+        try {
+            Product product = new Product();
+            product.setTitle(title);
+            product.setDescription(description);
+            product.setPrice(Double.parseDouble(price));
+            product.setSelfLife(Integer.parseInt(selfLife));
+            Store store = stores.stream().filter(item -> Objects.equals(item.getTitle(), storeName)).findFirst().get();
+            product.setStoreId(store.getId());
+            JSONArray products = new JSONArray(SimpRequest.post(Urls.commonServerUrl + Urls.addProduct,
+                    getParamsForAddProduct(product.getTitle(), product.getDescription(), product.getPrice(), product.getSelfLife(), product.getStoreId())).body());
+
+        } catch (Exception e) {
+            result.put(false, e.getMessage());
+            return result;
+        }
+        result.put(true, "");
+        return result;
+    }
+
+    public static JSONObject getParamsForAddProduct(String title, String description, double price, int selfLife, Long storeId) {
+        JSONObject creds = new JSONObject();
+        creds.put("title", title);
+        creds.put("description", description);
+        creds.put("price", price);
+        creds.put("selfLife", selfLife);
+        creds.put("storeId", storeId);
+        return creds;
+    }
+
 }

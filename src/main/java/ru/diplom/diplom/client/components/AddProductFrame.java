@@ -1,6 +1,7 @@
 package ru.diplom.diplom.client.components;
 
 import java.util.*;
+import java.util.stream.*;
 
 import javafx.collections.*;
 import javafx.scene.control.*;
@@ -11,12 +12,24 @@ import ru.diplom.diplom.client.services.entity.*;
 
 public class AddProductFrame extends EditFrame{
     private GridPane frame;
-    private List<Store> stores;
+    private List<Store> storesList;
+
+    private TextField titleInput;
+    private HBox emailBox;
+    private TextField descriptionInput;
+    private HBox nameBox;
+    private ComboBox storesInput;
+    private HBox storesBox;
+    private TextField priceInput;
+    private HBox priceBox;
+    private TextField selfLifeInput;
+    private HBox selfLifeBox;
+
 
     public static AddProductFrame createNew() {
         AddProductFrame frame = new AddProductFrame();
+        frame.storesList = StoreService.getAllStores();
         frame.frame = frame.initFrame();
-        frame.stores = StoreService.getAllStores();
         return frame;
     }
 
@@ -25,43 +38,45 @@ public class AddProductFrame extends EditFrame{
         addProductFrame.setId(FrameType.ADD_PRODUCT);
         addProductFrame.add(new Label("Добавление нового товара"), 0, 0);
 
-        TextField title = new TextField();
-        HBox emailInput = getStringInput(title, "Название: ");
+        titleInput = new TextField();
+        emailBox = getStringInput(titleInput, "Название: ");
 
-        TextField description = new TextField();
-        HBox nameInput = getStringInput(description, "Описание: ");
+        descriptionInput = new TextField();
+        nameBox = getStringInput(descriptionInput, "Описание: ");
 
-        ObservableList<String> stores = FXCollections.observableArrayList();
-
-        final ComboBox comboBox = new ComboBox();
-        TextField surnameTextField = new TextField();
-        HBox surnameInput = getDropDownSelector(comboBox, "Surname: ");
-
-        PasswordField passwordTextField = new PasswordField();
-        HBox passwordInput = getPasswordInput(passwordTextField, "Password: ");
-
-        PasswordField passwordConfirmTextField = new PasswordField();
-        HBox passwordConfirmInput = getPasswordInput(passwordConfirmTextField, "Confirm password: ");
-
-        Button singIn = new Button("Sing in");
-        singIn.setOnAction(e -> {
-            //
+        ObservableList<Store> stores = FXCollections.observableArrayList();
+        getStores().forEach(store -> {
+            stores.add(store);
         });
 
-        Button singUp = new Button("Sing up");
-        singUp.setOnAction(e -> {
-            //
+        storesInput = new ComboBox(FXCollections.observableArrayList(stores.stream().map(store -> store.getTitle()).collect(Collectors.toList())));
+        storesBox = getDropDownSelector(storesInput, "Магазин: ");
+
+        priceInput = new TextField();
+        priceBox = getStringInput(priceInput, "Цена: ");
+
+        selfLifeInput = new TextField();
+        selfLifeBox = getNumericInput(selfLifeInput, "Срок годности в часах: ");
+
+        Button addProduct = new Button("Добавить товар");
+        addProduct.setOnAction(e -> {
+            Map<Boolean, String> response =  ProductService.addProduct(titleInput.getText(), descriptionInput.getText(), priceInput.getText(),
+                    selfLifeInput.getText(), storesInput.getSelectionModel().getSelectedItem().toString(), storesList);
+            if (response.keySet().stream().findFirst().get()) {
+                //success
+            } else {
+                System.out.println(response.get(false));
+            }
         });
 
         HBox buttons = new HBox(25);
-        viewer.addPaddings(singIn, singUp);
-        buttons.getChildren().addAll(singIn, singUp);
+        buttons.getChildren().addAll(viewer.addPaddingsAndReturn(addProduct, 10));
 
-        addProductFrame.add(emailInput, 0, 1, 2, 1);
-        addProductFrame.add(nameInput, 0, 2, 2, 1);
-        addProductFrame.add(surnameInput, 0, 3, 2, 1);
-        addProductFrame.add(passwordInput, 0, 4, 2, 1);
-        addProductFrame.add(passwordConfirmInput, 0, 5, 2, 1);
+        addProductFrame.add(emailBox, 0, 1, 2, 1);
+        addProductFrame.add(nameBox, 0, 2, 2, 1);
+        addProductFrame.add(storesBox, 0, 3, 2, 1);
+        addProductFrame.add(priceBox, 0, 4, 2, 1);
+        addProductFrame.add(selfLifeBox, 0, 5, 2, 1);
         addProductFrame.add(buttons, 0, 6);
         viewer.addPaddings(addProductFrame, 100);
 
@@ -77,10 +92,10 @@ public class AddProductFrame extends EditFrame{
     }
 
     public List<Store> getStores() {
-        return stores;
+        return storesList;
     }
 
     public void setStores(List<Store> stores) {
-        this.stores = stores;
+        this.storesList = stores;
     }
 }

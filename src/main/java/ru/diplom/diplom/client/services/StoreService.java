@@ -14,13 +14,13 @@ public class StoreService {
     }
 
     public static List<Store> getAllStores() {
-        JSONArray stores = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.allProducts).body());
+        JSONArray stores = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.allStoresUrl).body());
         List<Store> result = new ArrayList<>();
         stores.forEach(storeItem -> {
             Store store = new Store();
             store.setId(((Integer) ((((JSONObject)storeItem)).get("id"))).longValue());
             store.setTitle((((((JSONObject)storeItem)).get("title"))).toString());
-            store.setDiscount(Double.valueOf(((((JSONObject)storeItem)).get("price").toString())));
+            store.setDiscount(Double.valueOf(((((JSONObject)storeItem)).get("discount").toString())));
             result.add(store);
         });
         return result;

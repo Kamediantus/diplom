@@ -1,5 +1,6 @@
 package ru.diplom.diplom.client.components;
 
+import javafx.beans.value.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import ru.diplom.diplom.client.viewUtils.*;
@@ -19,6 +20,23 @@ public class EditFrame {
         viewer.addPaddings(passwordLabel, 10);
         HBox result = new HBox();
         result.getChildren().addAll(passwordLabel, passTextField);
+        return result;
+    }
+
+    public static HBox getNumericInput(TextField textField, String label) {
+        textField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    textField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        Label passwordLabel = new Label(label);
+        viewer.addPaddings(passwordLabel, 10);
+        HBox result = new HBox();
+        result.getChildren().addAll(passwordLabel, textField);
         return result;
     }
 
