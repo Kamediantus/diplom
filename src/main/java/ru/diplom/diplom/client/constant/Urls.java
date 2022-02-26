@@ -6,4 +6,5 @@ public class Urls {
     public static final String storeUrl = "/store";
     public static final String allStoresUrl = "/stores";
     public static final String addProduct = "/addProduct";
+    public static final String addStore = "/addStore";
 }

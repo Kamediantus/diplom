@@ -1,5 +1,6 @@
 package ru.diplom.diplom.client.services;
 
+import java.net.http.*;
 import java.util.*;
 
 import org.json.*;
@@ -50,15 +51,19 @@ public class ProductService {
             product.setSelfLife(Integer.parseInt(selfLife));
             Store store = stores.stream().filter(item -> Objects.equals(item.getTitle(), storeName)).findFirst().get();
             product.setStoreId(store.getId());
-            JSONArray products = new JSONArray(SimpRequest.post(Urls.commonServerUrl + Urls.addProduct,
-                    getParamsForAddProduct(product.getTitle(), product.getDescription(), product.getPrice(), product.getSelfLife(), product.getStoreId())).body());
-
+            HttpResponse<String> response = SimpRequest.post(Urls.commonServerUrl + Urls.addProduct,
+                    getParamsForAddProduct(product.getTitle(), product.getDescription(), product.getPrice(), product.getSelfLife(), product.getStoreId()));
+            if (response.statusCode() == 200) {
+                result.put(true, "");
+                return result;
+            }
+            else {
+                throw new Exception(response.body());
+            }
         } catch (Exception e) {
             result.put(false, e.getMessage());
             return result;
         }
-        result.put(true, "");
-        return result;
     }
 
     public static JSONObject getParamsForAddProduct(String title, String description, double price, int selfLife, Long storeId) {
