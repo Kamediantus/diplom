@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import ru.diplom.diplom.client.constant.*;
+import ru.diplom.diplom.client.services.*;
 import ru.diplom.diplom.client.viewUtils.*;
 
 public class WelcomeFrame {
@@ -29,8 +30,8 @@ public class WelcomeFrame {
 
         Button singIn = new Button("Sing in");
         singIn.setOnAction(e -> {
-//            if (LoginService.login(emailTextField.getText(), passwordTextField.getText())) {
-            if (true) {
+            if (LoginService.login(emailTextField.getText(), passwordTextField.getText())) {
+//            if (true) {
                 Stage oldStage = (Stage) singIn.getScene().getWindow();
                 oldStage.close();
                 Parent root1 = MainShopFrame.getFrame();
@@ -91,8 +92,8 @@ public class WelcomeFrame {
 
         Button singUp = new Button("Sing up");
         singUp.setOnAction(e -> {
-//            if (LoginService.login(emailTextField.getText(), passwordTextField.getText())) {
-            if (true) {
+            if (LoginService.login(emailTextField.getText(), passwordTextField.getText())) {
+//            if (true) {
                 Stage oldStage = (Stage) singIn.getScene().getWindow();
                 oldStage.close();
                 Parent root1 = MainShopFrame.getFrame();

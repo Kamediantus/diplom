@@ -38,6 +38,9 @@ public class SimpRequest {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI(url))
                     .POST(HttpRequest.BodyPublishers.ofString(params.toString()))
+//                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .header("Accept", "application/json")
+                    .header("Content-Type", "application/json")
                     .build();
 
             response = HttpClient.newBuilder()
