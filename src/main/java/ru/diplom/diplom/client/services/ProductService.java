@@ -40,16 +40,23 @@ public class ProductService {
     }
 
     public static List<Product> getAllProductsWithFullInfoAndActualPrices() {
-        JSONArray products = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.allProducts).body());
         List<Product> result = new ArrayList<>();
-        products.forEach(pr -> {
+        JSONArray jsonProducts = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.allProducts).body());
+        List<Store> stores = StoreService.getAllStores();
+        List<ProductLot> productLots = ProductLotService.getAllProductLots();
+        jsonProducts.forEach(pr -> {
             Product product = new Product();
-            product.setId(((Integer) ((((JSONObject)pr)).get("id"))).longValue());
-            product.setPrice(Double.valueOf(((((JSONObject)pr)).get("price").toString())));
-            product.setTitle((((JSONObject)pr)).get("title").toString());
-            product.setStoreId(((Integer) ((((JSONObject)pr)).get("storeId"))).longValue());
+            product.setId(((JSONObject)pr).getLong("id"));
+            product.setPrice((((JSONObject)pr)).getDouble("price"));
+            product.setTitle(((JSONObject)pr).get("title").toString());
+            product.setStoreId(((JSONObject)pr).getLong("storeId"));
             product.setDescription((((JSONObject)pr)).get("description").toString());
-            Store store = StoreService.getStoreById(product.getStoreId());
+            product.setShelLife((((JSONObject)pr)).getInt("shelLife"));
+//            product.setProduceDate(((JSONObject) pr).getLong(da));
+            product.setDescription((((JSONObject)pr)).get("description").toString());
+            Store store = stores.stream().filter(s -> s.getId() == product.getStoreId()).findFirst().get();
+            ProductLot productLot = productLots.stream().filter(lot -> lot.getProductId() == product.getId()).findFirst().orElse(null);
+            product.setProductLot(productLot);
             product.setStore(store);
             result.add(product);
         });
@@ -63,11 +70,11 @@ public class ProductService {
             product.setTitle(title);
             product.setDescription(description);
             product.setPrice(Double.parseDouble(price));
-            product.setSelfLife(Integer.parseInt(selfLife));
+            product.setShelLife(Integer.parseInt(selfLife));
             Store store = stores.stream().filter(item -> Objects.equals(item.getTitle(), storeName)).findFirst().get();
             product.setStoreId(store.getId());
             HttpResponse<String> response = SimpRequest.post(Urls.commonServerUrl + Urls.addProduct,
-                    getParamsForAddProduct(product.getTitle(), product.getDescription(), product.getPrice(), product.getSelfLife(), product.getStoreId()));
+                    getParamsForAddProduct(product.getTitle(), product.getDescription(), product.getPrice(), product.getShelLife(), product.getStoreId()));
             if (response.statusCode() == 200) {
                 result.put(true, "");
                 return result;

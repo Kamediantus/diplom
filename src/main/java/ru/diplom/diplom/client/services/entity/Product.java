@@ -1,15 +1,20 @@
 package ru.diplom.diplom.client.services.entity;
 
+import java.util.*;
+
 public class Product {
     private Long id;
     private Long storeId;
-    private int selfLife;
+    private int shelLife;
+    private int countInStore;
+    private Date produceDate;
     private String title;
     private String description;
     private double price;
     private String storeName;
     private Double storeDiscount;
     private Store store;
+    private ProductLot productLot;
 
     public Store getStore() {
         return store;
@@ -71,12 +76,12 @@ public class Product {
         this.price = price;
     }
 
-    public int getSelfLife() {
-        return selfLife;
+    public int getShelLife() {
+        return shelLife;
     }
 
-    public void setSelfLife(int selfLife) {
-        this.selfLife = selfLife;
+    public void setShelLife(int shelLife) {
+        this.shelLife = shelLife;
     }
 
     public Long getStoreId() {
@@ -92,7 +97,31 @@ public class Product {
         this.description = description;
         this.price = price;
         this.storeId = storeId;
-        this.selfLife = selfLife;
+        this.shelLife = selfLife;
+    }
+
+    public int getCountInStore() {
+        return countInStore;
+    }
+
+    public void setCountInStore(int countInStore) {
+        this.countInStore = countInStore;
+    }
+
+    public Date getProduceDate() {
+        return produceDate;
+    }
+
+    public void setProduceDate(Date produceDate) {
+        this.produceDate = produceDate;
+    }
+
+    public ProductLot getProductLot() {
+        return productLot;
+    }
+
+    public void setProductLot(ProductLot productLot) {
+        this.productLot = productLot;
     }
 
     public Product() {

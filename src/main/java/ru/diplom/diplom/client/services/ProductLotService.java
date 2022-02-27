@@ -1,6 +1,7 @@
 package ru.diplom.diplom.client.services;
 
 import java.net.http.*;
+import java.text.*;
 import java.time.*;
 import java.util.*;
 
@@ -9,6 +10,18 @@ import ru.diplom.diplom.client.constant.*;
 import ru.diplom.diplom.client.services.entity.*;
 
 public class ProductLotService {
+
+    public static List<ProductLot> getAllProductLots() {
+        JSONArray productLots = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.allProductLots).body());
+        List<ProductLot> result = new ArrayList<>();
+        productLots.forEach(pr -> {
+            Date date = getDateFromMYSQL(((JSONObject)pr).getString("dateOfProduction"));
+            ProductLot product = new ProductLot(((JSONObject)pr).getLong("id"), ((JSONObject)pr).getLong("productId"),
+                    ((JSONObject)pr).getLong("storeId"), date, ((JSONObject)pr).getInt("shelLife"), ((JSONObject)pr).getInt("count"));
+            result.add(product);
+        });
+        return result;
+    }
 
     public static Map<Boolean, String> addProduct(Long storeId, Long productId, int count, LocalDate produceDate) {
         Map<Boolean, String> result = new HashMap<>();
@@ -36,5 +49,17 @@ public class ProductLotService {
         creds.put("count", count);
         creds.put("produceDate", produceDate);
         return creds;
+    }
+
+    private static Date getDateFromMYSQL(String rawDate) {
+        String onlyDate = rawDate.substring(0, rawDate.indexOf("T"));
+        Date result = null;
+        try {
+            result = new SimpleDateFormat("yyyy-MM-dd").parse(onlyDate);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
