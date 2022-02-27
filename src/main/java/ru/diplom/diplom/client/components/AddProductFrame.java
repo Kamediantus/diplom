@@ -28,7 +28,7 @@ public class AddProductFrame extends EditFrame{
 
     public static AddProductFrame createNew() {
         AddProductFrame frame = new AddProductFrame();
-        frame.storesList = StoreService.getAllStores();
+        frame.refreshEntities();
         frame.frame = frame.initFrame();
         return frame;
     }
@@ -84,6 +84,7 @@ public class AddProductFrame extends EditFrame{
     }
 
     public GridPane getFrame() {
+        this.refreshEntities();
         return frame;
     }
 
@@ -97,5 +98,9 @@ public class AddProductFrame extends EditFrame{
 
     public void setStores(List<Store> stores) {
         this.storesList = stores;
+    }
+
+    public void refreshEntities() {
+        this.storesList = StoreService.getAllStores();
     }
 }

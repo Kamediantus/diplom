@@ -64,7 +64,7 @@ public class StoresFrame extends EditFrame {
     }
 
     public GridPane getFrame() {
-        refreshEntities();
+        this.frame = initFrame();
         return frame;
     }
 
