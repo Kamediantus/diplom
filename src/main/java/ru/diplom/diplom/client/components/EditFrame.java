@@ -40,6 +40,21 @@ public class EditFrame {
         return result;
     }
 
+    public static HBox getNumericInput(TextField textField) {
+        textField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    textField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        HBox result = new HBox();
+        result.getChildren().addAll(textField);
+        return result;
+    }
+
     public static HBox getDropDownSelector(ComboBox comboBox, String stringLabel) {
         Label label = new Label(stringLabel);
         viewer.addPaddings(label, 10);

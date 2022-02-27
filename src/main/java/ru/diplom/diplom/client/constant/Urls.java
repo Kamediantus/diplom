@@ -10,4 +10,5 @@ public class Urls {
     public static final String addProduct = "/addProduct";
     public static final String addStore = "/addStore";
     public static final String addProductLot = "/addProductLot";
+    public static final String addOrder = "/addOrder";
 }

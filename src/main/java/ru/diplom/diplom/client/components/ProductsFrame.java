@@ -9,7 +9,7 @@ import ru.diplom.diplom.client.services.*;
 import ru.diplom.diplom.client.services.entity.*;
 import ru.diplom.diplom.client.viewUtils.*;
 
-public class ProductsFrame {
+public class ProductsFrame extends EditFrame{
     static FancyViewer viewer = new FancyViewer();
     private final static int MAX_COL = 6;
     private final static int COL_NAME = 0;
@@ -20,7 +20,8 @@ public class ProductsFrame {
     private final static int COL_PRODUCE_DATE = 5;
     private final static int COL_SHELF_LIFE = 6;
     private final static int COL_COUNT = 7;
-    private final static int COL_RESERVE = 8;
+    private final static int COL_RESERVE_COUNT = 8;
+    private final static int COL_RESERVE = 9;
 
     private List<Product> products;
     private Pane frame;
@@ -51,9 +52,16 @@ public class ProductsFrame {
         productsList.add(viewer.addPaddingsAndReturn(new Label("Дата \nпроизводства"), 10), COL_PRODUCE_DATE, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Срок годности"), 10), COL_SHELF_LIFE, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Количество \nна складе"), 10), COL_COUNT, 0);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Кол-во \nдля резерва"), 10), COL_RESERVE_COUNT, 0);
 
         for (int productIndex = 0, rowIndex = 1; productIndex < products.size(); productIndex++, rowIndex++) {
+            TextField countInput = new TextField();
+            HBox countBox = getNumericInput(countInput);
             Product product = products.get(productIndex);
+
+            Button buyButton = new Button("Заказать");
+            buyButton.setId(product.getId().toString());
+
             productsList.add(viewer.addPaddingsAndReturn(new Label(product.getTitle()), 10), COL_NAME, rowIndex);
             productsList.add(viewer.addPaddingsAndReturn(new Label(product.getDescription()), 10), COL_DESCRIPTION, rowIndex);
             productsList.add(viewer.addPaddingsAndReturn(new Label(product.getStringPrice()), 10), COL_PRICE, rowIndex);
@@ -63,14 +71,15 @@ public class ProductsFrame {
             if (product.getProductLot() != null) {
                 productsList.add(viewer.addPaddingsAndReturn(new Label((product.getProductLot().getDateOfProduction()).toString()), 10), COL_PRODUCE_DATE, rowIndex);
                 productsList.add(viewer.addPaddingsAndReturn(new Label(Integer.toString(product.getProductLot().getCount())), 10), COL_COUNT, rowIndex);
+                productsList.add((countBox), COL_RESERVE_COUNT, rowIndex);
             } else {
                 productsList.add(viewer.addPaddingsAndReturn(new Label("-"), 10), COL_PRODUCE_DATE, rowIndex);
                 productsList.add(viewer.addPaddingsAndReturn(new Label("0"), 10), COL_COUNT, rowIndex);
+                buyButton.setDisable(true);
             }
-            Button buyButton = new Button("Зарезервировать");
-            buyButton.setId("buy_" + productIndex);
-            buyButton.setOnAction(e -> {
 
+            buyButton.setOnAction(e -> {
+                OrderService.addOrder(product.getId(), product.getStoreId(), countInput.getText());
             });
             productsList.add(viewer.addPaddingsAndReturn(buyButton, 10), COL_RESERVE, rowIndex);
         }
@@ -85,8 +94,9 @@ public class ProductsFrame {
         gridPane.getColumnConstraints().add(COL_STORE_DISCOUNT, new ColumnConstraints(80));
         gridPane.getColumnConstraints().add(COL_PRODUCE_DATE, new ColumnConstraints(120));
         gridPane.getColumnConstraints().add(COL_SHELF_LIFE, new ColumnConstraints(120));
-        gridPane.getColumnConstraints().add(COL_COUNT, new ColumnConstraints(120));
-        gridPane.getColumnConstraints().add(COL_RESERVE, new ColumnConstraints(120));
+        gridPane.getColumnConstraints().add(COL_COUNT, new ColumnConstraints(80));
+        gridPane.getColumnConstraints().add(COL_RESERVE_COUNT, new ColumnConstraints(80));
+        gridPane.getColumnConstraints().add(COL_RESERVE, new ColumnConstraints(100));
     }
 
     public void refreshEntities() {

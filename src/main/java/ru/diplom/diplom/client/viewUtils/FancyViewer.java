@@ -15,6 +15,11 @@ public class FancyViewer {
         return target;
     }
 
+    public HBox addPaddingsAndReturn(HBox target, int padding) {
+        target.setPadding(new Insets(padding, padding, padding, padding));
+        return target;
+    }
+
     public void addPaddings(Control... targets) {
         for (Control target: targets) {
             addPaddings(target, 25);

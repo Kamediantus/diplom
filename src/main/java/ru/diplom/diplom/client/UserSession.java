@@ -2,7 +2,7 @@ package ru.diplom.diplom.client;
 
 public final class UserSession {
 
-    private static UserSession instance;
+    public static UserSession instance;
 
     private String userName;
     private String role;
