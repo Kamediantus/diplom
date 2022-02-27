@@ -47,4 +47,16 @@ public class EditFrame {
         result.getChildren().addAll(label, comboBox);
         return result;
     }
+
+    public static HBox getDatePicker(DatePicker datePicker, String stringLabel) {
+        Label label = new Label(stringLabel);
+        viewer.addPaddings(label, 10);
+        HBox result = new HBox();
+        result.getChildren().addAll(label, datePicker);
+        return result;
+    }
+
+    public static Long getIdFromSelector(ComboBox input) {
+        return Long.valueOf(input.getSelectionModel().getSelectedItem().toString().substring(0,input.getSelectionModel().getSelectedItem().toString().indexOf(".")));
+    }
 }

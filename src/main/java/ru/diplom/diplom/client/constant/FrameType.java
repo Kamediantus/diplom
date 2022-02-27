@@ -12,6 +12,7 @@ public class FrameType {
     public static final String STORES = "STORES";
     public static final String ADD_PRODUCT = "ADD_PRODUCT";
     public static final String ADD_STORE = "ADD_STORE";
+    public static final String ADD_PRODUCT_LOT = "ADD_PRODUCT_LOT";
 
     public static List<String> getContentIds() {
         List<String> result = new ArrayList<>();
@@ -20,6 +21,7 @@ public class FrameType {
         result.add(STORES);
         result.add(ADD_PRODUCT);
         result.add(ADD_STORE);
+        result.add(ADD_PRODUCT_LOT);
         return result;
     }
 }

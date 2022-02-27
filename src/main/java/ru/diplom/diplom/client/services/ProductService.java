@@ -24,6 +24,21 @@ public class ProductService {
         return result;
     }
 
+    public static List<Product> getProductsByStoreId(Long storeId) {
+        JSONArray products = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.productsByStore + storeId).body());
+        List<Product> result = new ArrayList<>();
+        products.forEach(pr -> {
+            Product product = new Product();
+            product.setId(((Integer) ((((JSONObject)pr)).get("id"))).longValue());
+            product.setPrice(Double.valueOf(((((JSONObject)pr)).get("price").toString())));
+            product.setTitle((((JSONObject)pr)).get("title").toString());
+            product.setStoreId(((Integer) ((((JSONObject)pr)).get("storeId"))).longValue());
+            product.setDescription((((JSONObject)pr)).get("description").toString());
+            result.add(product);
+        });
+        return result;
+    }
+
     public static List<Product> getAllProductsWithFullInfoAndActualPrices() {
         JSONArray products = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.allProducts).body());
         List<Product> result = new ArrayList<>();
@@ -75,5 +90,4 @@ public class ProductService {
         creds.put("storeId", storeId);
         return creds;
     }
-
 }

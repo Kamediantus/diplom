@@ -29,19 +29,6 @@ public class ProductsFrame {
         return frame;
     }
 
-    public void refreshEntities() {
-        this.products = ProductService.getAllProductsWithFullInfoAndActualPrices();
-    }
-
-    public Pane getFrame() {
-        refreshEntities();
-        return frame;
-    }
-
-    public void setFrame(GridPane frame) {
-        this.frame = frame;
-    }
-
     public Pane initFrame() {
         GridPane productsList = new GridPane();
         ScrollPane scrollPane = new ScrollPane(productsList);
@@ -83,5 +70,18 @@ public class ProductsFrame {
         gridPane.getColumnConstraints().add(COL_STORE, new ColumnConstraints(100));
         gridPane.getColumnConstraints().add(COL_STORE_DISCOUNT, new ColumnConstraints(80));
         gridPane.getColumnConstraints().add(COL_RESERVE, new ColumnConstraints(120));
+    }
+
+    public void refreshEntities() {
+        this.products = ProductService.getAllProductsWithFullInfoAndActualPrices();
+    }
+
+    public Pane getFrame() {
+        refreshEntities();
+        return initFrame();
+    }
+
+    public void setFrame(GridPane frame) {
+        this.frame = frame;
     }
 }

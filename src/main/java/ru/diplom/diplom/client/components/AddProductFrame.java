@@ -85,7 +85,7 @@ public class AddProductFrame extends EditFrame{
 
     public GridPane getFrame() {
         this.refreshEntities();
-        return frame;
+        return initFrame();
     }
 
     public void setFrame(GridPane frame) {

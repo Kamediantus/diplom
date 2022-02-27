@@ -12,6 +12,7 @@ public class MainShopFrame {
     private StoresFrame storesFrame;
     private AddProductFrame addProductFrame;
     private AddStoreFrame addStoreFrame;
+    private AddProductLotFrame addProductLotFrame;
 
     public static MainShopFrame createNew() {
         MainShopFrame frame = new MainShopFrame();
@@ -19,6 +20,7 @@ public class MainShopFrame {
         frame.storesFrame = StoresFrame.createNew();
         frame.addProductFrame = AddProductFrame.createNew();
         frame.addStoreFrame = AddStoreFrame.createNew();
+        frame.addProductLotFrame = AddProductLotFrame.createNew();
         frame.frame = frame.initFrame();
         return frame;
     }
@@ -63,7 +65,13 @@ public class MainShopFrame {
             shopGrid.add(addStoreFrame.getFrame(), 1, 2);
         });
 
-        mainToolbar.getItems().addAll(shops, products, orders, newProduct, newStore);
+        MenuItem newProductLot = new MenuItem("Добавить новую партию товара");
+        newProductLot.setOnAction(event -> {
+            shopGrid.getChildren().removeIf(node -> FrameType.getContentIds().contains(node.getId()));
+            shopGrid.add(addProductLotFrame.getFrame(), 1, 2);
+        });
+
+        mainToolbar.getItems().addAll(shops, products, orders, newProduct, newStore, newProductLot);
 
         TilePane tilePane = new TilePane(label1);
         viewer.addPaddings(tilePane, 10);
