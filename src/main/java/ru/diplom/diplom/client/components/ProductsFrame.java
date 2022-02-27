@@ -48,9 +48,9 @@ public class ProductsFrame {
         productsList.add(viewer.addPaddingsAndReturn(new Label("Цена"), 10), COL_PRICE, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Магазин"), 10), COL_STORE, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Скидка \nпоставщика"), 10), COL_STORE_DISCOUNT, 0);
-        productsList.add(viewer.addPaddingsAndReturn(new Label("Дата производства"), 10), COL_PRODUCE_DATE, 0);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Дата \nпроизводства"), 10), COL_PRODUCE_DATE, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Срок годности"), 10), COL_SHELF_LIFE, 0);
-        productsList.add(viewer.addPaddingsAndReturn(new Label("Количество на складе"), 10), COL_COUNT, 0);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Количество \nна складе"), 10), COL_COUNT, 0);
 
         for (int productIndex = 0, rowIndex = 1; productIndex < products.size(); productIndex++, rowIndex++) {
             Product product = products.get(productIndex);
