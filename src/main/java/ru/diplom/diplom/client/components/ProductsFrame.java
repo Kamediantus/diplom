@@ -45,7 +45,7 @@ public class ProductsFrame {
         productsList.setGridLinesVisible(true);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Наименование"), 10), COL_NAME, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Описание товара"), 10), COL_DESCRIPTION, 0);
-        productsList.add(viewer.addPaddingsAndReturn(new Label("Цена"), 10), 2, COL_PRICE);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Цена"), 10), COL_PRICE, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Магазин"), 10), COL_STORE, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Скидка \nпоставщика"), 10), COL_STORE_DISCOUNT, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Дата производства"), 10), COL_PRODUCE_DATE, 0);
@@ -62,7 +62,10 @@ public class ProductsFrame {
             productsList.add(viewer.addPaddingsAndReturn(new Label(Integer.toString(product.getShelLife())), 10), COL_SHELF_LIFE, rowIndex);
             if (product.getProductLot() != null) {
                 productsList.add(viewer.addPaddingsAndReturn(new Label((product.getProductLot().getDateOfProduction()).toString()), 10), COL_PRODUCE_DATE, rowIndex);
-                productsList.add(viewer.addPaddingsAndReturn(new Label(Double.toString(product.getProductLot().getCount())), 10), COL_COUNT, rowIndex);
+                productsList.add(viewer.addPaddingsAndReturn(new Label(Integer.toString(product.getProductLot().getCount())), 10), COL_COUNT, rowIndex);
+            } else {
+                productsList.add(viewer.addPaddingsAndReturn(new Label("-"), 10), COL_PRODUCE_DATE, rowIndex);
+                productsList.add(viewer.addPaddingsAndReturn(new Label("0"), 10), COL_COUNT, rowIndex);
             }
             Button buyButton = new Button("Зарезервировать");
             buyButton.setId("buy_" + productIndex);
