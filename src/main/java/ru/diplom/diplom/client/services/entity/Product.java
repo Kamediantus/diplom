@@ -13,6 +13,7 @@ public class Product {
     private double price;
     private String storeName;
     private Double storeDiscount;
+    private Double personalDiscount;
     private Store store;
     private ProductLot productLot;
 
@@ -78,6 +79,14 @@ public class Product {
 
     public int getShelLife() {
         return shelLife;
+    }
+
+    public Double getPersonalDiscount() {
+        return personalDiscount;
+    }
+
+    public void setPersonalDiscount(Double personalDiscount) {
+        this.personalDiscount = personalDiscount;
     }
 
     public void setShelLife(int shelLife) {

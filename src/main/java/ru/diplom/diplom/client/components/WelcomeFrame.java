@@ -48,7 +48,7 @@ public class WelcomeFrame extends EditFrame {
                 Parent root1 = mainShopFrame.getFrame();
                 Stage stage = new Stage();
                 stage.setTitle("ABC");
-                stage.setWidth(1200);
+                stage.setWidth(1300);
                 stage.setHeight(700);
                 stage.setScene(new Scene(root1));
                 stage.show();

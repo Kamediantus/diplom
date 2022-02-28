@@ -34,7 +34,7 @@ public class AddProductLotFrame extends EditFrame {
     private GridPane initFrame() {
         GridPane addProductFrame = new GridPane();
         addProductFrame.setId(FrameType.ADD_PRODUCT_LOT);
-        addProductFrame.add(new Label("Добавление нового товара"), 0, 0);
+        addProductFrame.add(new Label("Добавление новоЙ партии товара"), 0, 0);
 
         ObservableList<Store> stores = FXCollections.observableArrayList();
         getStoresList().forEach(store -> {

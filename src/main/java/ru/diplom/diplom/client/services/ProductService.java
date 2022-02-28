@@ -4,6 +4,7 @@ import java.net.http.*;
 import java.util.*;
 
 import org.json.*;
+import ru.diplom.diplom.client.*;
 import ru.diplom.diplom.client.constant.*;
 import ru.diplom.diplom.client.services.entity.*;
 
@@ -41,7 +42,7 @@ public class ProductService {
 
     public static List<Product> getAllProductsWithFullInfoAndActualPrices() {
         List<Product> result = new ArrayList<>();
-        JSONArray jsonProducts = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.allProducts).body());
+        JSONArray jsonProducts = new JSONArray(SimpRequest.post(Urls.commonServerUrl + Urls.allProductsWithPersonalPrice, getSessionKey()).body());
         List<Store> stores = StoreService.getAllStores();
         List<ProductLot> productLots = ProductLotService.getAllProductLots();
         jsonProducts.forEach(pr -> {
@@ -52,7 +53,7 @@ public class ProductService {
             product.setStoreId(((JSONObject)pr).getLong("storeId"));
             product.setDescription((((JSONObject)pr)).get("description").toString());
             product.setShelLife((((JSONObject)pr)).getInt("shelLife"));
-//            product.setProduceDate(((JSONObject) pr).getLong(da));
+            product.setPersonalDiscount(((JSONObject) pr).getDouble("personalDiscount"));
             product.setDescription((((JSONObject)pr)).get("description").toString());
             Store store = stores.stream().filter(s -> s.getId() == product.getStoreId()).findFirst().get();
             ProductLot productLot = productLots.stream().filter(lot -> lot.getProductId() == product.getId()).findFirst().orElse(null);
@@ -95,6 +96,12 @@ public class ProductService {
         creds.put("price", price);
         creds.put("selfLife", selfLife);
         creds.put("storeId", storeId);
+        return creds;
+    }
+
+    public static JSONObject getSessionKey() {
+        JSONObject creds = new JSONObject();
+        creds.put("sessionKey", UserSession.instance.getSessionKey());
         return creds;
     }
 }
