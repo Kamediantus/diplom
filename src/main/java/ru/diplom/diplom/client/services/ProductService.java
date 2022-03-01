@@ -44,7 +44,7 @@ public class ProductService {
         List<Product> result = new ArrayList<>();
         JSONArray jsonProducts = new JSONArray(SimpRequest.post(Urls.commonServerUrl + Urls.allProductsWithPersonalPrice, getSessionKey()).body());
         List<Store> stores = StoreService.getAllStores();
-        List<ProductLot> productLots = ProductLotService.getAllProductLots();
+        List<ProductLot> productLots = ProductLotService.getAllActiveProductLots();
         jsonProducts.forEach(pr -> {
             Product product = new Product();
             product.setId(((JSONObject)pr).getLong("id"));
@@ -54,6 +54,7 @@ public class ProductService {
             product.setDescription((((JSONObject)pr)).get("description").toString());
             product.setShelLife((((JSONObject)pr)).getInt("shelLife"));
             product.setPersonalDiscount(((JSONObject) pr).getDouble("personalDiscount"));
+            product.setFresh(productLots.size() > 0 && productLots.stream().filter(lot -> lot.getProductId() == product.getId()).findFirst().orElse(new ProductLot(false)).isFresh());
             product.setDescription((((JSONObject)pr)).get("description").toString());
             Store store = stores.stream().filter(s -> s.getId() == product.getStoreId()).findFirst().get();
             ProductLot productLot = productLots.stream().filter(lot -> lot.getProductId() == product.getId()).findFirst().orElse(null);

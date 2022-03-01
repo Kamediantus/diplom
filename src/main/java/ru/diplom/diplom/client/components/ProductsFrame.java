@@ -2,8 +2,10 @@ package ru.diplom.diplom.client.components;
 
 import java.util.*;
 
+import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.*;
 import ru.diplom.diplom.client.constant.*;
 import ru.diplom.diplom.client.services.*;
 import ru.diplom.diplom.client.services.entity.*;
@@ -20,9 +22,10 @@ public class ProductsFrame extends EditFrame{
     private final static int COL_PERSONAL_DISCOUNT = 5;
     private final static int COL_PRODUCE_DATE = 6;
     private final static int COL_SHELF_LIFE = 7;
-    private final static int COL_COUNT = 8;
-    private final static int COL_RESERVE_COUNT = 9;
-    private final static int COL_RESERVE = 10;
+    private final static int COL_FRESH = 8;
+    private final static int COL_COUNT = 9;
+    private final static int COL_RESERVE_COUNT = 10;
+    private final static int COL_RESERVE = 11;
 
     private List<Product> products;
     private Pane frame;
@@ -53,6 +56,7 @@ public class ProductsFrame extends EditFrame{
         productsList.add(viewer.addPaddingsAndReturn(new Label("Персональная \nскидка"), 10), COL_PERSONAL_DISCOUNT, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Дата \nпроизводства"), 10), COL_PRODUCE_DATE, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Срок годности"), 10), COL_SHELF_LIFE, 0);
+        productsList.add(viewer.addPaddingsAndReturn(new Label("Свежее"), 10), COL_FRESH, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Количество \nна складе"), 10), COL_COUNT, 0);
         productsList.add(viewer.addPaddingsAndReturn(new Label("Кол-во \nдля резерва"), 10), COL_RESERVE_COUNT, 0);
 
@@ -72,10 +76,12 @@ public class ProductsFrame extends EditFrame{
             productsList.add(viewer.addPaddingsAndReturn(new Label(Double.toString(product.getPersonalDiscount())), 10), COL_PERSONAL_DISCOUNT, rowIndex);
             productsList.add(viewer.addPaddingsAndReturn(new Label(Integer.toString(product.getShelLife())), 10), COL_SHELF_LIFE, rowIndex);
             if (product.getProductLot() != null) {
-                productsList.add(viewer.addPaddingsAndReturn(new Label((product.getProductLot().getDateOfProduction()).toString()), 10), COL_PRODUCE_DATE, rowIndex);
+                productsList.add(viewer.addPaddingsAndReturn(new Label(product.getProductLot().getDateOfProduction().toString()), 10), COL_PRODUCE_DATE, rowIndex);
                 productsList.add(viewer.addPaddingsAndReturn(new Label(Integer.toString(product.getProductLot().getCount())), 10), COL_COUNT, rowIndex);
+                productsList.add(viewer.addPaddingsAndReturn(product.isFresh() ? getColor(Color.GREEN) : getColor(Color.ORANGE), 10), COL_FRESH, rowIndex);
                 productsList.add((countBox), COL_RESERVE_COUNT, rowIndex);
             } else {
+                productsList.add(viewer.addPaddingsAndReturn(getColor(Color.GRAY), 10), COL_FRESH, rowIndex);
                 productsList.add(viewer.addPaddingsAndReturn(new Label("-"), 10), COL_PRODUCE_DATE, rowIndex);
                 productsList.add(viewer.addPaddingsAndReturn(new Label("0"), 10), COL_COUNT, rowIndex);
                 buyButton.setDisable(true);
@@ -98,11 +104,29 @@ public class ProductsFrame extends EditFrame{
         gridPane.getColumnConstraints().add(COL_PERSONAL_DISCOUNT, new ColumnConstraints(80));
         gridPane.getColumnConstraints().add(COL_PRODUCE_DATE, new ColumnConstraints(120));
         gridPane.getColumnConstraints().add(COL_SHELF_LIFE, new ColumnConstraints(120));
+        gridPane.getColumnConstraints().add(COL_FRESH, new ColumnConstraints(30));
         gridPane.getColumnConstraints().add(COL_COUNT, new ColumnConstraints(80));
         gridPane.getColumnConstraints().add(COL_RESERVE_COUNT, new ColumnConstraints(80));
         gridPane.getColumnConstraints().add(COL_RESERVE, new ColumnConstraints(100));
     }
 
+    private Label getGreen() {
+        Label result = new Label();
+        result.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        return result;
+    }
+
+    private Label getColor(Color color) {
+        Label result = new Label();
+        result.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+        return result;
+    }
+
+    private Label getRed() {
+        Label result = new Label();
+        result.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+        return result;
+    }
     public void refreshEntities() {
         this.products = ProductService.getAllProductsWithFullInfoAndActualPrices();
     }

@@ -9,6 +9,7 @@ public class ProductLot {
     private Date dateOfProduction;
     private int shelLife;
     private int count;
+    private boolean fresh;
 
     public ProductLot(Long id, Long productId, Long storeId, Date dateOfProduction, int shelLife, int count) {
         this.id = id;
@@ -17,6 +18,10 @@ public class ProductLot {
         this.dateOfProduction = dateOfProduction;
         this.shelLife = shelLife;
         this.count = count;
+    }
+
+    public ProductLot(Boolean isFresh) {
+        this.fresh = isFresh;
     }
 
     public Long getId() {
@@ -65,5 +70,13 @@ public class ProductLot {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public boolean isFresh() {
+        return fresh;
+    }
+
+    public void setFresh(boolean fresh) {
+        this.fresh = fresh;
     }
 }

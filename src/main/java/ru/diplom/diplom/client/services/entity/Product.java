@@ -16,6 +16,7 @@ public class Product {
     private Double personalDiscount;
     private Store store;
     private ProductLot productLot;
+    private Boolean fresh;
 
     public Store getStore() {
         return store;
@@ -134,5 +135,13 @@ public class Product {
     }
 
     public Product() {
+    }
+
+    public Boolean isFresh() {
+        return fresh;
+    }
+
+    public void setFresh(Boolean fresh) {
+        this.fresh = fresh;
     }
 }

@@ -15,9 +15,22 @@ public class ProductLotService {
         JSONArray productLots = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.allProductLots).body());
         List<ProductLot> result = new ArrayList<>();
         productLots.forEach(pr -> {
-            Date date = getDateFromMYSQL(((JSONObject)pr).getString("dateOfProduction"));
+            Date date = getDateFromMYSQL(((JSONObject)pr).getString("dateOfProduction"), "T");
             ProductLot product = new ProductLot(((JSONObject)pr).getLong("id"), ((JSONObject)pr).getLong("productId"),
                     ((JSONObject)pr).getLong("storeId"), date, ((JSONObject)pr).getInt("shelLife"), ((JSONObject)pr).getInt("count"));
+            result.add(product);
+        });
+        return result;
+    }
+
+    public static List<ProductLot> getAllActiveProductLots() {
+        JSONArray productLots = new JSONArray(SimpRequest.get(Urls.commonServerUrl + Urls.activeProductLots).body());
+        List<ProductLot> result = new ArrayList<>();
+        productLots.forEach(pr -> {
+            Date date = getDateFromMYSQL(((JSONObject)pr).getString("dateOfProduction"), " ");
+            ProductLot product = new ProductLot(((JSONObject)pr).getLong("id"), ((JSONObject)pr).getLong("productId"),
+                    ((JSONObject)pr).getLong("storeId"), date, ((JSONObject)pr).getInt("shelLife"), ((JSONObject)pr).getInt("count"));
+            product.setFresh(((JSONObject)pr).getBoolean("fresh"));
             result.add(product);
         });
         return result;
@@ -51,8 +64,8 @@ public class ProductLotService {
         return creds;
     }
 
-    private static Date getDateFromMYSQL(String rawDate) {
-        String onlyDate = rawDate.substring(0, rawDate.indexOf("T"));
+    private static Date getDateFromMYSQL(String rawDate, String pointer) {
+        String onlyDate = rawDate.substring(0, rawDate.indexOf(pointer));
         Date result = null;
         try {
             result = new SimpleDateFormat("yyyy-MM-dd").parse(onlyDate);
